@@ -105,7 +105,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *handle)
     
     if (handle == HAL_USART_HI50::handle)
     {
-        HAL_USART_HI50::ReceiveCallback((uint8)(READ_BIT(USART1->RDR, USART_RDR_RDR) & 0xFFU));
+        //HAL_USART_HI50::ReceiveCallback((uint8)(READ_BIT(USART1->RDR, USART_RDR_RDR) & 0xFFU));
+        
+        HAL_USART_HI50::ReceiveCallback(0);
     }
 }
 

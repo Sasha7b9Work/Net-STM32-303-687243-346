@@ -1,0 +1,15 @@
+*.o
+*.d
+*.lst
+*.scvd
+*.out
+*.uvgui*.*
+~*
+
+archive.zip
+
+sources/TwoSensors/Listings/
+sources/TwoSensors/Objects/
+sources/TwoSensors/Listings-Debug/
+sources/TwoSensors/Objects-Debug/
+sources/TwoSensors/DebugConfig/
