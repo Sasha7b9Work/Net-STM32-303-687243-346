@@ -96,13 +96,6 @@ void USART1_IRQHandler(void)
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *handle)
 {
-    static int counter = 0;
-    
-    if(++counter == 2)
-    {
-        counter = counter;
-    }
-    
     if (handle == HAL_USART_HI50::handle)
     {
         //HAL_USART_HI50::ReceiveCallback((uint8)(READ_BIT(USART1->RDR, USART_RDR_RDR) & 0xFFU));
@@ -111,10 +104,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *handle)
     }
 }
 
-//void HAL_UART_ErrorCallback(UART_HandleTypeDef *handle)
-//{
-//    handle = handle;
-//}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+    uint error = huart->ErrorCode;
+    error = error;
+}
 
 
 void ADC1_2_IRQHandler(void)

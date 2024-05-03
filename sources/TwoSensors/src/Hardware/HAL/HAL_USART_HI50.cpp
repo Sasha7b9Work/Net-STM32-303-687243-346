@@ -36,7 +36,7 @@ void HAL_USART_HI50::Init(void (*_callback_on_receive)(pchar))
     is.Mode = GPIO_MODE_AF_PP;
     is.Alternate = GPIO_AF7_USART1;
     is.Speed = GPIO_SPEED_FREQ_HIGH;
-    is.Pull = GPIO_PULLUP;
+    is.Pull = GPIO_NOPULL;
 
     HAL_GPIO_Init(GPIOB, &is);
 
@@ -56,7 +56,7 @@ void HAL_USART_HI50::Init(void (*_callback_on_receive)(pchar))
         HAL::ErrorHandler();
     }
 
-    HAL_NVIC_SetPriority(USART1_IRQn, 0, 1);
+    HAL_NVIC_SetPriority(USART1_IRQn, 1, 1);
     HAL_NVIC_EnableIRQ(USART1_IRQn);
 
     if (HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1) != HAL_OK)
@@ -75,6 +75,15 @@ void HAL_USART_HI50::Send(uint8 byte)
 void HAL_USART_HI50::ReceiveCallback(uint8)
 {
     recv_buffer.Append(recv_byte);
+    
+    if(recv_byte == 0x4F)
+    {
+        recv_byte = recv_byte;
+    }
+    else
+    {
+        recv_byte *= 2;
+    }
 
     if (HAL_UART_Receive_IT(&handleUART, &recv_byte, 1) != HAL_OK)
     {

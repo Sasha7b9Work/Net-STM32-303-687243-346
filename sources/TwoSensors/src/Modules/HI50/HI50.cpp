@@ -38,7 +38,7 @@ bool HI50::Init()
 
     state = State::WAIT_TURN_ON;
 
-    HAL_USART_HI50::Send(TURN_ON);
+    HAL_USART_HI50::Send(MEAS_HI);
 
     TimeMeterMS meter;
 
