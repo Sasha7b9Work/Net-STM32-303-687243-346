@@ -1,0 +1,7 @@
+#pragma once
+
+
+namespace std
+{
+    void sort(uint16 *, uint16 *);
+}

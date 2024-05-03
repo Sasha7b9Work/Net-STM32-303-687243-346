@@ -1,0 +1,10 @@
+#pragma once
+
+namespace std
+{
+    void          memcpy(void *dest, const void *src, unsigned int);
+    unsigned int  strlen(const char *);
+    void         *memmove(void *destptr, const void *srcptr, size_t num);
+    #include "string.h"
+
+}

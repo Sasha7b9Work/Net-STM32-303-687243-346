@@ -1,0 +1,11 @@
+#pragma once
+
+
+bool isnan(float);
+bool isinf(float);
+
+
+namespace std
+{
+#include "math.h"
+}

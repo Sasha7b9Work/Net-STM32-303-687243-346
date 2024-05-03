@@ -1,0 +1,10 @@
+#pragma once
+
+
+namespace std
+{
+    int snprintf(char *, int, const char *, ...);
+    int sprintf(char *dest, char *src, ...);
+    #include "stdio.h"
+}
+

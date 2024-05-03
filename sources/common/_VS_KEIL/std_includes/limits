@@ -1,0 +1,18 @@
+#pragma once
+
+
+#define SHRT_MAX  0x7fff
+#define INT_MAX   0x7fffffff
+#define UINT_MAX  0xffffffff
+
+
+namespace std
+{
+    template<class T>
+    struct numeric_limits
+    {
+        static float min() { return 0.0f; }
+        static float max() { return 0.0f; }
+        static float epsilon() { return 0.001f; }
+    };
+}

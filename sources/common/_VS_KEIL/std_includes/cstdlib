@@ -1,0 +1,7 @@
+#pragma once
+
+namespace std
+{
+    unsigned int rand();
+    #include "stdlib.h"
+}
