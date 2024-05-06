@@ -105,10 +105,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *handle)
 }
 
 
-void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *)
 {
-    uint error = huart->ErrorCode;
-    error = error;
 }
 
 
@@ -130,4 +128,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //-V2009
     {
         Beeper::CallbackOnTimer();
     }
+}
+
+
+void EXTI0_IRQHandler(void)
+{
+    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
 }

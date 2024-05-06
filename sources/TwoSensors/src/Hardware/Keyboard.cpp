@@ -3,6 +3,7 @@
 #include "Hardware/Keyboard.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
+#include "Modules/L00256L/L00256L.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -108,11 +109,18 @@ bool Key::IsPressed() const
 }
 
 
-void HAL_GPIO_EXTI_Callback(uint16_t)
+void HAL_GPIO_EXTI_Callback(uint16_t pin)
 {
-    Keyboard::IT::pressed[Key::_1] = pinKey1.IsLow();
+    if (pin == GPIO_PIN_0)
+    {
+        L00256L::Update();
+    }
+    else
+    {
+        Keyboard::IT::pressed[Key::_1] = pinKey1.IsLow();
 
-    Keyboard::IT::pressed[Key::_2] = pinKey2.IsLow();
+        Keyboard::IT::pressed[Key::_2] = pinKey2.IsLow();
+    }
 }
 
 

@@ -97,8 +97,6 @@ void Device::Update()
     HI50::Update();
 
     SCPI::Update();
-
-    L00256L::Update();
 }
 
 

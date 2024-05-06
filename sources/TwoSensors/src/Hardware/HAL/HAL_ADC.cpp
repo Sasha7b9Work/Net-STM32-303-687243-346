@@ -19,7 +19,7 @@ namespace HAL_ADC
 void HAL_ADC::Init()
 {
     pinADC.Init();
-    pinHumidity.Init();
+//    pinHumidity.Init();
 
     handleADC.Instance = ADC1;
     handleADC.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;

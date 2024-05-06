@@ -28,7 +28,7 @@ void L00256L::Init()
     {
         GPIO_PIN_0,
         GPIO_MODE_IT_RISING_FALLING,
-        GPIO_PULLUP,
+        GPIO_NOPULL,
         GPIO_SPEED_FREQ_HIGH,
         0
     };
@@ -36,7 +36,11 @@ void L00256L::Init()
     HAL_GPIO_Init(GPIOA, &is);
 
     is.Pin = GPIO_PIN_1;
+    is.Mode = GPIO_MODE_INPUT;
     HAL_GPIO_Init(GPIOB, &is);
+
+    HAL_NVIC_SetPriority(EXTI0_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 }
 
 
