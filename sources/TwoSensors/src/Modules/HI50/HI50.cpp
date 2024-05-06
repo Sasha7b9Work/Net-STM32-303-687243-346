@@ -4,6 +4,7 @@
 #include "Hardware/HAL/HAL.h"
 #include "Hardware/Timer.h"
 #include "Hardware/HAL/HAL.h"
+#include <cstdlib>
 
 
 namespace HI50
@@ -94,6 +95,37 @@ void HI50::CallbackOnReceive(pchar message)
         break;
 
     case State::WAIT_MEASURE:
+
+        char buffer_digits[32] = { '\0' };
+
+        int index = 3;
+
+        while (message[index] != '.')
+        {
+            char buf[2] = { '\0', '\0' };
+            buf[0] = message[index++];
+            std::strcat(buffer_digits, buf);
+        }
+
+        float integer = (float)std::atoi(buffer_digits);
+
+        index++;
+        buffer_digits[0] = { '\0' };
+        while (message[index] != 'm')
+        {
+            char buf[2] = { message[index++], '\0' };
+            std::strcat(buffer_digits, buf);
+        }
+
+        float fract = (float)std::atoi(buffer_digits);
+
+        for (uint i = 0; i < std::strlen(buffer_digits); i++)
+        {
+            fract /= 10.0f;
+        }
+
+        distance.Set(Measure::Distance, integer + fract);
+
         // \todo
         /*
         * «десь нужно распарсить полученое сообщение

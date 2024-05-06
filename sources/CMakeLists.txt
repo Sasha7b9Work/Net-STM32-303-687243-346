@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (RES-Network)
+project (TwoSensors)
 
 set (TARGET_NAME )
 
