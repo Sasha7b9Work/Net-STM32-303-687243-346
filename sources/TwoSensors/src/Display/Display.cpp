@@ -334,6 +334,10 @@ void Display::SetMeasure(const Measure &measure, uint timeMS)
     {
         format = "%.7f";
     }
+    else if (value.name == Measure::Distance)
+    {
+        format = "%.3f";
+    }
 
     value.str_value.SetFormat(format, (double)measure.GetDouble());
 //    value.current[6] = '\0';
@@ -444,7 +448,7 @@ void Display::DrawMeasures(uint)
                 }
             }
 
-            String<>("%s", measure.Name().c_str()).Draw(x0, y, measure.value.InRange() ? Color::WHITE : Color::FLASH_10);
+            String<>("%s", measure.Name().c_str()).Draw(x0, y, Color::WHITE);
             measure.Units().Draw(134, y, Color::WHITE);
             measure.Draw(x, y);
 
