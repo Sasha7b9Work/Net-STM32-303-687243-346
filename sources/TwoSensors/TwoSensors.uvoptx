@@ -152,9 +152,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>36</LineNumber>
+          <LineNumber>135</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134264146</Address>
+          <Address>4</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\src\Utils\Text\Text.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\MS_1\src/Utils/Text/Text.cpp\135</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>42</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134264172</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -163,7 +179,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\src\Modules\L00256L\L00256L.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Modules/L00256L/L00256L.cpp\36</Expression>
+          <Expression>\\MS_1\src/Modules/L00256L/L00256L.cpp\42</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>51</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\src\Modules\L00256L\L00256L.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>

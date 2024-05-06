@@ -9,6 +9,9 @@
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif 
 
 void NMI_Handler(void)
 {
@@ -135,3 +138,7 @@ void EXTI0_IRQHandler(void)
 {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
 }
+
+#ifdef __cplusplus
+}
+#endif
