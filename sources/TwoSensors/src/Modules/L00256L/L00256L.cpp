@@ -27,7 +27,7 @@ void L00256L::Init()
     GPIO_InitTypeDef is =
     {
         GPIO_PIN_0,
-        GPIO_MODE_INPUT,
+        GPIO_MODE_IT_RISING_FALLING,
         GPIO_PULLUP,
         GPIO_SPEED_FREQ_HIGH,
         0
