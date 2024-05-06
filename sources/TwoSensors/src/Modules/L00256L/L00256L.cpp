@@ -19,6 +19,8 @@ namespace L00256L
 
     static const float step_angle = 360.0f / 256.0f;
     static float angle_full = 0;
+
+    static bool is_enabled = false;
 }
 
 
@@ -41,6 +43,14 @@ void L00256L::Init()
 
     HAL_NVIC_SetPriority(EXTI0_IRQn, 2, 0);
     HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+
+    is_enabled = true;
+}
+
+
+bool L00256L::IsEnabled()
+{
+    return is_enabled;
 }
 
 

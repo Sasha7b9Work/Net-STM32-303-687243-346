@@ -458,11 +458,14 @@ void Display::DrawMeasures(uint)
         }
     }
 
-    String<>("сцнк онкмши").Draw(x0, 70, Color::WHITE);
-    String<>("сцнк нрм").Draw(x0, 90);
+    if (L00256L::IsEnabled())
+    {
+        String<>("сцнк онкмши").Draw(x0, 70, Color::WHITE);
+        String<>("сцнк нрм").Draw(x0, 90);
 
-    String<>("%.1f", (double)L00256L::GetAngleFull()).Draw(120, 70);
-    String<>("%.1f", (double)L00256L::GetAngleRelative()).Draw(120, 90);
+        String<>("%.1f", (double)L00256L::GetAngleFull()).Draw(120, 70);
+        String<>("%.1f", (double)L00256L::GetAngleRelative()).Draw(120, 90);
+    }
 }
 
 

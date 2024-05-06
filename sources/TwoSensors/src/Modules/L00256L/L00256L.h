@@ -8,6 +8,8 @@ namespace L00256L
 
     void Update();
 
+    bool IsEnabled();
+
     float GetAngleFull();
 
     float GetAngleRelative();
