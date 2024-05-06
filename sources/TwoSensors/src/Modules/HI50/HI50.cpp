@@ -43,7 +43,7 @@ bool HI50::Init()
 
     TimeMeterMS meter;
 
-    while (meter.ElapsedTime() < 5000)
+    while (meter.ElapsedTime() < 500)
     {
         HAL_USART_HI50::Update();
 

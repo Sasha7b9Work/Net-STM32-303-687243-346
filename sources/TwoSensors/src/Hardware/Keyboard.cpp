@@ -60,12 +60,6 @@ void Keyboard::Update()
 }
 
 
-void Keyboard::EnableEncoder()
-{
-
-}
-
-
 void Keyboard::UpdateKey(const Key &k)
 {
     KeyStruct &key = keys[k.value];

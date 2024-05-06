@@ -10,6 +10,7 @@
 #include "Hardware/Timer.h"
 #include "Hardware/Beeper.h"
 #include "Utils/Math.h"
+#include "Modules/L00256L/L00256L.h"
 #include <cmath>
 
 
@@ -456,6 +457,12 @@ void Display::DrawMeasures(uint)
             y += dY;
         }
     }
+
+    String<>("”√ŒÀ œŒÀÕ€…").Draw(x0, 70, Color::WHITE);
+    String<>("”√ŒÀ Œ“Õ").Draw(x0, 90);
+
+    String<>("%.1f", (double)L00256L::GetAngleFull()).Draw(120, 70);
+    String<>("%.1f", (double)L00256L::GetAngleRelative()).Draw(120, 90);
 }
 
 

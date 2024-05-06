@@ -887,6 +887,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/L00256L</GroupName>
+          <Files>
+            <File>
+              <FileName>L00256L.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\L00256L\L00256L.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>L00256L.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\L00256L\L00256L.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/ST7735</GroupName>
           <Files>
             <File>
@@ -1930,6 +1945,21 @@
               <FileName>HI50.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\HI50\HI50.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/L00256L</GroupName>
+          <Files>
+            <File>
+              <FileName>L00256L.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\L00256L\L00256L.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>L00256L.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\L00256L\L00256L.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -12,6 +12,7 @@
 #include "Hardware/EnergySwitch.h"
 #include "Menu/Menu.h"
 #include "SCPI/SCPI.h"
+#include "Modules/L00256L/L00256L.h"
 
 
 namespace Device
@@ -36,7 +37,7 @@ void Device::Init()
             
             if (!HI50::Init())              // Если нет - то датчик дальности
             {
-                Keyboard::EnableEncoder();  // И в последнюю очередь запускаем энкодер
+                L00256L::Init();
             }
         }
     }
@@ -96,6 +97,8 @@ void Device::Update()
     HI50::Update();
 
     SCPI::Update();
+
+    L00256L::Update();
 }
 
 
