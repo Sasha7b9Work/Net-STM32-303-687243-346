@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
 #include "Utils/RingBuffer.h"
+#include "Hardware/Timer.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -41,7 +42,7 @@ void HAL_USART_HI50::Init(void (*_callback_on_receive)(pchar))
     HAL_GPIO_Init(GPIOB, &is);
 
     handleUART.Instance = USART1;
-    handleUART.Init.BaudRate = 9600;
+    handleUART.Init.BaudRate = 19200;
     handleUART.Init.WordLength = UART_WORDLENGTH_8B;
     handleUART.Init.StopBits = UART_STOPBITS_1;
     handleUART.Init.Parity = UART_PARITY_NONE;
@@ -74,6 +75,13 @@ void HAL_USART_HI50::Send(uint8 byte)
 
 void HAL_USART_HI50::ReceiveCallback(uint8)
 {
+    static int counter = 0;
+    
+    if(++counter == 2)
+    {
+        counter = counter;
+    }
+    
     recv_buffer.Append(recv_byte);
     
     if(recv_byte == 0x4F)
@@ -89,6 +97,10 @@ void HAL_USART_HI50::ReceiveCallback(uint8)
     {
         HAL::ErrorHandler();
     }
+
+//    Timer::Delay(100);
+    
+//    HAL_USART_HI50::Send(0x4F);
 }
 
 
