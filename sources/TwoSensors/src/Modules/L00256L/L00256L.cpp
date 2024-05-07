@@ -21,6 +21,36 @@ namespace L00256L
     static float angle_full = 0;
 
     static bool is_enabled = false;
+
+    namespace Velocity
+    {
+        static uint time_start = 0;
+        static float angle = 0.0f;
+        static float speed = 0.0f;
+
+        static void CallbackOnInterrupt(float delta)
+        {
+            angle += delta;
+        }
+
+        static void Update()
+        {
+            static uint delta_time = 500;
+
+            if (time_start == 0)
+            {
+                time_start = TIME_MS;
+            }
+
+            if (TIME_MS - time_start >= delta_time)
+            {
+                speed = angle / (float)(TIME_MS - time_start) * 1e3f;
+
+                angle = 0;
+                time_start = TIME_MS;
+            }
+        }
+    }
 }
 
 
@@ -54,9 +84,11 @@ bool L00256L::IsEnabled()
 }
 
 
-void L00256L::Update()
+void L00256L::CallbackOnInterrupt()
 {
     static bool first = true;
+
+    float before = angle_full;
 
     if (first)
     {
@@ -82,6 +114,14 @@ void L00256L::Update()
     }
 
     prev_a = state_a;
+
+    Velocity::CallbackOnInterrupt(angle_full - before);
+}
+
+
+void L00256L::Update()
+{
+    Velocity::Update();
 }
 
 
@@ -106,4 +146,10 @@ float L00256L::GetAngleRelative()
     }
 
     return angle;
+}
+
+
+float L00256L::GetVelocity()
+{
+    return Velocity::speed;
 }

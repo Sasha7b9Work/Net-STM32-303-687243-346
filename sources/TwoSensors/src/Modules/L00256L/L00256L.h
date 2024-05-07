@@ -8,9 +8,13 @@ namespace L00256L
 
     void Update();
 
+    void CallbackOnInterrupt();
+
     bool IsEnabled();
 
     float GetAngleFull();
 
     float GetAngleRelative();
+
+    float GetVelocity();
 }

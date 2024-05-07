@@ -113,7 +113,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin)
 {
     if (pin == GPIO_PIN_0)
     {
-        L00256L::Update();
+        L00256L::CallbackOnInterrupt();
     }
     else
     {

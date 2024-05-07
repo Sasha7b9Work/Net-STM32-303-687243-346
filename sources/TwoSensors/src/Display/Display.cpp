@@ -462,9 +462,11 @@ void Display::DrawMeasures(uint)
     {
         String<>("”√ŒÀ œŒÀÕ€…").Draw(x0, 70, Color::WHITE);
         String<>("”√ŒÀ Œ“Õ").Draw(x0, 90);
+        String<>("”√À — Œ–Œ—“‹").Draw(x0, 110);
 
         String<>("%.1f", (double)L00256L::GetAngleFull()).Draw(120, 70);
         String<>("%.1f", (double)L00256L::GetAngleRelative()).Draw(120, 90);
+        String<>("%.1f", (double)L00256L::GetVelocity()).Draw(120, 110);
     }
 }
 
