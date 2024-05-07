@@ -35,7 +35,7 @@ namespace L00256L
 
         static void Update()
         {
-            static uint delta_time = 500;
+            static uint delta_time = 256;
 
             if (time_start == 0)
             {
