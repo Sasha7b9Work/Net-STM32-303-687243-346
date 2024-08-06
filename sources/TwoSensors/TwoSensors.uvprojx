@@ -2183,19 +2183,4 @@
     </Target>
   </Targets>
 
-  <RTE>
-    <apis/>
-    <components/>
-    <files/>
-  </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>Device</LayName>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
-
 </Project>

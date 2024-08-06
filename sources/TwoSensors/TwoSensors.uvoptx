@@ -161,7 +161,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\src\Utils\Text\Text.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Utils\Text\Text.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\MS_1\src/Utils/Text/Text.cpp\135</Expression>
         </Bp>
@@ -177,7 +177,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\src\Modules\L00256L\L00256L.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Modules\L00256L\L00256L.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\MS_1\src/Modules/L00256L/L00256L.cpp\42</Expression>
         </Bp>
@@ -193,7 +193,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\src\Modules\L00256L\L00256L.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Modules\L00256L\L00256L.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
