@@ -11,3 +11,4 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
 endif()
 
 add_subdirectory(TwoSensors)
+add_subdirectory(MultiSensors)
