@@ -12,4 +12,8 @@
     <NodeIsActive>1</NodeIsActive>
   </project>
 
+  <project>
+    <PathAndName>.\MultiSensors\MultiSensors.uvprojx</PathAndName>
+  </project>
+
 </ProjectWorkspace>

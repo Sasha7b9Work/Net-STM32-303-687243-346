@@ -78,11 +78,11 @@
 
   <WindowSettings>
     <LogicAnalizer>
-      <ShowLACursor>0</ShowLACursor>
-      <ShowSignalInfo>0</ShowSignalInfo>
+      <ShowLACursor>1</ShowLACursor>
+      <ShowSignalInfo>1</ShowSignalInfo>
       <ShowCycles>0</ShowCycles>
-      <LeftSideBarSize>50</LeftSideBarSize>
-      <TimeBaseIndex>16</TimeBaseIndex>
+      <LeftSideBarSize>0</LeftSideBarSize>
+      <TimeBaseIndex>-1</TimeBaseIndex>
     </LogicAnalizer>
   </WindowSettings>
 
@@ -3632,7 +3632,7 @@
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
-        <Name>D:\Projects\RES-Network\GTC-687243-346\sources\common\STM32Cube_F3\Drivers\CMSIS\Core\Include\core_cm4.h</Name>
+        <Name>&lt;1&gt;..\common\STM32Cube_F3\Drivers\CMSIS\Core\Include\core_cm4.h</Name>
         <ColumnNumber>0</ColumnNumber>
         <TopLine>1676</TopLine>
         <CurrentLine>1694</CurrentLine>

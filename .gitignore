@@ -14,4 +14,10 @@ sources/TwoSensors/Listings-Debug/
 sources/TwoSensors/Objects-Debug/
 sources/TwoSensors/DebugConfig/
 
+sources/MultiSensors/Listings/
+sources/MultiSensors/Objects/
+sources/MultiSensors/Listings-Debug/
+sources/MultiSensors/Objects-Debug/
+sources/MultiSensors/DebugConfig/
+
 sources/generated/
