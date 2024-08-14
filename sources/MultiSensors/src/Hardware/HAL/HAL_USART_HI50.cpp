@@ -75,18 +75,10 @@ void HAL_USART_HI50::Send(uint8 byte)
 
 void HAL_USART_HI50::ReceiveCallback(uint8)
 {
-    static int counter = 0;
-    
-    if(++counter == 2)
-    {
-        counter = counter;
-    }
-    
     recv_buffer.Append(recv_byte);
     
     if(recv_byte == 0x4F)
     {
-        recv_byte = recv_byte;
     }
     else
     {

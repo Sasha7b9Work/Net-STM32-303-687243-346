@@ -1,1 +1,1 @@
-start ../../TwoSensors/TwoSensors.uvprojx
+start ../../GTC.uvmpw
