@@ -8,10 +8,6 @@
   <WorkspaceName>WorkSpace</WorkspaceName>
 
   <project>
-    <PathAndName>.\TwoSensors\TwoSensors.uvprojx</PathAndName>
-  </project>
-
-  <project>
     <PathAndName>.\MultiSensors\MultiSensors.uvprojx</PathAndName>
     <NodeIsActive>1</NodeIsActive>
     <NodeIsExpanded>1</NodeIsExpanded>

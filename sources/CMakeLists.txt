@@ -10,5 +10,4 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
     add_definitions(-DDEBUG)
 endif()
 
-add_subdirectory(TwoSensors)
 add_subdirectory(MultiSensors)
