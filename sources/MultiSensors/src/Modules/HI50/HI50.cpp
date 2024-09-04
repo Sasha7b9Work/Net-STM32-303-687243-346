@@ -101,52 +101,57 @@ void HI50::CallbackOnReceive(pchar message)
 
     case State::WAIT_MEASURE:
 
-        char buffer_digits[32] = { '\0' };
+        // Сюда попадает полное сообщение от измерителя
 
-        int index = 3;
+        static const int SIZE_BUFER = 128;
 
-        while (message[index] != '.' &&
-            message[index] != '!')          // В сообщении об ошибке есть символ !
+        char buffer_digits[SIZE_BUFER] = { '\0' };
+
+        for (int i = 0; i < SIZE_BUFER; i++)
         {
-            char buf[2] = { '\0', '\0' };
-            buf[0] = message[index++];
+            char buf[2] = { message[i], '\0' };
             std::strcat(buffer_digits, buf);
+
+            if (buf[0] == 0)
+            {
+                if (buffer_digits[0] == 'M')
+                {
+                    float value = 0.0f;
+
+                    distance.Set(Measure::Distance, value);
+
+                    HAL_USART1::SetModeHC12();
+
+                    Measure measure;
+
+                    measure.Set(Measure::Distance, value);
+
+                    InterCom::Send(measure, TIME_MS);
+
+                    HAL_USART1::SetModeHI50();
+                }
+                else
+                {
+                    float value = 0.0f;
+
+                    distance.Set(Measure::Distance, value);
+
+                    HAL_USART1::SetModeHC12();
+
+                    Measure measure;
+
+                    measure.Set(Measure::Distance, value);
+
+                    InterCom::Send(measure, TIME_MS);
+
+                    HAL_USART1::SetModeHI50();
+                }
+
+                HAL_USART1::Send(MEAS_HI);
+
+                break;
+            }
         }
-
-        float integer = (float)std::atoi(buffer_digits);
-
-        index++;
-        buffer_digits[0] = { '\0' };
-        while (message[index] != 'm')
-        {
-            char buf[2] = { message[index++], '\0' };
-            std::strcat(buffer_digits, buf);
-        }
-
-        float fract = (float)std::atoi(buffer_digits);
-
-        for (uint i = 0; i < std::strlen(buffer_digits); i++)
-        {
-            fract /= 10.0f;
-        }
-
-        distance.Set(Measure::Distance, integer + fract);
-
-        HAL_USART1::SetModeHC12();
-
-        Measure measure;
-
-        measure.Set(Measure::Distance, integer + fract);
-
-        InterCom::Send(measure, TIME_MS);
-
-        HAL_USART1::SetModeHI50();
-
-        // \todo
-        /*
-        * Здесь нужно распарсить полученое сообщение
-        */
-        HAL_USART1::Send(MEAS_HI);
 
         break;
     }
