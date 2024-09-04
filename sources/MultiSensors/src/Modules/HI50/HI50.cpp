@@ -53,13 +53,10 @@ bool HI50::Init()
 
         if (state == State::WAIT_MEASURE)
         {
+            is_exist = true;
+
             break;
         }
-    }
-
-    if (state == State::WAIT_MEASURE)
-    {
-        is_exist = true;
     }
 
     return is_exist;
