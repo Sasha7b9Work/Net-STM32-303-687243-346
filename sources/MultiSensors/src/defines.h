@@ -25,13 +25,14 @@
 #endif
 
 
-typedef unsigned char  uint8;
-typedef signed char    int8;
-typedef unsigned short uint16;
-typedef signed short   int16;
-typedef unsigned int   uint;
-typedef const char    *pchar;
-typedef unsigned char  uchar;
+typedef unsigned char      uint8;
+typedef signed char        int8;
+typedef unsigned short     uint16;
+typedef signed short       int16;
+typedef unsigned int       uint;
+typedef unsigned long long uint64;
+typedef const char        *pchar;
+typedef unsigned char      uchar;
 
 #define USE_USB_INTERRUPT_DEFAULT   1
 

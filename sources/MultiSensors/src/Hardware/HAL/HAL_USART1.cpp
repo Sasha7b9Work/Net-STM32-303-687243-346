@@ -4,6 +4,7 @@
 #include "Utils/RingBuffer.h"
 #include "Hardware/Timer.h"
 #include "Modules/HI50/HI50.h"
+#include "Modules/HC12/HC12.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -95,12 +96,28 @@ void HAL_USART1::Init(bool to_HC12)
     is.Pull = GPIO_NOPULL;
 
     HAL_GPIO_Init(to_HC12 ? GPIOA : GPIOB, &is);
+
+    if (to_HC12)
+    {
+        handleUART.Init.BaudRate = 9600;
+    }
+    else
+    {
+        handleUART.Init.BaudRate = 19200;
+    }
+
+    if (HAL_UART_Init(&handleUART) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
 }
 
 
 void HAL_USART1::SetModeHC12()
 {
     Init(true);
+
+    HC12::Init();
 }
 
 
@@ -118,7 +135,7 @@ void HAL_USART1::Send(uint8 byte)
 
 void HAL_USART1::Send(const void *buffer, int size)
 {
-    HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 10);
+    HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 100);
 }
 
 
