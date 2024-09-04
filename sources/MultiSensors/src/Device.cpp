@@ -80,7 +80,9 @@ void Device::Update()
 
     if (HI50::GetMeasure(&distance))
     {
+        InterCom::SetDirection(Direction::Display);
         ProcessMeasure(distance, time);
+        InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
     }
 
     if (!Menu::IsOpened())

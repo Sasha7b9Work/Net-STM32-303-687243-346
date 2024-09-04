@@ -128,36 +128,10 @@ void HI50::CallbackOnReceive(pchar message)
 
                             distance.Set(Measure::Distance, value);
 
-//                            HAL_USART1::SetModeHC12();
-
-                            Measure measure;
-
-                            measure.Set(Measure::Distance, value);
-
-//                            InterCom::Send(measure, TIME_MS);
+                            HAL_USART1::Send(MEAS_HI);
                         }
                     }
                 }
-                else
-                {
-                    float value = 0.0f;
-
-                    distance.Set(Measure::Distance, value);
-//
-//                    HAL_USART1::SetModeHC12();
-//
-//                    Measure measure;
-//
-//                    measure.Set(Measure::Distance, value);
-//
-//                    InterCom::Send(measure, TIME_MS);
-//
-//                    HAL_USART1::SetModeHI50();
-                }
-
-                HAL_USART1::Send(MEAS_HI);
-
-                break;
             }
         }
 
