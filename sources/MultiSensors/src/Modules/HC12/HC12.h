@@ -10,6 +10,4 @@ namespace HC12
 
     // ”правл€юща€ команда
     void Command(pchar);
-
-    void CallbackOnReceive();
 }

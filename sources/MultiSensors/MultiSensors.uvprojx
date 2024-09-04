@@ -872,6 +872,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/HC12</GroupName>
+          <Files>
+            <File>
+              <FileName>HC12.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HC12.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/HI50</GroupName>
           <Files>
             <File>
@@ -1934,6 +1949,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/HC12</GroupName>
+          <Files>
+            <File>
+              <FileName>HC12.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HC12.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/HI50</GroupName>
           <Files>
             <File>
@@ -2188,5 +2218,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>MultiSensors</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

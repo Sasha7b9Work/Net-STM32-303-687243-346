@@ -81,9 +81,15 @@ namespace HAL_RTC
 
 namespace HAL_USART1
 {
-    void Init(void (*_callback_on_receive)(pchar));
+    void Init(void (*_callback_on_receive_HI50)(pchar));
+
+    void SetModeHI50();
+
+    void SetModeHC12();
 
     void Send(uint8);
+
+    void Send(const void *buffer, int size);
 
     // Функция вызывается непосредственно из прерывания, чтобы положить принятый байт в приёмный буфер
     void ReceiveCallback();

@@ -105,11 +105,6 @@ void HI50::CallbackOnReceive(pchar message)
             char buf[2] = { '\0', '\0' };
             buf[0] = message[index++];
             std::strcat(buffer_digits, buf);
-
-            if (std::strlen(buffer_digits) > 30)
-            {
-                index = index;
-            }
         }
 
         float integer = (float)std::atoi(buffer_digits);

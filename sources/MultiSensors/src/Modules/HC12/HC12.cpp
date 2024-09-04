@@ -7,12 +7,6 @@
 #include <cstring>
 
 
-namespace HAL_USART1
-{
-    extern char recv_byte;
-}
-
-
 namespace HC12
 {
 #define PORT_SET GPIOA
@@ -55,7 +49,7 @@ void HC12::Init()
 
 void HC12::Transmit(const void *buffer, int size)
 {
-    HAL_USART1::Transmit(buffer, size);
+    HAL_USART1::Send(buffer, size);
 }
 
 
@@ -71,12 +65,4 @@ void HC12::Command(pchar command)
     Transmit("\r", 1);
 
     pinCS_HC12.ToHi();
-}
-
-
-void HC12::CallbackOnReceive()
-{
-    recv_buffer.Push(HAL_USART1::recv_byte);
-
-    HAL_UART_Receive_IT((UART_HandleTypeDef *)HAL_USART1::handle, (uint8 *)&HAL_USART1::recv_byte, 1);
 }

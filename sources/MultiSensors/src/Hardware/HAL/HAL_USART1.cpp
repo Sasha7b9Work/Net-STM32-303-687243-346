@@ -73,6 +73,12 @@ void HAL_USART1::Send(uint8 byte)
 }
 
 
+void HAL_USART1::Send(const void *buffer, int size)
+{
+    HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 10);
+}
+
+
 void HAL_USART1::ReceiveCallback()
 {
     recv_buffer.Append(recv_byte);

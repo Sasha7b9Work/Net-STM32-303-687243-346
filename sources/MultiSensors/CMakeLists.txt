@@ -44,14 +44,13 @@ file(GLOB DISPLAY               src/Display/*.*)
 file(GLOB DISPLAY_FONT          src/Display/Font/*.*)
 file(GLOB HARDWARE              src/Hardware/*.*)
 file(GLOB HARDWARE_CMSIS        src/Hardware/CMSIS/*.*)
-#file(GLOB HARDWARE_CDC          src/Hardware/CDC/*.*)
 file(GLOB HARDWARE_HAL          src/Hardware/HAL/*.*)
 file(GLOB HARDWARE_HAL_I2C      src/Hardware/HAL/I2C/*.*)
 file(GLOB MENU                  src/Menu/*.*)
 file(GLOB MENU_PAGES            src/Menu/Pages/*.*)
 file(GLOB MODULES_BH1750        src/Modules/BH1750/*.*)
 file(GLOB MODULES_BME280        src/Modules/BME280/*.*)
-#file(GLOB MODULES_HC12          src/Modules/HC12/*.*)
+file(GLOB MODULES_HC12          src/Modules/HC12/*.*)
 file(GLOB MODULES_HI50          src/Modules/HI50/*.*)
 file(GLOB MODULES_L00256L       src/Modules/L00256L/*.*)
 file(GLOB MODULES_ST7735        src/Modules/ST7735/*.*)
@@ -67,14 +66,13 @@ source_group(Display            FILES ${DISPLAY})
 source_group(Display/Font       FILES ${DISPLAY_FONT})
 source_group(Hardware           FILES ${HARDWARE})
 source_group(Hardware/CMSIS     FILES ${HARDWARE_CMSIS})
-#source_group(Hardware/CDC       FILES ${HARDWARE_CDC})
 source_group(Hardware/HAL       FILES ${HARDWARE_HAL})
 source_group(Hardware/HAL/I2C   FILES ${HARDWARE_HAL_I2C})
 source_group(Menu               FILES ${MENU})
 source_group(Menu/Pages         FILES ${MENU_PAGES})
 source_group(Modules/BH1750     FILES ${MODULES_BH1750})
 source_group(Modules/BME280     FILES ${MODULES_BME280})
-#source_group(Modules/HC12       FILES ${MODULES_HC12})
+source_group(Modules/HC12       FILES ${MODULES_HC12})
 source_group(Modules/HI50       FILES ${MODULES_HI50})
 source_group(Modules/L00256L    FILES ${MODULES_L00256L})
 source_group(Modules/ST7735     FILES ${MODULES_ST7735})
@@ -102,14 +100,13 @@ add_library(
     ${DISPLAY_FONT}
     ${HARDWARE}
     ${HARDWARE_CMSIS}
-#    ${HARDWARE_CDC}
     ${HARDWARE_HAL}
     ${HARDWARE_HAL_I2C}
     ${MENU}
     ${MENU_PAGES}
     ${MODULES_BH1750}
     ${MODULES_BME280}
-#    ${MODULES_HC12}
+    ${MODULES_HC12}
     ${MODULES_HI50}
     ${MODULES_L00256L}
     ${MODULES_ST7735}
