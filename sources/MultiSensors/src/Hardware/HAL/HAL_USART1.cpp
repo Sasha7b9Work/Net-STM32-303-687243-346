@@ -110,6 +110,19 @@ void HAL_USART1::Init(bool to_HC12)
     {
         HAL::ErrorHandler();
     }
+
+    if (!to_HC12)
+    {
+        HAL_NVIC_SetPriority(USART1_IRQn, 1, 1);
+        HAL_NVIC_EnableIRQ(USART1_IRQn);
+
+        if (HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1) != HAL_OK)
+        {
+            HAL::ErrorHandler();
+        }
+    }
+
+    callback_on_receive = to_HC12 ? nullptr : callback_on_HI50;
 }
 
 
