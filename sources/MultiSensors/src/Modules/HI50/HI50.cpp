@@ -4,6 +4,7 @@
 #include "Hardware/HAL/HAL.h"
 #include "Hardware/Timer.h"
 #include "Hardware/HAL/HAL.h"
+#include "Hardware/InterCom.h"
 #include <cstdlib>
 
 
@@ -130,6 +131,16 @@ void HI50::CallbackOnReceive(pchar message)
         }
 
         distance.Set(Measure::Distance, integer + fract);
+
+        HAL_USART1::SetModeHC12();
+
+        Measure measure;
+
+        measure.Set(Measure::Distance, integer + fract);
+
+        InterCom::Send(measure, TIME_MS);
+
+        HAL_USART1::SetModeHI50();
 
         // \todo
         /*
