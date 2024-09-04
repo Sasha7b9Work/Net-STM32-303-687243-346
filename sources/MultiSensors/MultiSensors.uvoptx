@@ -152,9 +152,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>121</LineNumber>
+          <LineNumber>131</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134256788</Address>
+          <Address>134256772</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -163,7 +163,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;.\src\Modules\HI50\HI50.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\\src/Modules/HI50/HI50.cpp\121</Expression>
+          <Expression>\\\src/Modules/HI50/HI50.cpp\131</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>137</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134256782</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Modules\HI50\HI50.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\\src/Modules/HI50/HI50.cpp\137</Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>

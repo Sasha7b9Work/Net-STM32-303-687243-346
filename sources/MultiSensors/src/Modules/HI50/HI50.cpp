@@ -116,19 +116,29 @@ void HI50::CallbackOnReceive(pchar message)
             {
                 if (buffer_digits[0] == 'M')
                 {
-                    float value = 0.0f;
+                    for (int index = 3; index < SIZE_BUFER; index++)
+                    {
+                        if (buffer_digits[index] == 'm')
+                        {
+                            buffer_digits[index] = '\0';
 
-                    distance.Set(Measure::Distance, value);
+                            std::memmove(buffer_digits, buffer_digits + 3, (uint)(index - 3));
 
-                    HAL_USART1::SetModeHC12();
+                            float value = (float)std::atof(buffer_digits);
 
-                    Measure measure;
+                            distance.Set(Measure::Distance, value);
 
-                    measure.Set(Measure::Distance, value);
+                            HAL_USART1::SetModeHC12();
 
-                    InterCom::Send(measure, TIME_MS);
+                            Measure measure;
 
-                    HAL_USART1::SetModeHI50();
+                            measure.Set(Measure::Distance, value);
+
+                            InterCom::Send(measure, TIME_MS);
+
+                            HAL_USART1::SetModeHI50();
+                        }
+                    }
                 }
                 else
                 {

@@ -47,18 +47,7 @@ void HAL_USART1::Init(void (*_callback_on_receive_HI50)(pchar))
     handleUART.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
     handleUART.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
 
-    if (HAL_UART_Init(&handleUART) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
-
-    HAL_NVIC_SetPriority(USART1_IRQn, 1, 1);
-    HAL_NVIC_EnableIRQ(USART1_IRQn);
-
-    if (HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
+    HAL_UART_Init(&handleUART);
 }
 
 
@@ -111,15 +100,17 @@ void HAL_USART1::Init(bool to_HC12)
         HAL::ErrorHandler();
     }
 
-    if (!to_HC12)
+    if (to_HC12)
     {
-        HAL_NVIC_SetPriority(USART1_IRQn, 1, 1);
+        HAL_NVIC_DisableIRQ(USART1_IRQn);
+    }
+    else
+    {
         HAL_NVIC_EnableIRQ(USART1_IRQn);
 
-        if (HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1) != HAL_OK)
-        {
-            HAL::ErrorHandler();
-        }
+        HAL_NVIC_SetPriority(USART1_IRQn, 1, 1);
+
+        HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1);
     }
 
     callback_on_receive = to_HC12 ? nullptr : callback_on_HI50;
