@@ -28,6 +28,14 @@ namespace HI50
     static bool is_init = false;
 
     static Measure distance;
+
+    static bool is_exist = false;
+}
+
+
+bool HI50::IsExist()
+{
+    return is_exist;
 }
 
 
@@ -49,9 +57,12 @@ bool HI50::Init()
         }
     }
 
-    is_init = (state == State::WAIT_MEASURE);
+    if (state == State::WAIT_MEASURE)
+    {
+        is_exist = true;
+    }
 
-    return is_init;
+    return is_exist;
 }
 
 

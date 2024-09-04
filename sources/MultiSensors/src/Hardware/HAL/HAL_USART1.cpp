@@ -3,6 +3,7 @@
 #include "Hardware/HAL/HAL.h"
 #include "Utils/RingBuffer.h"
 #include "Hardware/Timer.h"
+#include "Modules/HI50/HI50.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -64,8 +65,11 @@ void HAL_USART1::Init(bool to_HC12)
 {
     if (to_HC12)
     {
-        HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
-        HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
+        if (HI50::IsExist())                        // Деинициализируем данные выводы только если существует лазерный дальномер.
+        {                                           // В остальных случаях на этих выводах I2C - их отключать нельзя
+            HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
+            HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
+        }
     }
     else
     {

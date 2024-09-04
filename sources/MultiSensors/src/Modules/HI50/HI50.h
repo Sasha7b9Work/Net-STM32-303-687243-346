@@ -7,6 +7,8 @@ namespace HI50
 {
     bool Init();
 
+    bool IsExist();
+
     void Update();
 
     bool GetMeasure(Measure *);
