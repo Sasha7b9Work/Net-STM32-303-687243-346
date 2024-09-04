@@ -39,6 +39,8 @@ bool HI50::IsExist()
 
 bool HI50::Init()
 {
+    HAL_USART1::SetModeHI50();
+
     state = State::WAIT_TURN_ON;
 
     HAL_USART1::Send(TURN_ON);
@@ -58,8 +60,6 @@ bool HI50::Init()
     if (state == State::WAIT_MEASURE)
     {
         is_exist = true;
-
-        HAL_USART1::SetModeHI50();
     }
 
     return is_exist;
