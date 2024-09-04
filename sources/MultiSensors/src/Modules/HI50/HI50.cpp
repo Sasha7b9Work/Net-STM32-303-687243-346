@@ -28,15 +28,11 @@ namespace HI50
     static bool is_init = false;
 
     static Measure distance;
-
-    static void CallbackOnReceive(pchar);
 }
 
 
 bool HI50::Init()
 {
-    HAL_USART1::Init(CallbackOnReceive);
-
     state = State::WAIT_TURN_ON;
 
     HAL_USART1::Send(TURN_ON);

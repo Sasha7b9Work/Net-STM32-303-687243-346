@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
 #include "Utils/Math.h"
+#include "Modules/HI50/HI50.h"
 #include <stm32f3xx_hal.h>
 #include <cstring>
 
@@ -36,6 +37,8 @@ void HAL::Init()
     HAL_ADC::Init();
 
     HAL_SPI1::Init();
+
+    HAL_USART1::Init(HI50::CallbackOnReceive);
 }
 
 

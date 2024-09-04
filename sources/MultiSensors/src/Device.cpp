@@ -41,6 +41,8 @@ void Device::Init()
         }
     }
 
+    HAL_USART1::SetModeHC12();
+
     Keyboard::Init();
 
     Beeper::Init();
