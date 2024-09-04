@@ -22,24 +22,17 @@ namespace HAL_USART1
     static uint8 recv_byte = 0;
 
     static void (*callback_on_receive)(pchar) = nullptr;
+    static void (*callback_on_HI50)(pchar) = nullptr;
+
+    static void Init(bool to_HC12);
 }
 
 
-void HAL_USART1::Init(void (*_callback_on_receive)(pchar))
+void HAL_USART1::Init(void (*_callback_on_receive_HI50)(pchar))
 {
     __HAL_RCC_USART1_CLK_ENABLE();
 
-    callback_on_receive = _callback_on_receive;
-
-    GPIO_InitTypeDef is;
-    //           TX           RX
-    is.Pin = GPIO_PIN_6 | GPIO_PIN_7;
-    is.Mode = GPIO_MODE_AF_PP;
-    is.Alternate = GPIO_AF7_USART1;
-    is.Speed = GPIO_SPEED_FREQ_HIGH;
-    is.Pull = GPIO_NOPULL;
-
-    HAL_GPIO_Init(GPIOB, &is);
+    callback_on_HI50 = _callback_on_receive_HI50;
 
     handleUART.Instance = USART1;
     handleUART.Init.BaudRate = 19200;
@@ -64,6 +57,52 @@ void HAL_USART1::Init(void (*_callback_on_receive)(pchar))
     {
         HAL::ErrorHandler();
     }
+}
+
+
+void HAL_USART1::Init(bool to_HC12)
+{
+    if (to_HC12)
+    {
+        HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
+        HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
+    }
+    else
+    {
+        HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9);
+        HAL_GPIO_DeInit(GPIOA, GPIO_PIN_10);
+    }
+
+    GPIO_InitTypeDef is;
+
+    if (to_HC12)
+    {
+        is.Pin = GPIO_PIN_9 | GPIO_PIN_10;
+    }
+    else
+    {
+        //           TX           RX
+        is.Pin = GPIO_PIN_6 | GPIO_PIN_7;
+    }
+
+    is.Mode = GPIO_MODE_AF_PP;
+    is.Alternate = GPIO_AF7_USART1;
+    is.Speed = GPIO_SPEED_FREQ_HIGH;
+    is.Pull = GPIO_NOPULL;
+
+    HAL_GPIO_Init(to_HC12 ? GPIOA : GPIOB, &is);
+}
+
+
+void HAL_USART1::SetModeHC12()
+{
+    Init(true);
+}
+
+
+void HAL_USART1::SetModeHI50()
+{
+    Init(false);
 }
 
 
@@ -95,10 +134,6 @@ void HAL_USART1::ReceiveCallback()
     {
         HAL::ErrorHandler();
     }
-
-//    Timer::Delay(100);
-    
-//    HAL_USART_HI50::Send(0x4F);
 }
 
 
