@@ -41,7 +41,10 @@ void Device::Init()
         }
     }
 
-    HAL_USART1::SetModeHC12();
+    if (!HI50::IsExist())               // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
+    {                                   // когда понадобится
+        HAL_USART1::SetModeHC12();
+    }
 
     Keyboard::Init();
 

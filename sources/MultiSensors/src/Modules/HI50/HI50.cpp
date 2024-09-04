@@ -25,11 +25,9 @@ namespace HI50
 
     static State::E state = State::IDLE;
 
-    static bool is_init = false;
-
     static Measure distance;
 
-    static bool is_exist = false;
+    static bool is_exist = false;   // true, если модуль измерения дальности подключён
 }
 
 
@@ -60,6 +58,8 @@ bool HI50::Init()
     if (state == State::WAIT_MEASURE)
     {
         is_exist = true;
+
+        HAL_USART1::SetModeHI50();
     }
 
     return is_exist;
@@ -68,7 +68,7 @@ bool HI50::Init()
 
 void HI50::Update()
 {
-    if (!is_init)
+    if (!is_exist)
     {
         return;
     }
@@ -107,7 +107,8 @@ void HI50::CallbackOnReceive(pchar message)
 
         int index = 3;
 
-        while (message[index] != '.' && message[index] != '!')
+        while (message[index] != '.' &&
+            message[index] != '!')          // В сообщении об ошибке есть символ !
         {
             char buf[2] = { '\0', '\0' };
             buf[0] = message[index++];
@@ -138,6 +139,7 @@ void HI50::CallbackOnReceive(pchar message)
         * Здесь нужно распарсить полученое сообщение
         */
         HAL_USART1::Send(MEAS_HI);
+
         break;
     }
 }
