@@ -85,7 +85,8 @@ namespace HAL_USART1
 
     void Send(uint8);
 
-    void ReceiveCallback(uint8);
+    // Функция вызывается непосредственно из прерывания, чтобы положить принятый байт в приёмный буфер
+    void ReceiveCallback();
 
     void Update();
 

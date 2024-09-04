@@ -745,9 +745,9 @@
               <FilePath>.\src\Hardware\HAL\HAL_IWDG.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_USART_HI50.cpp</FileName>
+              <FileName>HAL_USART1.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_USART_HI50.cpp</FilePath>
+              <FilePath>.\src\Hardware\HAL\HAL_USART1.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1807,9 +1807,9 @@
               <FilePath>.\src\Hardware\HAL\HAL_IWDG.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_USART_HI50.cpp</FileName>
+              <FileName>HAL_USART1.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_USART_HI50.cpp</FilePath>
+              <FilePath>.\src\Hardware\HAL\HAL_USART1.cpp</FilePath>
             </File>
           </Files>
         </Group>

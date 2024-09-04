@@ -73,7 +73,7 @@ void HAL_USART1::Send(uint8 byte)
 }
 
 
-void HAL_USART1::ReceiveCallback(uint8)
+void HAL_USART1::ReceiveCallback()
 {
     recv_buffer.Append(recv_byte);
     
