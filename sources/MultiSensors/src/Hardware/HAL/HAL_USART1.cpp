@@ -6,7 +6,7 @@
 #include <stm32f3xx_hal.h>
 
 
-namespace HAL_USART_HI50
+namespace HAL_USART1
 {
     /*
     *   USART1 RX - PB7
@@ -25,7 +25,7 @@ namespace HAL_USART_HI50
 }
 
 
-void HAL_USART_HI50::Init(void (*_callback_on_receive)(pchar))
+void HAL_USART1::Init(void (*_callback_on_receive)(pchar))
 {
     __HAL_RCC_USART1_CLK_ENABLE();
 
@@ -67,13 +67,13 @@ void HAL_USART_HI50::Init(void (*_callback_on_receive)(pchar))
 }
 
 
-void HAL_USART_HI50::Send(uint8 byte)
+void HAL_USART1::Send(uint8 byte)
 {
     HAL_UART_Transmit(&handleUART, &byte, 1, 10);
 }
 
 
-void HAL_USART_HI50::ReceiveCallback(uint8)
+void HAL_USART1::ReceiveCallback(uint8)
 {
     recv_buffer.Append(recv_byte);
     
@@ -96,7 +96,7 @@ void HAL_USART_HI50::ReceiveCallback(uint8)
 }
 
 
-void HAL_USART_HI50::Update()
+void HAL_USART1::Update()
 {
     if (!callback_on_receive || recv_buffer.GetElementCount() == 0)
     {

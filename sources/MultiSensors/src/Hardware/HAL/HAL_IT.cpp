@@ -93,17 +93,17 @@ void USART1_IRQHandler(void)
 //        HAL_USART_HI50::ReceiveCallback(LL_USART_ReceiveData8(USART1));
 //    }
 
-    HAL_UART_IRQHandler((UART_HandleTypeDef *)HAL_USART_HI50::handle);
+    HAL_UART_IRQHandler((UART_HandleTypeDef *)HAL_USART1::handle);
 }
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *handle)
 {
-    if (handle == HAL_USART_HI50::handle)
+    if (handle == HAL_USART1::handle)
     {
         //HAL_USART_HI50::ReceiveCallback((uint8)(READ_BIT(USART1->RDR, USART_RDR_RDR) & 0xFFU));
         
-        HAL_USART_HI50::ReceiveCallback(0);
+        HAL_USART1::ReceiveCallback(0);
     }
 }
 

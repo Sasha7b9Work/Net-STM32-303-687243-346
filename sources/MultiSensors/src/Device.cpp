@@ -91,7 +91,7 @@ void Device::Update()
 
     EnergySwitch::Update();
 
-    HAL_USART_HI50::Update();
+    HAL_USART1::Update();
 
     HI50::Update();
 

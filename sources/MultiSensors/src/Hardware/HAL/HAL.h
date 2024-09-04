@@ -79,7 +79,7 @@ namespace HAL_RTC
 }
 
 
-namespace HAL_USART_HI50
+namespace HAL_USART1
 {
     void Init(void (*_callback_on_receive)(pchar));
 

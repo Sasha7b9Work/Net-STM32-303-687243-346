@@ -35,17 +35,17 @@ namespace HI50
 
 bool HI50::Init()
 {
-    HAL_USART_HI50::Init(CallbackOnReceive);
+    HAL_USART1::Init(CallbackOnReceive);
 
     state = State::WAIT_TURN_ON;
 
-    HAL_USART_HI50::Send(TURN_ON);
+    HAL_USART1::Send(TURN_ON);
 
     TimeMeterMS meter;
 
     while (meter.ElapsedTime() < 500)
     {
-        HAL_USART_HI50::Update();
+        HAL_USART1::Update();
 
         if (state == State::WAIT_MEASURE)
         {
@@ -69,7 +69,7 @@ void HI50::Update()
     switch (state)
     {
     case State::IDLE:
-        HAL_USART_HI50::Send(TURN_ON);
+        HAL_USART1::Send(TURN_ON);
         state = State::WAIT_TURN_ON;
         break;
 
@@ -90,7 +90,7 @@ void HI50::CallbackOnReceive(pchar message)
         break;
 
     case State::WAIT_TURN_ON:
-        HAL_USART_HI50::Send(MEAS_HI);
+        HAL_USART1::Send(MEAS_HI);
         state = State::WAIT_MEASURE;
         break;
 
@@ -135,7 +135,7 @@ void HI50::CallbackOnReceive(pchar message)
         /*
         * «десь нужно распарсить полученое сообщение
         */
-        HAL_USART_HI50::Send(MEAS_HI);
+        HAL_USART1::Send(MEAS_HI);
         break;
     }
 }
