@@ -18,6 +18,7 @@ struct Measure
         Azimuth,        // јзимут - угол от направлени€ на север
         Illuminate,     // ќсвещЄнность
         Distance,       // ƒистанци€ - лазерный дальномер
+        RotageAngle,    // ”гол поворота
         Count
     };
 

@@ -138,8 +138,14 @@ void HI50::CallbackOnReceive(pchar message)
                             HAL_USART1::SetModeHI50();
 
                             HAL_USART1::Send(MEAS_HI);
+                            break;
                         }
                     }
+                }
+                else
+                {
+                    HAL_USART1::Send(MEAS_HI);
+                    break;
                 }
             }
         }

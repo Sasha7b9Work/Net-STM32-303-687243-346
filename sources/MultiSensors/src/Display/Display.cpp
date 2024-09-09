@@ -11,6 +11,7 @@
 #include "Hardware/Beeper.h"
 #include "Utils/Math.h"
 #include "Modules/L00256L/L00256L.h"
+#include "Hardware/InterCom.h"
 #include <cmath>
 
 
@@ -46,7 +47,8 @@ namespace Display
         DMeasure(Measure::Altitude),
         DMeasure(Measure::Azimuth),
         DMeasure(Measure::Illuminate),
-        DMeasure(Measure::Distance)
+        DMeasure(Measure::Distance),
+        DMeasure(Measure::RotageAngle)
     };
 
     namespace Buffer
@@ -467,6 +469,23 @@ void Display::DrawMeasures(uint)
         String<>("%.1f", (double)L00256L::GetAngleFull()).Draw(120, 70);
         String<>("%.1f", (double)L00256L::GetAngleRelative()).Draw(120, 90);
         String<>("%.1f", (double)L00256L::GetVelocity()).Draw(120, 110);
+
+        static TimeMeterMS meter;
+
+        if (meter.ElapsedTime() > 500)
+        {
+            meter.Reset();
+
+            Measure rotate;
+
+            rotate.Set(Measure::RotageAngle, L00256L::GetAngleRelative());
+
+            InterCom::SetDirection(Direction::HC12);
+
+            InterCom::Send(rotate, TIME_MS);
+
+            InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
+        }
     }
 }
 
