@@ -29,6 +29,18 @@ namespace HI50
     static Measure distance;
 
     static bool is_exist = false;   // true, если модуль измерени€ дальности подключЄн
+
+    static void SendRequestMeasure()
+    {
+        static TimeMeterMS meter;
+
+        if (meter.ElapsedTime() > 1000)
+        {
+            meter.Reset();
+
+            HAL_USART1::Send(MEAS_HI);
+        }
+    }
 }
 
 
@@ -101,6 +113,8 @@ void HI50::CallbackOnReceive(pchar message)
 
     case State::WAIT_MEASURE:
 
+        SendRequestMeasure();
+
         // —юда попадает полное сообщение от измерител€
 
         static const int SIZE_BUFER = 128;
@@ -141,11 +155,6 @@ void HI50::CallbackOnReceive(pchar message)
                             break;
                         }
                     }
-                }
-                else
-                {
-                    HAL_USART1::Send(MEAS_HI);
-                    break;
                 }
             }
         }
