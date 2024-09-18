@@ -30,16 +30,13 @@ namespace HI50
 
     static bool is_exist = false;   // true, если модуль измерени€ дальности подключЄн
 
+    static uint time_last_send = 0;
+
     static void SendRequestMeasure()
     {
-        static TimeMeterMS meter;
+        HAL_USART1::Send(MEAS_HI);
 
-        if (meter.ElapsedTime() > 1000)
-        {
-            meter.Reset();
-
-            HAL_USART1::Send(MEAS_HI);
-        }
+        time_last_send = TIME_MS;
     }
 }
 
@@ -94,6 +91,10 @@ void HI50::Update()
         break;
 
     case State::WAIT_MEASURE:
+        if (TIME_MS - time_last_send > 5000)
+        {
+            SendRequestMeasure();
+        }
         break;
     }
 }
@@ -112,8 +113,6 @@ void HI50::CallbackOnReceive(pchar message)
         break;
 
     case State::WAIT_MEASURE:
-
-        SendRequestMeasure();
 
         // —юда попадает полное сообщение от измерител€
 
@@ -156,6 +155,8 @@ void HI50::CallbackOnReceive(pchar message)
                         }
                     }
                 }
+
+                SendRequestMeasure();
             }
         }
 

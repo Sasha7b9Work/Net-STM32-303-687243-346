@@ -146,48 +146,46 @@ void HAL_USART1::Send(const void *buffer, int size)
 void HAL_USART1::ReceiveCallback()
 {
     recv_buffer.Append(recv_byte);
-    
-    if(recv_byte == 0x4F)
-    {
-    }
-    else
-    {
-        recv_byte *= 2;
-    }
 
-    if (HAL_UART_Receive_IT(&handleUART, &recv_byte, 1) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
+    HAL_UART_Receive_IT(&handleUART, &recv_byte, 1);
 }
 
 
 void HAL_USART1::Update()
 {
-    if (!callback_on_receive || recv_buffer.GetElementCount() == 0)
+    if (!callback_on_receive)
+    {
+        recv_buffer.Clear();
+        return;
+    }
+
+    if (recv_buffer.GetElementCount() == 0)
     {
         return;
     }
 
-    static Buffer<256> buffer;
-
-    uint8 byte = recv_buffer.Pop();
-
-    if (byte == 0x0d)
+    while (recv_buffer.GetElementCount() != 0)
     {
-        return;
+        uint8 byte = recv_buffer.Pop();
+
+        if (byte == 0x0d)
+        {
+            return;
+        }
+
+        if (byte == 0x0a)
+        {
+            byte = 0x00;
+        }
+
+        static Buffer<256> buffer;
+
+        buffer.Push(byte);
+
+        if (byte == 0x00)
+        {
+            callback_on_receive((pchar)buffer.DataConst());
+            buffer.Clear();
+        }
     }
-
-    if (byte == 0x0a)
-    {
-        buffer.Push(0);
-
-        callback_on_receive((pchar)buffer.DataConst());
-
-        buffer.Clear();
-
-        return;
-    }
-
-    buffer.Push(byte);
 }
