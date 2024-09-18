@@ -23,6 +23,8 @@ namespace Display
 
     void EndScene();
 
+    void SetString(pchar);
+
     namespace Buffer
     {
         // Возвращает указатель на строку

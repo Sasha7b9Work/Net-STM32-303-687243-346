@@ -138,6 +138,24 @@ namespace Display
     static void DrawMeasures(uint timeMS);
 
     static void DrawStar();
+
+    static char string[32] = { '\0' };
+
+    static void DrawString();
+}
+
+
+void Display::SetString(pchar str)
+{
+    if (std::strlen(str) > 15)
+    {
+        std::memcpy(string, str, 16);
+        string[15] = '\0';
+    }
+    else
+    {
+        std::strcpy(string, str);
+    }
 }
 
 
@@ -395,7 +413,20 @@ void Display::Update(uint timeMS)
 
     DrawMeasures(timeMS);
 
+    DrawString();
+
     EndScene();
+}
+
+
+void Display::DrawString()
+{
+    if (string[0] == '\0')
+    {
+        return;
+    }
+
+    String<>(string).Draw(32, 48, Color::WHITE);
 }
 
 
