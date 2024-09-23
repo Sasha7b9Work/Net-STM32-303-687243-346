@@ -146,11 +146,17 @@ void HI50::CallbackOnReceive(pchar message)
                             Measure measure;
                             measure.Set(Measure::Distance, value);
 
-                            HAL_USART1::SetModeHC12();
+                            if (value != 0.0f)
+                            {
+                                HAL_USART1::SetModeHC12();
 
-                            InterCom::Send(measure, TIME_MS);
+                                for (int counter = 0; counter < 5; counter++)
+                                {
+                                    InterCom::Send(measure, TIME_MS);
+                                }
 
-                            HAL_USART1::SetModeHI50();
+                                HAL_USART1::SetModeHI50();
+                            }
 
                             SendRequestMeasure();
 
