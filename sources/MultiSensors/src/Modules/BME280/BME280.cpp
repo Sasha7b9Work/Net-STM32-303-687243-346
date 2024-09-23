@@ -138,7 +138,7 @@ bool BME280::GetMeasures(Measure *temp, Measure *pressure, Measure *humidity, Me
 
     if (result == BME280_OK)
     {
-        temp->Set(Measure::Count, comp_data.temperature);
+        temp->Set(Measure::Temperature, comp_data.temperature);
         pressure->Set(Measure::Pressure, comp_data.pressure / 100.0);
         humidity->Set(Measure::Humidity, comp_data.humidity);
         dew_point->Set(Measure::DewPoint, CalculateDewPoint((float)temp->GetDouble(), (float)humidity->GetDouble()));

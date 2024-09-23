@@ -37,7 +37,7 @@ namespace Display
 
     static DMeasure measures[Measure::Count] =
     {
-        DMeasure(Measure::Count),
+        DMeasure(Measure::Temperature),
         DMeasure(Measure::Pressure),
         DMeasure(Measure::Humidity),
         DMeasure(Measure::DewPoint),
@@ -454,7 +454,8 @@ void Display::DrawMeasures(uint)
         Measure::Altitude,
         Measure::Azimuth,
         Measure::Illuminate,
-        Measure::Distance
+        Measure::Distance,
+        Measure::RotageAngle
     };
 
     int y = y0;
@@ -544,7 +545,8 @@ String<> Display::DMeasure::Name()
         "ÂÛÑÎÒÀ",
         "ÀÇÈÌÓÒ",
         "ÎÑÂÅÙ¨ÍÍÎÑÒÜ",
-        "ÄÈÑÒÀÍÖÈß"
+        "ÄÈÑÒÀÍÖÈß",
+        "ÓÃÎË"
     };
 
     String<> result(names[name]);
@@ -566,7 +568,8 @@ String<> Display::DMeasure::Units()
         "ì",
         "¨",
         "ëê",
-        "ì"
+        "ì",
+        "¨"
     };
 
     return String<>(units[name]);
