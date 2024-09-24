@@ -10,5 +10,7 @@ namespace BH1750
 {
     bool Init();
 
+    bool IsInitialized();
+
     bool GetMeasure(Measure *illumination);
 }

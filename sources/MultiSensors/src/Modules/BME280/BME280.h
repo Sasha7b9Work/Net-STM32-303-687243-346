@@ -10,5 +10,7 @@ namespace BME280
 {
     bool Init();
 
+    bool IsInitialized();
+
     bool GetMeasures(Measure *temp, Measure *pressure, Measure *humidity, Measure *dew_point);
 }

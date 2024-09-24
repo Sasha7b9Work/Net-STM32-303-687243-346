@@ -12,6 +12,8 @@
 
 namespace BME280
 {
+    static bool is_initialized = false;
+
     static bme280_dev dev;
 
     static unsigned int timeNext = 1;       // Время следующего измерения
@@ -29,15 +31,25 @@ bool BME280::Init()
 {
     if (AttemptConnection(BME280_I2C_ADDR_PRIM))
     {
+        is_initialized = true;
+
         return true;
     }
 
     if (AttemptConnection(BME280_I2C_ADDR_SEC))
     {
+        is_initialized = true;
+
         return true;
     }
 
     return false;
+}
+
+
+bool BME280::IsInitialized()
+{
+    return is_initialized;
 }
 
 

@@ -31,7 +31,9 @@ void Device::Init()
 
     BME280::Init();                    // Пытаемся инициализировать датчик давления
 
-    if (!BH1750::Init())                // Если нет - то освещённость
+    BH1750::Init();
+
+    if (!BME280::IsInitialized() && !BH1750::IsInitialized())                // Если нет - то освещённость
     {
         __HAL_RCC_I2C1_CLK_DISABLE();
 

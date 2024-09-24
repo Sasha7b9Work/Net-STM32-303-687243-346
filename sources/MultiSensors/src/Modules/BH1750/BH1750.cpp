@@ -11,6 +11,8 @@ namespace BH1750
     static const uint8 CMD_RESET      = 0x03;
     static const uint8 CMD_MEASURE    = 0x10;
 
+    static bool is_initialized = false;
+
     uint timeNext = 1;
 
     bool WriteAddrL(uint8);
@@ -25,7 +27,7 @@ namespace BH1750
 
 bool BH1750::Init()
 {
-    return  WriteAddrL(CMD_POWER_ON) &&
+    is_initialized = WriteAddrL(CMD_POWER_ON) &&
             WriteAddrL(CMD_RESET) &&
 
             WriteAddrL(0x40) &&   // Чувствительность 0.45
@@ -37,6 +39,14 @@ bool BH1750::Init()
       //    WriteAddrL(0x10);   // Чувствительноть 2
       
             WriteAddrL(CMD_MEASURE);
+
+    return is_initialized;
+}
+
+
+bool BH1750::IsInitialized()
+{
+    return is_initialized;
 }
 
 
