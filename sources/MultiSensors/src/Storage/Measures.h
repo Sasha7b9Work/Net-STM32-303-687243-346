@@ -7,18 +7,20 @@ struct Measure
 {
     enum E
     {
-        Temperature,    // Температура
-        Pressure,       // Давление
-        Humidity,       // Влажность
-        DewPoint,       // Точка росы
-        Velocity,       // Скорость воздуха
-        Latitude,       // Широта
-        Longitude,      // Долгота
-        Altitude,       // Высота
-        Azimuth,        // Азимут - угол от направления на север
-        Illuminate,     // Освещённость
-        Distance,       // Дистанция - лазерный дальномер
-        RotageAngle,    // Угол поворота
+        Temperature,        // Температура
+        Pressure,           // Давление
+        Humidity,           // Влажность
+        DewPoint,           // Точка росы
+        Velocity,           // Скорость воздуха
+        Latitude,           // Широта
+        Longitude,          // Долгота
+        Altitude,           // Высота
+        Azimuth,            // Азимут - угол от направления на север
+        Illuminate,         // Освещённость
+        Distance,           // Дистанция - лазерный дальномер
+        RotateAngleRel,     // Относительный угол поворота
+        RotateAngleFull,    // Полный угол поворота
+        RotateAngleSpeed,   // Скорость поворота
         Count
     };
 

@@ -48,7 +48,9 @@ namespace Display
         DMeasure(Measure::Azimuth),
         DMeasure(Measure::Illuminate),
         DMeasure(Measure::Distance),
-        DMeasure(Measure::RotageAngle)
+        DMeasure(Measure::RotateAngleRel),
+        DMeasure(Measure::RotateAngleFull),
+        DMeasure(Measure::RotateAngleSpeed)
     };
 
     namespace Buffer
@@ -455,7 +457,9 @@ void Display::DrawMeasures(uint)
         Measure::Azimuth,
         Measure::Illuminate,
         Measure::Distance,
-        Measure::RotageAngle
+        Measure::RotateAngleRel,
+        Measure::RotateAngleFull,
+        Measure::RotateAngleSpeed
     };
 
     int y = y0;
@@ -510,9 +514,17 @@ void Display::DrawMeasures(uint)
 
             Measure rotate;
 
-            rotate.Set(Measure::RotageAngle, L00256L::GetAngleRelative());
+            rotate.Set(Measure::RotateAngleRel, L00256L::GetAngleRelative());
 
             InterCom::SetDirection(Direction::HC12);
+
+            InterCom::Send(rotate, TIME_MS);
+
+            rotate.Set(Measure::RotateAngleFull, L00256L::GetAngleFull());
+
+            InterCom::Send(rotate, TIME_MS);
+
+            rotate.Set(Measure::RotateAngleSpeed, L00256L::GetVelocity());
 
             InterCom::Send(rotate, TIME_MS);
 
@@ -546,7 +558,9 @@ String<> Display::DMeasure::Name()
         "ÀÇÈÌÓÒ",
         "ÎÑÂÅÙ¨ÍÍÎÑÒÜ",
         "ÄÈÑÒÀÍÖÈß",
-        "ÓÃÎË"
+        "ÓÃÎË",
+        "ÓÃÎË ÏÎËÍÛ",
+        "ÑÊÎĞÎÑÒÜ ÏÎÂÎĞÎÒÀ"
     };
 
     String<> result(names[name]);
@@ -569,6 +583,8 @@ String<> Display::DMeasure::Units()
         "¨",
         "ëê",
         "ì",
+        "¨",
+        "¨",
         "¨"
     };
 
