@@ -39,11 +39,15 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f3xx_hal.h"
 
-#if __ARMCLIB_VERSION >= 6000000
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
+    #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
+    #pragma clang diagnostic ignored "-Wswitch-enum"
     #pragma clang diagnostic ignored "-Wimplicit-int-conversion"
 #endif
+
+#include "stm32f3xx_hal.h"
 
 /** @addtogroup STM32F3xx_LL_USB_DRIVER
   * @{

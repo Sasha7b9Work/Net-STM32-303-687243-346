@@ -1,7 +1,5 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "opt.h"
-
 
 #define VERSION 53
 
@@ -22,8 +20,13 @@
     #pragma clang diagnostic ignored "-Wformat-nonliteral"
     #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
     #pragma clang diagnostic ignored "-Wmissing-prototypes"
+    #pragma clang diagnostic ignored "-Winvalid-utf8"
+    #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #endif
 
+#include "opt.h"
+
+#include <stm32f3xx_hal.h>
 
 typedef unsigned char      uint8;
 typedef signed char        int8;
