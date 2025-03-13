@@ -18,8 +18,8 @@ namespace HAL_ADC
 
 void HAL_ADC::Init()
 {
-    pinADC.Init();
-//    pinHumidity.Init();
+    pinBatteryADC.Init();
+    pinMQ9.Init();
 
     handleADC.Instance = ADC1;
     handleADC.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
@@ -74,7 +74,7 @@ uint HAL_ADC::ReadChannel(uint channel)
 }
 
 
-float HAL_ADC::GetVoltage()
+float HAL_ADC::GetVoltageBattery()
 {
     static TimeMeterMS meter;
 
@@ -88,6 +88,23 @@ float HAL_ADC::GetVoltage()
         {
             voltage = value;
         }
+
+        meter.FinishAfter(1000);
+    }
+
+    return voltage;
+}
+
+
+float HAL_ADC::GetVoltageDioxide()
+{
+    static TimeMeterMS meter;
+
+    static float voltage = 0.0f;
+
+    if (meter.IsFinished())
+    {
+        voltage = (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12);
 
         meter.FinishAfter(1000);
     }

@@ -54,7 +54,8 @@ struct PinAnalog : public Pin
 
 extern Pin         pinWP;
 extern PinOutputPP pinBEEP;
-extern PinAnalog   pinADC;
+extern PinAnalog   pinBatteryADC;
+extern PinAnalog   pinMQ9;          // Пин контроля углекислого газа
 extern PinAnalog   pinHumidity;
 
 extern Pin         pinSCK_SPI1;     // SPI1

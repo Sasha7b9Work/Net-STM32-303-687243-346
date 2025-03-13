@@ -69,7 +69,8 @@ void InterCom::Send(const Measure &measure, uint timeMS)
         "Distance",
         "RotateAngleRel",
         "RotateAngleFull",
-        "RotateAngleSpeed"
+        "RotateAngleSpeed",
+        "Dioxide"
     };
 
     static const pchar units[Measure::Count] =
@@ -87,7 +88,8 @@ void InterCom::Send(const Measure &measure, uint timeMS)
         "m",
         "degrees",
         "degress",
-        "degress"
+        "degress",
+        "volts"
     };
 
     if (direction & Direction::Display)

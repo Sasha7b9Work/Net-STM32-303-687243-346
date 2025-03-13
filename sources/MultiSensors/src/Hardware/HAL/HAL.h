@@ -38,12 +38,15 @@ namespace HAL_ADC
 {
     void Init();
 
-    float GetVoltage();
+    float GetVoltageBattery();
+
+    float GetVoltageDioxide();
 
     float GetHumidity();
 
     extern void *handle;           // ADC_HandleTypeDef
 }
+
 
 namespace HAL_I2C1
 {
