@@ -21,7 +21,7 @@ void HAL_ADC::Init()
     pinBatteryADC.Init();
     pinMQ9.Init();
 
-    handleADC.Instance = ADC1;
+    handleADC.Instance = ADC3;
     handleADC.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
     handleADC.Init.Resolution = ADC_RESOLUTION_12B;
     handleADC.Init.ScanConvMode = ADC_SCAN_DISABLE;
@@ -34,7 +34,7 @@ void HAL_ADC::Init()
 
     HAL_ADC_Init(&handleADC);
 
-    HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
+    HAL_NVIC_SetPriority(ADC3_IRQn, 1, 1);
 }
 
 
@@ -55,7 +55,7 @@ uint HAL_ADC::ReadChannel(uint channel)
 
     if (HAL_ADC_ConfigChannel(&handleADC, &config) == HAL_OK)
     {
-        HAL_NVIC_EnableIRQ(ADC1_IRQn);
+        HAL_NVIC_EnableIRQ(ADC3_IRQn);
 
         flag_ready = false;
 
@@ -82,7 +82,7 @@ float HAL_ADC::GetVoltageBattery()
 
     if (meter.IsFinished())
     {
-        float value = (float)ReadChannel(ADC_CHANNEL_4) * 3.3f * 1.25f / (float)(1 << 12);
+        float value = (float)ReadChannel(ADC_CHANNEL_4) * 3.3f * 1.25f / (float)(1 << 10);
 
         if (value > 3.0f)
         {
@@ -98,13 +98,15 @@ float HAL_ADC::GetVoltageBattery()
 
 float HAL_ADC::GetVoltageDioxide()
 {
+    // PB1 ADC3 IN1
+
     static TimeMeterMS meter;
 
     static float voltage = 0.0f;
 
     if (meter.IsFinished())
     {
-        voltage = (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12);
+        voltage = (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 1);
 
         meter.FinishAfter(1000);
     }
