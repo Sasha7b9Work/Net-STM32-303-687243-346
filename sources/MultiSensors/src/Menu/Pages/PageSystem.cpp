@@ -24,7 +24,7 @@ static void OnClose_Battery(bool)
 
 static void OnDraw_Battery(int x, int y, Color::E, Color::E color_draw)
 {
-    String<>("%.2f Â", (double)HAL_ADC::GetVoltage()).Draw(x + 90, y + 5, color_draw);
+    String<>("%.2f Â", (double)HAL_ADC::GetVoltageBattery()).Draw(x + 90, y + 5, color_draw);
 }
 
 

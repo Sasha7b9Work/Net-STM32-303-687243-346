@@ -13,6 +13,7 @@
 #include "Menu/Menu.h"
 #include "SCPI/SCPI.h"
 #include "Modules/L00256L/L00256L.h"
+#include "Modules/MQ9/MQ9.h"
 
 
 namespace Device
@@ -40,6 +41,8 @@ void Device::Init()
         if (!HI50::Init())              // Если нет - то датчик дальности
         {
             L00256L::Init();
+
+            MQ9::Init();
         }
     }
 
@@ -64,8 +67,14 @@ void Device::Update()
     Measure dew_point;
     Measure illuminate;
     Measure distance;
+    Measure dioxide;
 
     uint time = TIME_MS;
+
+    if (MQ9::GetMeasure(&dioxide))
+    {
+        ProcessMeasure(dioxide, time);
+    }
 
     if (BME280::GetMeasures(&temp, &pressure, &humidity, &dew_point))
     {
@@ -96,7 +105,7 @@ void Device::Update()
 
     Display::Update(TIME_MS);
 
-    HAL_ADC::GetVoltage();
+    HAL_ADC::GetVoltageBattery();
 
     EnergySwitch::Update();
 

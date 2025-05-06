@@ -968,6 +968,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/MQ9</GroupName>
+          <Files>
+            <File>
+              <FileName>MQ9.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MQ9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/ST7735</GroupName>
           <Files>
             <File>
@@ -2041,6 +2056,21 @@
               <FileName>L00256L.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\L00256L\L00256L.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/MQ9</GroupName>
+          <Files>
+            <File>
+              <FileName>MQ9.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MQ9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.h</FilePath>
             </File>
           </Files>
         </Group>

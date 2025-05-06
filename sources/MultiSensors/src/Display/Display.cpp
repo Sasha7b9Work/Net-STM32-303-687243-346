@@ -50,7 +50,8 @@ namespace Display
         DMeasure(Measure::Distance),
         DMeasure(Measure::RotateAngleRel),
         DMeasure(Measure::RotateAngleFull),
-        DMeasure(Measure::RotateAngleSpeed)
+        DMeasure(Measure::RotateAngleSpeed),
+        DMeasure(Measure::Dioxide)
     };
 
     namespace Buffer
@@ -459,7 +460,8 @@ void Display::DrawMeasures(uint)
         Measure::Distance,
         Measure::RotateAngleRel,
         Measure::RotateAngleFull,
-        Measure::RotateAngleSpeed
+        Measure::RotateAngleSpeed,
+        Measure::Dioxide
     };
 
     int y = y0;
@@ -560,7 +562,8 @@ String<> Display::DMeasure::Name()
         "ÄÈÑÒÀÍÖÈß",
         "ÓÃÎË",
         "ÓÃÎË ÏÎËÍÛ",
-        "ÑÊÎĞÎÑÒÜ ÏÎÂÎĞÎÒÀ"
+        "ÑÊÎĞÎÑÒÜ ÏÎÂÎĞÎÒÀ",
+        "ÓÃËÅÃÀÇ"
     };
 
     String<> result(names[name]);
@@ -585,7 +588,8 @@ String<> Display::DMeasure::Units()
         "ì",
         "¨",
         "¨",
-        "¨"
+        "¨",
+        "Â"
     };
 
     return String<>(units[name]);
