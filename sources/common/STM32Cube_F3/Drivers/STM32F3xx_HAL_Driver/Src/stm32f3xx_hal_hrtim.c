@@ -84,7 +84,6 @@
        any restriction. HRTIM waveform modes are managed through the set of
        functions named HAL_HRTIM_Waveform<Function>
 
-==============================================================================
                       ##### How to use this driver #####
 ==============================================================================
     [..]
@@ -550,7 +549,7 @@ HAL_StatusTypeDef HAL_HRTIM_Init(HRTIM_HandleTypeDef * hhrtim)
 
   /* Check the parameters */
   assert_param(IS_HRTIM_ALL_INSTANCE(hhrtim->Instance));
-  assert_param(IS_HRTIM_IT(hhrtim->Init.HRTIMInterruptResquests));
+  assert_param(IS_HRTIM_IT(hhrtim->Init.HRTIMInterruptRequests));
 
 #if (USE_HAL_HRTIM_REGISTER_CALLBACKS == 1)
   if (hhrtim->State == HAL_HRTIM_STATE_RESET)
@@ -5357,7 +5356,7 @@ HAL_StatusTypeDef HAL_HRTIM_WaveformCountStart_IT(HRTIM_HandleTypeDef * hhrtim,
   hhrtim->State = HAL_HRTIM_STATE_BUSY;
 
   /* Enable HRTIM interrupts (if required) */
-  __HAL_HRTIM_ENABLE_IT(hhrtim, hhrtim->Init.HRTIMInterruptResquests);
+  __HAL_HRTIM_ENABLE_IT(hhrtim, hhrtim->Init.HRTIMInterruptRequests);
 
   /* Enable master timer related interrupts (if required) */
   if ((Timers & HRTIM_TIMERID_MASTER) != 0U)
@@ -5423,7 +5422,7 @@ HAL_StatusTypeDef HAL_HRTIM_WaveformCountStop_IT(HRTIM_HandleTypeDef * hhrtim,
   hhrtim->State = HAL_HRTIM_STATE_BUSY;
 
   /* Disable HRTIM interrupts (if required) */
-  __HAL_HRTIM_DISABLE_IT(hhrtim, hhrtim->Init.HRTIMInterruptResquests);
+  __HAL_HRTIM_DISABLE_IT(hhrtim, hhrtim->Init.HRTIMInterruptRequests);
 
   /* Disable master timer related interrupts (if required) */
   if ((Timers & HRTIM_TIMERID_MASTER) != 0U)
@@ -8384,7 +8383,7 @@ static uint32_t HRTIM_GetITFromOCMode(const HRTIM_HandleTypeDef * hhrtim,
   case HRTIM_OUTPUT_TD1:
   case HRTIM_OUTPUT_TE1:
     {
-      /* Retrieves actual OC mode and set interrupt accordingly */
+      /* Retreives actual OC mode and set interrupt accordingly */
       hrtim_set = hhrtim->Instance->sTimerxRegs[TimerIdx].SETx1R;
       hrtim_reset = hhrtim->Instance->sTimerxRegs[TimerIdx].RSTx1R;
 
@@ -8419,7 +8418,7 @@ static uint32_t HRTIM_GetITFromOCMode(const HRTIM_HandleTypeDef * hhrtim,
   case HRTIM_OUTPUT_TD2:
   case HRTIM_OUTPUT_TE2:
     {
-      /* Retrieves actual OC mode and set interrupt accordingly */
+      /* Retreives actual OC mode and set interrupt accordingly */
       hrtim_set = hhrtim->Instance->sTimerxRegs[TimerIdx].SETx2R;
       hrtim_reset = hhrtim->Instance->sTimerxRegs[TimerIdx].RSTx2R;
 
@@ -8490,7 +8489,7 @@ static uint32_t HRTIM_GetDMAFromOCMode(const HRTIM_HandleTypeDef * hhrtim,
   case HRTIM_OUTPUT_TD1:
   case HRTIM_OUTPUT_TE1:
     {
-      /* Retrieves actual OC mode and set dma_request accordingly */
+      /* Retreives actual OC mode and set dma_request accordingly */
       hrtim_set = hhrtim->Instance->sTimerxRegs[TimerIdx].SETx1R;
       hrtim_reset = hhrtim->Instance->sTimerxRegs[TimerIdx].RSTx1R;
 
@@ -8525,7 +8524,7 @@ static uint32_t HRTIM_GetDMAFromOCMode(const HRTIM_HandleTypeDef * hhrtim,
   case HRTIM_OUTPUT_TD2:
   case HRTIM_OUTPUT_TE2:
     {
-      /* Retrieves actual OC mode and set dma_request accordingly */
+      /* Retreives actual OC mode and set dma_request accordingly */
       hrtim_set = hhrtim->Instance->sTimerxRegs[TimerIdx].SETx2R;
       hrtim_reset = hhrtim->Instance->sTimerxRegs[TimerIdx].RSTx2R;
 
