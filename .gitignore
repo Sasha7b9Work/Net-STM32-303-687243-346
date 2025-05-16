@@ -19,5 +19,6 @@ sources/MultiSensors/Objects/
 sources/MultiSensors/Listings-Debug/
 sources/MultiSensors/Objects-Debug/
 sources/MultiSensors/DebugConfig/
+sources/MultiSensors/RTE/
 
 sources/generated/
