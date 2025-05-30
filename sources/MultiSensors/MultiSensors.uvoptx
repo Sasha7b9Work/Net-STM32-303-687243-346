@@ -75,7 +75,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
+        <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>18</CpuCode>
       <DebugOpt>
@@ -152,34 +152,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>22</LineNumber>
+          <LineNumber>72</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134248680</Address>
+          <Address>134260782</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_IT.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Device.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Hardware/HAL/HAL_IT.cpp\22</Expression>
+          <Expression>\\MS_1\src/Device.cpp\72</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>485</LineNumber>
+          <LineNumber>86</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134266878</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Display\Display.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Device.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Display/Display.cpp\485</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -311,7 +311,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
       <CpuCode>18</CpuCode>
       <DebugOpt>
@@ -727,7 +727,7 @@
 
   <Group>
     <GroupName>src</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

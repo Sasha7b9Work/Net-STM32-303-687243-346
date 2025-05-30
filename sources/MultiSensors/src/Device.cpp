@@ -24,6 +24,20 @@ namespace Device
 void Device::Init()
 {
     HAL::Init();
+    
+    GPIO_InitTypeDef is =
+    {
+        GPIO_PIN_2,
+        GPIO_MODE_OUTPUT_PP,
+        GPIO_PULLUP,
+        GPIO_SPEED_FREQ_HIGH,
+        0
+    };
+
+
+    HAL_GPIO_Init(GPIOA, &is);
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
 
     ST7735::Init();
 
