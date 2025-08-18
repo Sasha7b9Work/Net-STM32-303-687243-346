@@ -118,8 +118,6 @@ bool BME280::GetMeasures(Measure *temp, Measure *pressure, Measure *humidity, Me
         return false;
     }
 
-    timeNext += TIME_MEASURE + (uint)(std::rand() % 100);
-
 #ifdef IN_MODE_TEST
 
     static float value = 1.1f;
@@ -154,6 +152,8 @@ bool BME280::GetMeasures(Measure *temp, Measure *pressure, Measure *humidity, Me
         pressure->Set(Measure::Pressure, comp_data.pressure / 100.0);
         humidity->Set(Measure::Humidity, comp_data.humidity);
         dew_point->Set(Measure::DewPoint, CalculateDewPoint((float)temp->GetDouble(), (float)humidity->GetDouble()));
+
+        timeNext += TIME_MEASURE + (uint)(std::rand() % 100);
     }
 
     return (result == BME280_OK);
