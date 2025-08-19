@@ -151,7 +151,7 @@ void Display::SetString(pchar str)
 {
     if (std::strlen(str) > 15)
     {
-        std::memcpy(string, str, 16);
+        std::memcpy(string, str, 15);
         string[15] = '\0';
     }
     else

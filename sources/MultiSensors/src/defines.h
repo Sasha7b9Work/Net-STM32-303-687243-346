@@ -39,10 +39,6 @@ typedef unsigned char      uchar;
 
 #define USE_USB_INTERRUPT_DEFAULT   1
 
-// Промежуток между измерениями
-#define TIME_MEASURE  500
-
-
 #ifdef WIN32
     #define __attribute__(x)
     #define __attribute(x)

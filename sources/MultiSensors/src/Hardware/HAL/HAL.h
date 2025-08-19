@@ -30,6 +30,9 @@ namespace HAL
 
     uint GetUID();
 
+    // ¬озвращает врем€ до следующего измерени€
+    uint GetDeltaMeasure();
+
     void ErrorHandler();
 }
 

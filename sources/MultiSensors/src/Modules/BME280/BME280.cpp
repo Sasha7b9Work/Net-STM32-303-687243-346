@@ -153,7 +153,7 @@ bool BME280::GetMeasures(Measure *temp, Measure *pressure, Measure *humidity, Me
         humidity->Set(Measure::Humidity, comp_data.humidity);
         dew_point->Set(Measure::DewPoint, CalculateDewPoint((float)temp->GetDouble(), (float)humidity->GetDouble()));
 
-        timeNext += TIME_MEASURE + (uint)(std::rand() % 100);
+        timeNext += HAL::GetDeltaMeasure();
     }
 
     return (result == BME280_OK);

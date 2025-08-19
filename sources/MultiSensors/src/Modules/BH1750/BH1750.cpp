@@ -2,7 +2,6 @@
 #include "defines.h"
 #include "Modules/BH1750/BH1750.h"
 #include "Hardware/HAL/HAL.h"
-#include <cstdlib>
 
 
 namespace BH1750
@@ -80,11 +79,9 @@ bool BH1750::GetMeasure(Measure *illumination)
     {
         float value = (float)(result.bytes[1] | (result.bytes[0] << 8)) / 1.2f * (69.0f / 31.0f);
 
-//        float value = (float)(result.byte[1] | (result.byte[0] << 8)) / 1.2f;
-
         illumination->Set(Measure::Illuminate, value);
 
-        timeNext += TIME_MEASURE + ((uint)std::rand() % 100);
+        timeNext += HAL::GetDeltaMeasure();
 
         return true;
     }

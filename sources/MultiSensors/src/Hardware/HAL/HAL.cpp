@@ -5,6 +5,7 @@
 #include "Modules/HI50/HI50.h"
 #include <stm32f3xx_hal.h>
 #include <cstring>
+#include <cstdlib>
 
 
 static void SystemClock_Config();
@@ -114,6 +115,12 @@ uint HAL::GetUID()
 
     return Math::CalculateCRC(bytes, 12);
 #endif
+}
+
+
+uint HAL::GetDeltaMeasure()
+{
+    return 500 + ((std::rand() + GetUID()) % 100);
 }
 
 
