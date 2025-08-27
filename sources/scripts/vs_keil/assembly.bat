@@ -21,7 +21,7 @@ cmake ../../CMakeLists.txt -B../../generated/Keil -G "Visual Studio 17 2022" -A 
 :BUILDING
 if %isBuild%==0 goto EXIT
 @echo on
-MSBuild.exe ../../generated/Keil/TwoSensors.sln -clp:ErrorsOnly;WarningsOnly -nologo /m
+MSBuild.exe ../../generated/Keil/STM32-303-687243-346.sln -clp:ErrorsOnly;WarningsOnly -nologo /m
 @echo off
 goto EXIT
 

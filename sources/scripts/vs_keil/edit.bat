@@ -1,2 +1,2 @@
 @echo on
-start ..\..\generated\Keil\TwoSensors.sln
+start ..\..\generated\Keil\STM32-303-687243-346.sln

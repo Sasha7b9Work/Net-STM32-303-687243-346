@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (TwoSensors)
+project (STM32-303-687243-346)
 
 set (TARGET_NAME )
 
