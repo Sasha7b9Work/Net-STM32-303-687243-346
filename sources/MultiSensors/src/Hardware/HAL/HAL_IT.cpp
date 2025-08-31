@@ -109,6 +109,12 @@ void ADC1_2_IRQHandler(void)
 }
 
 
+void ADC3_IRQHandler(void)
+{
+    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC::handle);
+}
+
+
 void TIM3_IRQHandler(void)
 {
     HAL_TIM_IRQHandler((TIM_HandleTypeDef *)Beeper::handleTIM3);
