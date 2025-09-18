@@ -2,7 +2,7 @@
 
 project (MultiSensors)
 
-set(CMAKE_UNITY_BUILD ON)
+set(CMAKE_UNITY_BUILD OFF)
 
 message("------------------------------------------------------------------------ ${PROJECT_NAME}")
 
@@ -53,6 +53,7 @@ file(GLOB MODULES_BME280        src/Modules/BME280/*.*)
 file(GLOB MODULES_HC12          src/Modules/HC12/*.*)
 file(GLOB MODULES_HI50          src/Modules/HI50/*.*)
 file(GLOB MODULES_L00256L       src/Modules/L00256L/*.*)
+file(GLOB MODULES_MIPEX02       src/Modules/Mipex02/*.*)
 file(GLOB MODULES_ST7735        src/Modules/ST7735/*.*)
 file(GLOB SCPI                  src/SCPI/*.*)
 file(GLOB SETTINGS              src/Settings/*.*)
@@ -75,6 +76,7 @@ source_group(Modules/BME280     FILES ${MODULES_BME280})
 source_group(Modules/HC12       FILES ${MODULES_HC12})
 source_group(Modules/HI50       FILES ${MODULES_HI50})
 source_group(Modules/L00256L    FILES ${MODULES_L00256L})
+source_group(Modules/Mipex02    FILES ${MODULES_MIPEX02})
 source_group(Modules/ST7735     FILES ${MODULES_ST7735})
 source_group(SCPI               FILES ${SCPI})
 source_group(Settings           FILES ${SETTINGS})
@@ -109,6 +111,7 @@ add_library(
     ${MODULES_HC12}
     ${MODULES_HI50}
     ${MODULES_L00256L}
+    ${MODULES_MIPEX02}
     ${MODULES_ST7735}
     ${SCPI}
     ${SETTINGS}

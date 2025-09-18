@@ -21,6 +21,7 @@ struct Measure
         RotateAngleRel,     // Относительный угол поворота
         RotateAngleFull,    // Полный угол поворота
         RotateAngleSpeed,   // Скорость поворота
+        ConcentrationCH4,   // Концентрация метана
         Count
     };
 

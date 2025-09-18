@@ -84,7 +84,7 @@ namespace HAL_RTC
 
 namespace HAL_USART1
 {
-    void Init(void (*_callback_on_receive_HI50)(pchar));
+    void Init(void (*_callback_on_receive)(pchar));
 
     void SetModeHC12();
 

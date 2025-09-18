@@ -5,6 +5,7 @@
 #include "Hardware/Timer.h"
 #include "Modules/HI50/HI50.h"
 #include "Modules/HC12/HC12.h"
+#include "Modules/Mipex02/Mipex02.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -24,7 +25,7 @@ namespace HAL_USART1
     static uint8 recv_byte = 0;
 
     static void (*callback_on_receive)(pchar) = nullptr;
-    static void (*callback_on_HI50)(pchar) = nullptr;
+    static void (*callback_on_sensor)(pchar) = nullptr;
 
     static void Init(bool to_HC12);
 }
@@ -34,7 +35,7 @@ void HAL_USART1::Init(void (*_callback_on_receive_HI50)(pchar))
 {
     __HAL_RCC_USART1_CLK_ENABLE();
 
-    callback_on_HI50 = _callback_on_receive_HI50;
+    callback_on_sensor = _callback_on_receive_HI50;
 
     handleUART.Instance = USART1;
     handleUART.Init.BaudRate = 19200;
@@ -55,7 +56,8 @@ void HAL_USART1::Init(bool to_HC12)
 {
     if (to_HC12)
     {
-        if (HI50::IsExist())                        // Деинициализируем данные выводы только если существует лазерный дальномер.
+//        if (HI50::IsExist())                        // Деинициализируем данные выводы только если существует лазерный дальномер.
+        if(Mipex02::IsExist())
         {                                           // В остальных случаях на этих выводах I2C - их отключать нельзя
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
@@ -113,7 +115,7 @@ void HAL_USART1::Init(bool to_HC12)
         HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1);
     }
 
-    callback_on_receive = to_HC12 ? nullptr : callback_on_HI50;
+    callback_on_receive = to_HC12 ? nullptr : callback_on_sensor;
 }
 
 

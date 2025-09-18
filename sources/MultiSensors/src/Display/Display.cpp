@@ -17,7 +17,7 @@
 
 namespace Display
 {
-    struct DMeasure
+    static struct DMeasure
     {
         String<> str_value;
 
@@ -33,9 +33,8 @@ namespace Display
         String<> Name();
 
         String<> Units();
-    };
-
-    static DMeasure measures[Measure::Count] =
+    }
+    measures[Measure::Count] =
     {
         DMeasure(Measure::Temperature),
         DMeasure(Measure::Pressure),
@@ -50,7 +49,8 @@ namespace Display
         DMeasure(Measure::Distance),
         DMeasure(Measure::RotateAngleRel),
         DMeasure(Measure::RotateAngleFull),
-        DMeasure(Measure::RotateAngleSpeed)
+        DMeasure(Measure::RotateAngleSpeed),
+        DMeasure(Measure::ConcentrationCH4)
     };
 
     namespace Buffer

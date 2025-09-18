@@ -3,6 +3,7 @@
 #include "Hardware/HAL/HAL.h"
 #include "Utils/Math.h"
 #include "Modules/HI50/HI50.h"
+#include "Modules/Mipex02/Mipex02.h"
 #include <stm32f3xx_hal.h>
 #include <cstring>
 #include <cstdlib>
@@ -39,7 +40,8 @@ void HAL::Init()
 
     HAL_SPI1::Init();
 
-    HAL_USART1::Init(HI50::CallbackOnReceive);
+//    HAL_USART1::Init(HI50::CallbackOnReceive);
+    HAL_USART1::Init(Mipex02::CallbackOnReceive);
 }
 
 

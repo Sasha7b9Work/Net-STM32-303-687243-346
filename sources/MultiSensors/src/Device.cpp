@@ -5,6 +5,7 @@
 #include "Modules/BH1750/BH1750.h"
 #include "Modules/ST7735/ST7735.h"
 #include "Modules/HI50/HI50.h"
+#include "Modules/Mipex02/Mipex02.h"
 #include "Hardware/Timer.h"
 #include "Hardware/InterCom.h"
 #include "Hardware/Keyboard.h"
@@ -51,13 +52,19 @@ void Device::Init()
     {
         __HAL_RCC_I2C1_CLK_DISABLE();
 
-        if (!HI50::Init())              // Если нет - то датчик дальности
+//        if (!HI50::Init())              // Если нет - то датчик дальности
+//        {
+//            L00256L::Init();
+//        }
+
+        if (!Mipex02::Init())
         {
             L00256L::Init();
         }
     }
 
-    if (!HI50::IsExist())               // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
+//    if (!HI50::IsExist())               // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
+    if(!Mipex02::IsExist())
     {                                   // когда понадобится
         HAL_USART1::SetModeHC12();
     }
@@ -77,7 +84,8 @@ void Device::Update()
     Measure humidity;
     Measure dew_point;
     Measure illuminate;
-    Measure distance;
+//    Measure distance;
+    Measure concentrationCH4;
 
     uint time = TIME_MS;
 
@@ -94,10 +102,12 @@ void Device::Update()
         ProcessMeasure(illuminate, time);
     }
 
-    if (HI50::GetMeasure(&distance))
+//    if (HI50::GetMeasure(&distance))
+    if(Mipex02::GetMeasure(&concentrationCH4))
     {
         InterCom::SetDirection(Direction::Display);
-        ProcessMeasure(distance, time);
+//        ProcessMeasure(distance, time);
+        ProcessMeasure(concentrationCH4, time);
         InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
     }
 
@@ -116,7 +126,9 @@ void Device::Update()
 
     HAL_USART1::Update();
 
-    HI50::Update();
+//    HI50::Update();
+
+    Mipex02::Update();
 
     SCPI::Update();
 
