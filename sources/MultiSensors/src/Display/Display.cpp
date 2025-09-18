@@ -353,17 +353,17 @@ void Display::SetMeasure(const Measure &measure, uint timeMS)
 
     pchar format = "%.1f";
 
-    if (value.name == Measure::Longitude || value.name == Measure::Latitude)
-    {
-        format = "%.7f";
-    }
-    else if (value.name == Measure::Distance)
+    if (value.name == Measure::Distance)
     {
         format = "%.3f";
     }
     else if (value.name == Measure::ConcentrationCH4)
     {
         format = "%.4f";
+    }
+    else if (value.name == Measure::Longitude || value.name == Measure::Latitude)
+    {
+        format = "%.7f";
     }
 
     value.str_value.SetFormat(format, (double)measure.GetDouble());
@@ -566,7 +566,7 @@ String<> Display::DMeasure::Name()
         "ÓÃÎË",
         "ÓÃÎË ÏÎËÍÛ",
         "ÑÊÎĞÎÑÒÜ ÏÎÂÎĞÎÒÀ",
-        "Ìåòàí"
+        "ÌÅÒÀÍ"
     };
 
     String<> result(names[name]);
