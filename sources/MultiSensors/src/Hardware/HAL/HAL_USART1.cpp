@@ -212,7 +212,7 @@ void HAL_USART1::Update()
         {
             if (buffer[0] == '@')
             {
-                if (pointer == 3)
+                if (pointer >= 3)
                 {
                     byte = 0x00;
                     buffer[pointer++] = (char)byte;
