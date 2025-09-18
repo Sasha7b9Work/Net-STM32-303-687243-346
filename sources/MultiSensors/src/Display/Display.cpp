@@ -562,7 +562,7 @@ String<> Display::DMeasure::Name()
         "сцнк",
         "сцнк онкмш",
         "яйнпнярэ онбнпнрю",
-        "йнмжемрп CH4"
+        "лЕРЮМ"
     };
 
     String<> result(names[name]);

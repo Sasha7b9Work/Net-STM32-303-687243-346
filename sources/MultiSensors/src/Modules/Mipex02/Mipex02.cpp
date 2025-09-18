@@ -121,7 +121,7 @@ void Mipex02::CallbackOnReceive(pchar message)
             bs.bytes[0] = (uint8)message[1];
             bs.bytes[1] = (uint8)message[2];
 
-            concentrate.Set(Measure::ConcentrationCH4, (float)bs.half_word[0]);
+            concentrate.Set(Measure::ConcentrationCH4, (double)bs.half_word[0] * 1e-4);
 
             HAL_USART1::SetModeHC12();
 
