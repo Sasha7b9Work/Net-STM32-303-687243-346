@@ -363,7 +363,7 @@ void Display::SetMeasure(const Measure &measure, uint timeMS)
     }
     else if (value.name == Measure::ConcentrationCH4)
     {
-        format = "%.3f";
+        format = "%.4f";
     }
 
     value.str_value.SetFormat(format, (double)measure.GetDouble());
