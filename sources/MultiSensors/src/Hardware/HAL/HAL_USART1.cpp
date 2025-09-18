@@ -208,6 +208,22 @@ void HAL_USART1::Update()
 
         buffer[pointer++] = (char)byte;
 
+        if (Mipex02::IsWaitMeasure())
+        {
+            if (buffer[0] == '@')
+            {
+                if (pointer == 3)
+                {
+                    byte = 0x00;
+                    buffer[pointer++] = (char)byte;
+                }
+            }
+            else
+            {
+                pointer = 0;
+            }
+        }
+
         if (byte == 0x00)
         {
             callback_on_receive(buffer);

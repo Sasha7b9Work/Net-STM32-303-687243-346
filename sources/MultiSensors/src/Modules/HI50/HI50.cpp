@@ -162,19 +162,6 @@ void HI50::CallbackOnReceive(pchar message)
 
                             return;
                         }
-//                        else if (buffer_digits[index] == '!')
-//                        {
-//                            Measure measure;
-//                            measure.Set(Measure::Distance, -1.0f);
-//
-//                            HAL_USART1::SetModeHC12();
-//
-//                            InterCom::Send(measure, TIME_MS);
-//
-//                            HAL_USART1::SetModeHI50();
-//
-//                            SendRequestMeasure();
-//                        }
                     }
                 }
             }

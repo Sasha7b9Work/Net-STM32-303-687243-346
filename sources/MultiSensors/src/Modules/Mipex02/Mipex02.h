@@ -17,4 +17,7 @@ namespace Mipex02
     bool GetMeasure(Measure *);
 
     void CallbackOnReceive(pchar);
+
+    // Если true - ждём результат измерения. Нужно приёмнику, чтобы правильно обрабатывать принятые байты
+    bool IsWaitMeasure();
 }
