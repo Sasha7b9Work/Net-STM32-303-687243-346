@@ -25,27 +25,27 @@ namespace Mipex02
 
 bool Mipex02::Init()
 {
-    is_exist = false;
+    is_exist = true;
     
     HAL_USART1::SetModeSensor();
 
     state = State::WAIT_UART;
 
-    HAL_USART1::SendString("UART\0x0d");
+    HAL_USART1::SendString("UART?\x0d");
 
     TimeMeterMS meter;
 
-    while (meter.ElapsedTime() < 1000)
+    while (meter.ElapsedTime() < 10000)
     {
         HAL_USART1::Update();
 
         if (state == State::WAIT_MEASURE)
         {
-            is_exist = true;
-
             break;
         }
     }
+    
+    is_exist = (state == State::WAIT_MEASURE);
 
     return IsExist();
 }
@@ -78,15 +78,26 @@ void Mipex02::CallbackOnReceive(pchar message)
 
     case State::WAIT_UART:
 
-        message = message;
+        if (std::strcmp(message, "OEM") == 0)
+        {
+            HAL_USART1::SendString("\x40\x2A\x31\x0d");
 
-        HAL_USART1::SendString("@*1\0x0d");
+            state = State::WAIT_MEASURE;
+        }
+        else if (std::strcmp(message, "USER") == 0)
+        {
+            HAL_USART1::SendString("\x40\x2A\x31\x0d");
 
-        state = State::WAIT_MEASURE;
+            state = State::WAIT_MEASURE;
+
+        }
 
         break;
 
     case State::WAIT_MEASURE:
+
+        message = message;
+
         break;
     }
 }

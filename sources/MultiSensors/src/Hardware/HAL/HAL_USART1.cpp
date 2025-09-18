@@ -94,7 +94,14 @@ void HAL_USART1::Init(bool to_HC12)
     }
     else
     {
-        handleUART.Init.BaudRate = 19200;
+        if (HI50::IsExist())
+        {
+            handleUART.Init.BaudRate = 19200;
+        }
+        else
+        {
+            handleUART.Init.BaudRate = 9600;
+        }
     }
 
     if (HAL_UART_Init(&handleUART) != HAL_OK)
@@ -174,7 +181,7 @@ void HAL_USART1::Update()
 
     while (recv_buffer.GetElementCount() != 0)
     {
-        uint8 byte = recv_buffer.Pop();
+        volatile uint8 byte = recv_buffer.Pop();
 
         if (HI50::IsExist())
         {
@@ -196,14 +203,16 @@ void HAL_USART1::Update()
             }
         }
 
-        static Buffer<256> buffer;
+        static char buffer[256] = { '\0' };
+        static int pointer = 0;
 
-        buffer.Push(byte);
+        buffer[pointer++] = (char)byte;
 
         if (byte == 0x00)
         {
-            callback_on_receive((pchar)buffer.DataConst());
-            buffer.Clear();
+            callback_on_receive(buffer);
+
+            pointer = 0;
         }
     }
 }
