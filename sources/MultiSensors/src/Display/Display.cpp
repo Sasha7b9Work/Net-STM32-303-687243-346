@@ -361,6 +361,10 @@ void Display::SetMeasure(const Measure &measure, uint timeMS)
     {
         format = "%.3f";
     }
+    else if (value.name == Measure::ConcentrationCH4)
+    {
+        format = "%.2f";
+    }
 
     value.str_value.SetFormat(format, (double)measure.GetDouble());
 //    value.current[6] = '\0';
