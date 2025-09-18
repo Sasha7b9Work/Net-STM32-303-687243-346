@@ -86,13 +86,17 @@ namespace HAL_USART1
 {
     void Init(void (*_callback_on_receive)(pchar));
 
+    // Инициалазировать для работы с приёмо-передатчиком HC12
     void SetModeHC12();
 
-    void SetModeHI50();
+    // Инициализировать для работы с датчиком
+    void SetModeSensor();
 
     void Send(uint8);
 
     void Send(const void *buffer, int size);
+
+    void SendString(pchar);
 
     // Функция вызывается непосредственно из прерывания, чтобы положить принятый байт в приёмный буфер
     void ReceiveCallback();

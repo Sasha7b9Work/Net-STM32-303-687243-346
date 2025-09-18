@@ -127,7 +127,7 @@ void HAL_USART1::SetModeHC12()
 }
 
 
-void HAL_USART1::SetModeHI50()
+void HAL_USART1::SetModeSensor()
 {
     Init(false);
 }
@@ -142,6 +142,12 @@ void HAL_USART1::Send(uint8 byte)
 void HAL_USART1::Send(const void *buffer, int size)
 {
     HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 100);
+}
+
+
+void HAL_USART1::SendString(pchar message)
+{
+    Send(message, (int)std::strlen(message));
 }
 
 
@@ -170,14 +176,24 @@ void HAL_USART1::Update()
     {
         uint8 byte = recv_buffer.Pop();
 
-        if (byte == 0x0d)
+        if (HI50::IsExist())
         {
-            return;
-        }
+            if (byte == 0x0d)
+            {
+                return;
+            }
 
-        if (byte == 0x0a)
+            if (byte == 0x0a)
+            {
+                byte = 0x00;
+            }
+        }
+        else if (Mipex02::IsExist())
         {
-            byte = 0x00;
+            if (byte == 0x0d)
+            {
+                byte = 0x00;
+            }
         }
 
         static Buffer<256> buffer;

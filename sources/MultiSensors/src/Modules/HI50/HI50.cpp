@@ -49,7 +49,7 @@ bool HI50::IsExist()
 
 bool HI50::Init()
 {
-    HAL_USART1::SetModeHI50();
+    HAL_USART1::SetModeSensor();
 
     state = State::WAIT_TURN_ON;
 
@@ -69,13 +69,13 @@ bool HI50::Init()
         }
     }
 
-    return is_exist;
+    return IsExist();
 }
 
 
 void HI50::Update()
 {
-    if (!is_exist)
+    if (!IsExist())
     {
         return;
     }
@@ -155,7 +155,7 @@ void HI50::CallbackOnReceive(pchar message)
                                     InterCom::Send(measure, TIME_MS);
                                 }
 
-                                HAL_USART1::SetModeHI50();
+                                HAL_USART1::SetModeSensor();
                             }
 
                             SendRequestMeasure();
