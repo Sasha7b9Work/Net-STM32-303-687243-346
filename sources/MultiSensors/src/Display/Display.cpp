@@ -459,7 +459,8 @@ void Display::DrawMeasures(uint)
         Measure::Distance,
         Measure::RotateAngleRel,
         Measure::RotateAngleFull,
-        Measure::RotateAngleSpeed
+        Measure::RotateAngleSpeed,
+        Measure::ConcentrationCH4
     };
 
     int y = y0;
@@ -560,7 +561,8 @@ String<> Display::DMeasure::Name()
         "ÄÈÑÒÀÍÖÈß",
         "ÓÃÎË",
         "ÓÃÎË ÏÎËÍÛ",
-        "ÑÊÎĞÎÑÒÜ ÏÎÂÎĞÎÒÀ"
+        "ÑÊÎĞÎÑÒÜ ÏÎÂÎĞÎÒÀ",
+        "ÊÎÍÖÅÍÒĞ CH4"
     };
 
     String<> result(names[name]);
@@ -585,7 +587,8 @@ String<> Display::DMeasure::Units()
         "ì",
         "¨",
         "¨",
-        "¨"
+        "¨",
+        "%%"
     };
 
     return String<>(units[name]);
