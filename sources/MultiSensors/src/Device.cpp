@@ -5,6 +5,7 @@
 #include "Modules/BH1750/BH1750.h"
 #include "Modules/ST7735/ST7735.h"
 #include "Modules/HI50/HI50.h"
+#include "Modules/MQ9/MQ9.h"
 #include "Modules/Mipex02/Mipex02.h"
 #include "Hardware/Timer.h"
 #include "Hardware/InterCom.h"
@@ -52,19 +53,24 @@ void Device::Init()
     {
         __HAL_RCC_I2C1_CLK_DISABLE();
 
-//        if (!HI50::Init())              // Если нет - то датчик дальности
-//        {
-//            L00256L::Init();
-//        }
-
+#ifdef MODULE_HI50
+        if (!HI50::Init())              // Если нет - то датчик дальности
+        {
+            L00256L::Init();
+        }
+#endif
+#ifdef MODULE_MIPEX02
         if (!Mipex02::Init())
         {
             L00256L::Init();
         }
+#endif
+#ifdef MODULE_MQ9
+        MQ9::Init();
+#endif
     }
 
-//    if (!HI50::IsExist())               // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
-    if(!Mipex02::IsExist())
+    if (!HI50::IsExist())               // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
     {                                   // когда понадобится
         HAL_USART1::SetModeHC12();
     }
@@ -84,10 +90,15 @@ void Device::Update()
     Measure humidity;
     Measure dew_point;
     Measure illuminate;
-//    Measure distance;
     Measure concentrationCH4;
+    Measure dioxide;
 
     uint time = TIME_MS;
+
+    if (MQ9::GetMeasure(&dioxide))
+    {
+        ProcessMeasure(dioxide, time);
+    }
 
     if (BME280::GetMeasures(&temp, &pressure, &humidity, &dew_point))
     {
@@ -102,11 +113,9 @@ void Device::Update()
         ProcessMeasure(illuminate, time);
     }
 
-//    if (HI50::GetMeasure(&distance))
     if(Mipex02::GetMeasure(&concentrationCH4))
     {
         InterCom::SetDirection(Direction::Display);
-//        ProcessMeasure(distance, time);
         ProcessMeasure(concentrationCH4, time);
         InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
     }
@@ -125,8 +134,6 @@ void Device::Update()
     EnergySwitch::Update();
 
     HAL_USART1::Update();
-
-//    HI50::Update();
 
     Mipex02::Update();
 
