@@ -8,64 +8,89 @@
 
 namespace HAL_ADC
 {
-    static ADC_HandleTypeDef handleADC;
-    void *handle = (void *)&handleADC;
-    static volatile bool flag_ready = false;
+    static ADC_HandleTypeDef handleADC1;
+    void *handle1 = (void *)&handleADC1;
+    static volatile bool flag_ready1 = false;
+    static uint ReadChannelADC1(uint channel);
 
-    static uint ReadChannel(uint channel);
+    static ADC_HandleTypeDef handleADC3;
+    void *handle3 = (void *)&handleADC3;
+    static volatile bool flag_ready3 = false;
+    static uint ReadChannelADC3(uint channel);
 }
 
 
 void HAL_ADC::Init()
 {
-    pinADC.Init();
-//    pinHumidity.Init();
+    pinBattery.Init();
+    pinHumidity.Init();
+    pinMQ9.Init();
 
-    handleADC.Instance = ADC1;
-    handleADC.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
-    handleADC.Init.Resolution = ADC_RESOLUTION_12B;
-    handleADC.Init.ScanConvMode = ADC_SCAN_DISABLE;
-    handleADC.Init.ContinuousConvMode = DISABLE;
-    handleADC.Init.DiscontinuousConvMode = DISABLE;
-    handleADC.Init.NbrOfDiscConversion = 0;
-    handleADC.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-    handleADC.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-    handleADC.Init.NbrOfConversion = 1;
+    {
+        handleADC1.Instance = ADC1;
+        handleADC1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
+        handleADC1.Init.Resolution = ADC_RESOLUTION_12B;
+        handleADC1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+        handleADC1.Init.ContinuousConvMode = DISABLE;
+        handleADC1.Init.DiscontinuousConvMode = DISABLE;
+        handleADC1.Init.NbrOfDiscConversion = 0;
+        handleADC1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+        handleADC1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+        handleADC1.Init.NbrOfConversion = 1;
 
-    HAL_ADC_Init(&handleADC);
+        HAL_ADC_Init(&handleADC1);
 
-    HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
+        HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
+    }
+
+    {
+        handleADC3.Instance = ADC3;
+        handleADC3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
+        handleADC3.Init.Resolution = ADC_RESOLUTION_12B;
+        handleADC3.Init.ScanConvMode = ADC_SCAN_DISABLE;
+        handleADC3.Init.ContinuousConvMode = DISABLE;
+        handleADC3.Init.DiscontinuousConvMode = DISABLE;
+        handleADC3.Init.NbrOfDiscConversion = 0;
+        handleADC3.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+        handleADC3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+        handleADC3.Init.NbrOfConversion = 1;
+
+        HAL_ADC_Init(&handleADC3);
+
+        HAL_NVIC_SetPriority(ADC3_IRQn, 1, 1);
+    }
 }
 
 
-uint HAL_ADC::ReadChannel(uint channel)
+uint HAL_ADC::ReadChannelADC1(uint channel)
 {
 #ifdef GUI
 
     return 100;
 
 #else
-    ADC_ChannelConfTypeDef config = { 0 };
-
-    config.Channel = channel;
-    config.Rank = ADC_REGULAR_RANK_1;
-    config.SamplingTime = ADC_SAMPLETIME_601CYCLES_5;
+    ADC_ChannelConfTypeDef config =
+    {
+        channel,
+        ADC_REGULAR_RANK_1,
+        ADC_SAMPLETIME_601CYCLES_5
+    };
 
     uint value = 0;
 
-    if (HAL_ADC_ConfigChannel(&handleADC, &config) == HAL_OK)
+    if (HAL_ADC_ConfigChannel(&handleADC1, &config) == HAL_OK)
     {
         HAL_NVIC_EnableIRQ(ADC1_IRQn);
 
-        flag_ready = false;
+        flag_ready1 = false;
 
-        if (HAL_ADC_Start_IT(&handleADC) == HAL_OK)
+        if (HAL_ADC_Start_IT(&handleADC1) == HAL_OK)
         {
-            while (!flag_ready)
+            while (!flag_ready1)
             {
             }
 
-            value = HAL_ADC_GetValue(&handleADC);
+            value = HAL_ADC_GetValue(&handleADC1);
         }
     }
 
@@ -74,7 +99,44 @@ uint HAL_ADC::ReadChannel(uint channel)
 }
 
 
-float HAL_ADC::GetVoltage()
+uint HAL_ADC::ReadChannelADC3(uint channel)
+{
+#ifdef GUI
+
+    return 100;
+
+#else
+    ADC_ChannelConfTypeDef config =
+    {
+        channel,
+        ADC_REGULAR_RANK_1,
+        ADC_SAMPLETIME_601CYCLES_5
+    };
+
+    uint value = 0;
+
+    if (HAL_ADC_ConfigChannel(&handleADC3, &config) == HAL_OK)
+    {
+        HAL_NVIC_EnableIRQ(ADC3_IRQn);
+
+        flag_ready3 = false;
+
+        if (HAL_ADC_Start_IT(&handleADC3) == HAL_OK)
+        {
+            while (!flag_ready3)
+            {
+            }
+
+            value = HAL_ADC_GetValue(&handleADC3);
+        }
+    }
+
+    return value;
+#endif
+}
+
+
+float HAL_ADC::GetVoltageBattery()
 {
     static TimeMeterMS meter;
 
@@ -82,7 +144,7 @@ float HAL_ADC::GetVoltage()
 
     if (meter.IsFinished())
     {
-        float value = (float)ReadChannel(ADC_CHANNEL_4) * 3.3f * 1.25f / (float)(1 << 12);
+        float value = (float)ReadChannelADC1(ADC_CHANNEL_4) * 3.3f * 1.25f / (float)(1 << 12);
 
         if (value > 3.0f)
         {
@@ -141,7 +203,7 @@ float HAL_ADC::GetHumidity()
 {
     static Averager<8> averager;
 
-    float voltage = (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12) + 0.075f;
+    float voltage = (float)ReadChannelADC1(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12) + 0.075f;
 
     voltage = voltage * 3.0f / 2.0f;
 
@@ -151,7 +213,33 @@ float HAL_ADC::GetHumidity()
 }
 
 
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *)
+float HAL_ADC::GetVoltageDioxide()
 {
-    HAL_ADC::flag_ready = true;
+    // PB1 ADC3 IN1
+
+    static TimeMeterMS meter;
+
+    static float voltage = 0.0f;
+
+    if (meter.IsFinished())
+    {
+        voltage = (float)ReadChannelADC3(ADC_CHANNEL_1) * 3.3f / (float)(1 << 1);
+
+        meter.FinishAfter(1000);
+    }
+
+    return voltage;
+}
+
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *handle)
+{
+    if (handle == &HAL_ADC::handleADC1)
+    {
+        HAL_ADC::flag_ready1 = true;
+    }
+    else if (handle == &HAL_ADC::handleADC3)
+    {
+        HAL_ADC::flag_ready3 = true;
+    }
 }

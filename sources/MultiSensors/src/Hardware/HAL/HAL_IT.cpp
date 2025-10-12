@@ -105,7 +105,13 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *)
 
 void ADC1_2_IRQHandler(void)
 {
-    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC::handle);
+    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC::handle1);
+}
+
+
+void ADC3_IRQHandler(void)
+{
+    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC::handle3);
 }
 
 

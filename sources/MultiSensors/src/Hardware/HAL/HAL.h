@@ -41,11 +41,14 @@ namespace HAL_ADC
 {
     void Init();
 
-    float GetVoltage();
+    float GetVoltageBattery();      // Напряжение батареи
+
+    float GetVoltageDioxide();      // Концентрация углекислого газа
 
     float GetHumidity();
 
-    extern void *handle;           // ADC_HandleTypeDef
+    extern void *handle1;           // ADC_HandleTypeDef для батарей, влажности
+    extern void *handle3;           // ADC_HandleTypeDef для углекислого газа
 }
 
 namespace HAL_I2C1

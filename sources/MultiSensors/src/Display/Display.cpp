@@ -50,7 +50,8 @@ namespace Display
         DMeasure(Measure::RotateAngleRel),
         DMeasure(Measure::RotateAngleFull),
         DMeasure(Measure::RotateAngleSpeed),
-        DMeasure(Measure::ConcentrationCH4)
+        DMeasure(Measure::ConcentrationCH4),
+        DMeasure(Measure::Dioxide)
     };
 
     namespace Buffer

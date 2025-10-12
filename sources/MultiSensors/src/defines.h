@@ -20,6 +20,7 @@
     #pragma clang diagnostic ignored "-Wformat-nonliteral"
     #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
     #pragma clang diagnostic ignored "-Wmissing-prototypes"
+    #pragma clang diagnostic ignored "-Wmissing-noreturn"
     #pragma clang diagnostic ignored "-Winvalid-utf8"
     #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #endif

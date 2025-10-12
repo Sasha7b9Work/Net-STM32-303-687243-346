@@ -22,6 +22,7 @@ struct Measure
         RotateAngleFull,    // Полный угол поворота
         RotateAngleSpeed,   // Скорость поворота
         ConcentrationCH4,   // Концентрация метана
+        Dioxide,            // С02
         Count
     };
 

@@ -120,7 +120,7 @@ void Device::Update()
 
     Display::Update(TIME_MS);
 
-    HAL_ADC::GetVoltage();
+    HAL_ADC::GetVoltageBattery();
 
     EnergySwitch::Update();
 

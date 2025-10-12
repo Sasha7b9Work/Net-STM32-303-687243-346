@@ -122,7 +122,7 @@ uint HAL::GetUID()
 
 uint HAL::GetDeltaMeasure()
 {
-    return 500 + ((std::rand() + GetUID()) % 100);
+    return 500U + (((uint)std::rand() + GetUID()) % 100);
 }
 
 
