@@ -158,6 +158,25 @@ float HAL_ADC::GetVoltageBattery()
 }
 
 
+float HAL_ADC::GetVoltageDioxide()
+{
+    // PB1 ADC3 IN1
+
+    static TimeMeterMS meter;
+
+    static float voltage = 0.0f;
+
+    if (meter.IsFinished())
+    {
+        voltage = (float)ReadChannelADC3(ADC_CHANNEL_1) * 3.3f / (float)(1 << 1);
+
+        meter.FinishAfter(1000);
+    }
+
+    return voltage;
+}
+
+
 template<int size_buffer>
 class Averager //-V730
 {
@@ -197,25 +216,6 @@ private:
     float buffer[size_buffer];
     int num_elements;
 };
-
-
-float HAL_ADC::GetVoltageDioxide()
-{
-    // PB1 ADC3 IN1
-
-    static TimeMeterMS meter;
-
-    static float voltage = 0.0f;
-
-    if (meter.IsFinished())
-    {
-        voltage = (float)ReadChannelADC3(ADC_CHANNEL_1) * 3.3f / (float)(1 << 1);
-
-        meter.FinishAfter(1000);
-    }
-
-    return voltage;
-}
 
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *handle)
