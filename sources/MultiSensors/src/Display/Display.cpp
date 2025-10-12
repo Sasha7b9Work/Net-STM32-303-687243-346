@@ -465,7 +465,8 @@ void Display::DrawMeasures(uint)
         Measure::RotateAngleRel,
         Measure::RotateAngleFull,
         Measure::RotateAngleSpeed,
-        Measure::ConcentrationCH4
+        Measure::ConcentrationCH4,
+        Measure::Dioxide
     };
 
     int y = y0;
@@ -567,7 +568,8 @@ String<> Display::DMeasure::Name()
         "сцнк",
         "сцнк онкмш",
         "яйнпнярэ онбнпнрю",
-        "лерюм"
+        "лерюм",
+        "сцкепнд"
     };
 
     String<> result(names[name]);
@@ -593,6 +595,7 @@ String<> Display::DMeasure::Units()
         "╗",
         "╗",
         "╗",
+        "%%",
         "%%"
     };
 
