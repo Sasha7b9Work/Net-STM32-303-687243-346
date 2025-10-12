@@ -45,8 +45,6 @@ namespace HAL_ADC
 
     float GetVoltageDioxide();      // Концентрация углекислого газа
 
-    float GetHumidity();
-
     extern void *handle1;           // ADC_HandleTypeDef для батарей, влажности
     extern void *handle3;           // ADC_HandleTypeDef для углекислого газа
 }
