@@ -122,3 +122,38 @@ bool BaseMQ::atHeatCycleEnd() {
     return false;
   }
 }
+
+
+void digitalWrite(uint8, int)
+{
+
+}
+
+
+void analogRead(uint8, int)
+{
+
+}
+
+
+void analogWrite(uint8, int)
+{
+}
+
+
+int analogRead(uint8)
+{
+    return 0;
+}
+
+
+void delay(uint)
+{
+
+}
+
+
+unsigned long millis()
+{
+    return 0U;
+}
