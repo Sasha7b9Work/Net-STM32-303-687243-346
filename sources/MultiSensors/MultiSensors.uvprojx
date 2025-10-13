@@ -11,7 +11,7 @@
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pArmCC>6210000::V6.21::ARMCLANG</pArmCC>
-      <pCCUsed>6210000::V6.21::ARMCLANG</pCCUsed>
+      <pCCUsed>6210000::V6.21::.\ARMCLANG539</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -954,6 +954,21 @@
               <FileName>Mipex02.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\Mipex02\Mipex02.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/MQ9</GroupName>
+          <Files>
+            <File>
+              <FileName>MQ9.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MQ9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2047,6 +2062,21 @@
               <FileName>Mipex02.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\Mipex02\Mipex02.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/MQ9</GroupName>
+          <Files>
+            <File>
+              <FileName>MQ9.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MQ9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\MQ9.h</FilePath>
             </File>
           </Files>
         </Group>
