@@ -25,7 +25,13 @@ void MQ9::Init()
 
 bool MQ9::GetMeasure(Measure * measure)
 {
-    measure->Set(Measure::Dioxide, HAL_ADC::GetVoltageDioxide());
+    float voltage = HAL_ADC::GetVoltageDioxide();
+
+    float RL = 1;
+
+    float RS_gas = (3.3f - voltage) / voltage * RL;
+
+    measure->Set(Measure::Dioxide, RS_gas);
 
     return is_init;
 }
