@@ -32,6 +32,7 @@ add_compile_options(
     /wd4820    # 'xxx': '4' bytes padding added after data member 'yyy'
     /wd5027    # move assignment operator was implicitly defined as deleted
     /wd5045    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+    /wd5204
     /wd5220    # a non-static data member with a volatile qualified type no longer implies
     /wd5264
     /wd26812   # The enum type %type% is unscoped. Prefer 'enum class' over 'enum' (Enum.3)
@@ -55,6 +56,7 @@ file(GLOB MODULES_HI50          src/Modules/HI50/*.*)
 file(GLOB MODULES_L00256L       src/Modules/L00256L/*.*)
 file(GLOB MODULES_MIPEX02       src/Modules/Mipex02/*.*)
 file(GLOB MODULES_MQ9           src/Modules/MQ9/*.*)
+file(GLOB MODULES_MQ9_TROYKAMQ  src/Modules/MQ9/TroykaMQ/*.*)
 file(GLOB MODULES_ST7735        src/Modules/ST7735/*.*)
 file(GLOB SCPI                  src/SCPI/*.*)
 file(GLOB SETTINGS              src/Settings/*.*)
@@ -62,29 +64,30 @@ file(GLOB STORAGE               src/Storage/*.*)
 file(GLOB UTILS                 src/Utils/*.*)
 file(GLOB UTILS_TEXT            src/Utils/Text/*.*)
 
-source_group(STM32F3            FILES ${STM32F3})
-source_group(src                FILES ${SRC})
-source_group(Display            FILES ${DISPLAY})
-source_group(Display/Font       FILES ${DISPLAY_FONT})
-source_group(Hardware           FILES ${HARDWARE})
-source_group(Hardware/CMSIS     FILES ${HARDWARE_CMSIS})
-source_group(Hardware/HAL       FILES ${HARDWARE_HAL})
-source_group(Hardware/HAL/I2C   FILES ${HARDWARE_HAL_I2C})
-source_group(Menu               FILES ${MENU})
-source_group(Menu/Pages         FILES ${MENU_PAGES})
-source_group(Modules/BH1750     FILES ${MODULES_BH1750})
-source_group(Modules/BME280     FILES ${MODULES_BME280})
-source_group(Modules/HC12       FILES ${MODULES_HC12})
-source_group(Modules/HI50       FILES ${MODULES_HI50})
-source_group(Modules/L00256L    FILES ${MODULES_L00256L})
-source_group(Modules/Mipex02    FILES ${MODULES_MIPEX02})
-source_group(Modules/MQ9        FILES ${MODULES_MQ9})
-source_group(Modules/ST7735     FILES ${MODULES_ST7735})
-source_group(SCPI               FILES ${SCPI})
-source_group(Settings           FILES ${SETTINGS})
-source_group(Storage            FILES ${STORAGE})
-source_group(Utils              FILES ${UTILS})
-source_group(Utils/Text         FILES ${UTILS_TEXT})
+source_group(STM32F3              FILES ${STM32F3})
+source_group(src                  FILES ${SRC})
+source_group(Display              FILES ${DISPLAY})
+source_group(Display/Font         FILES ${DISPLAY_FONT})
+source_group(Hardware             FILES ${HARDWARE})
+source_group(Hardware/CMSIS       FILES ${HARDWARE_CMSIS})
+source_group(Hardware/HAL         FILES ${HARDWARE_HAL})
+source_group(Hardware/HAL/I2C     FILES ${HARDWARE_HAL_I2C})
+source_group(Menu                 FILES ${MENU})
+source_group(Menu/Pages           FILES ${MENU_PAGES})
+source_group(Modules/BH1750       FILES ${MODULES_BH1750})
+source_group(Modules/BME280       FILES ${MODULES_BME280})
+source_group(Modules/HC12         FILES ${MODULES_HC12})
+source_group(Modules/HI50         FILES ${MODULES_HI50})
+source_group(Modules/L00256L      FILES ${MODULES_L00256L})
+source_group(Modules/Mipex02      FILES ${MODULES_MIPEX02})
+source_group(Modules/MQ9          FILES ${MODULES_MQ9})
+source_group(Modules/MQ9/TroykaMQ FILES ${MODULES_MQ9_TROYKAMQ})
+source_group(Modules/ST7735       FILES ${MODULES_ST7735})
+source_group(SCPI                 FILES ${SCPI})
+source_group(Settings             FILES ${SETTINGS})
+source_group(Storage              FILES ${STORAGE})
+source_group(Utils                FILES ${UTILS})
+source_group(Utils/Text           FILES ${UTILS_TEXT})
 
 set_source_files_properties(
     ${STM32F3} ${HARDWARE_CMSIS}
@@ -115,6 +118,7 @@ add_library(
     ${MODULES_L00256L}
     ${MODULES_MIPEX02}
     ${MODULES_MQ9}
+    ${MODULES_MQ9_TROYKAMQ}
     ${MODULES_ST7735}
     ${SCPI}
     ${SETTINGS}

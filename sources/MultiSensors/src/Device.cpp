@@ -5,7 +5,7 @@
 #include "Modules/BH1750/BH1750.h"
 #include "Modules/ST7735/ST7735.h"
 #include "Modules/HI50/HI50.h"
-#include "Modules/MQ9/MQ9.h"
+#include "Modules/MQ9/SensorMQ9.h"
 #include "Modules/Mipex02/Mipex02.h"
 #include "Hardware/Timer.h"
 #include "Hardware/InterCom.h"

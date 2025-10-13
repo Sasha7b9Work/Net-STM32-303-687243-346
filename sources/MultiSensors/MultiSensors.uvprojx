@@ -961,14 +961,44 @@
           <GroupName>Modules/MQ9</GroupName>
           <Files>
             <File>
+              <FileName>SensorMQ9.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\SensorMQ9.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SensorMQ9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\SensorMQ9.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/MQ9/TroykaMQ</GroupName>
+          <Files>
+            <File>
+              <FileName>BaseMQ.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\BaseMQ.h</FilePath>
+            </File>
+            <File>
               <FileName>MQ9.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Modules\MQ9\MQ9.cpp</FilePath>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\MQ9.cpp</FilePath>
             </File>
             <File>
               <FileName>MQ9.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Modules\MQ9\MQ9.h</FilePath>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\MQ9.h</FilePath>
+            </File>
+            <File>
+              <FileName>TroykaMQ.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\TroykaMQ.h</FilePath>
+            </File>
+            <File>
+              <FileName>BaseMQ.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\BaseMQ.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2069,14 +2099,44 @@
           <GroupName>Modules/MQ9</GroupName>
           <Files>
             <File>
+              <FileName>SensorMQ9.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\SensorMQ9.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SensorMQ9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\SensorMQ9.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/MQ9/TroykaMQ</GroupName>
+          <Files>
+            <File>
+              <FileName>BaseMQ.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\BaseMQ.h</FilePath>
+            </File>
+            <File>
               <FileName>MQ9.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Modules\MQ9\MQ9.cpp</FilePath>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\MQ9.cpp</FilePath>
             </File>
             <File>
               <FileName>MQ9.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Modules\MQ9\MQ9.h</FilePath>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\MQ9.h</FilePath>
+            </File>
+            <File>
+              <FileName>TroykaMQ.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\TroykaMQ.h</FilePath>
+            </File>
+            <File>
+              <FileName>BaseMQ.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ9\TroykaMQ\BaseMQ.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,6 +1,6 @@
 // 2025/03/13 08:02:07 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "Modules/MQ9/MQ9.h"
+#include "Modules/MQ9/SensorMQ9.h"
 #include "Hardware/HAL/HAL.h"
 
 

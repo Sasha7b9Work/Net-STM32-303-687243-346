@@ -39,7 +39,7 @@ const uint16 Color::colors[Color::Count] =
 };
 
 
-#define SPI2_DR_8bit         *(__IO uint8_t*)&(SPI2->DR)
+#define SPI2_DR_8bit         *(__IO uint8*)&(SPI2->DR)
 
 
 namespace ST7735

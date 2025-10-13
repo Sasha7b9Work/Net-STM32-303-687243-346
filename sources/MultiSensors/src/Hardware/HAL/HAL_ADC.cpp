@@ -168,10 +168,8 @@ float HAL_ADC::GetVoltageDioxide()
 
     if (meter.IsFinished())
     {
-        voltage = (float)ReadChannelADC3(ADC_CHANNEL_1) * 3.3f / (float)(1 << 1);
-
-        voltage /= 100.0f;
-        
+        voltage = (float)ReadChannelADC3(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12);
+      
         meter.FinishAfter(1000);
     }
 
