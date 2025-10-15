@@ -54,46 +54,6 @@ void InterCom::SetDirection(Direction::E dir)
 
 void InterCom::Send(const Measure &measure, uint timeMS)
 {
-    static const pchar names[Measure::Count] =
-    {
-        "Temperature",
-        "Pressure",
-        "Humidity",
-        "DewPoint",
-        "Velocity",
-        "Latitude",
-        "Longitude",
-        "Altitude",
-        "Azimuth",
-        "Illuminate",
-        "Distance",
-        "RotateAngleRel",
-        "RotateAngleFull",
-        "RotateAngleSpeed",
-        "Concentrate CH4",
-        "Dioxide"
-    };
-
-    static const pchar units[Measure::Count] =
-    {
-        "degress Celsius",
-        "hPa",
-        "%%",
-        "degress Celsius",
-        "m/s",
-        "degress",
-        "degress",
-        "m",
-        "degress",
-        "lxs",
-        "m",
-        "degrees",
-        "degress",
-        "degress",
-        "%%",
-        "%%"
-    };
-
     if (direction & Direction::Display)
     {
         if (!Measures::IsFixed())
@@ -111,6 +71,46 @@ void InterCom::Send(const Measure &measure, uint timeMS)
 
     if (direction & Direction::CDC)
     {
+        static const pchar names[Measure::Count] =
+        {
+            "Temperature",
+            "Pressure",
+            "Humidity",
+            "DewPoint",
+            "Velocity",
+            "Latitude",
+            "Longitude",
+            "Altitude",
+            "Azimuth",
+            "Illuminate",
+            "Distance",
+            "RotateAngleRel",
+            "RotateAngleFull",
+            "RotateAngleSpeed",
+            "Concentrate CH4",
+            "Mono Carbon"
+        };
+
+        static const pchar units[Measure::Count] =
+        {
+            "degress Celsius",
+            "hPa",
+            "%%",
+            "degress Celsius",
+            "m/s",
+            "degress",
+            "degress",
+            "m",
+            "degress",
+            "lxs",
+            "m",
+            "degrees",
+            "degress",
+            "degress",
+            "%%",
+            "ppm"
+        };
+
         String<> message("%s : %f %s", names[measure.GetName()], measure.GetDouble(), units[measure.GetName()]);
 
 //        HCDC::Transmit(message.c_str(), message.Size() + 1);

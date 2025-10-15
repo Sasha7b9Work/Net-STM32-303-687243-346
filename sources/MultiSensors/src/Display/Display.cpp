@@ -569,7 +569,7 @@ String<> Display::DMeasure::Name()
         "сцнк онкмш",
         "яйнпнярэ онбнпнрю",
         "лерюм",
-        "сцкепнд"
+        "сцкей. цюг"
     };
 
     String<> result(names[name]);
@@ -596,7 +596,7 @@ String<> Display::DMeasure::Units()
         "╗",
         "╗",
         "%%",
-        "%%"
+        "ppm"
     };
 
     return String<>(units[name]);

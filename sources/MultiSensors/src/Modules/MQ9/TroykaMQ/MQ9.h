@@ -4,7 +4,7 @@
 #include "BaseMQ.h"
 
 // резистор установленный на плату (кОм)
-#define MQ9_RL_BOARD            10.0
+#define MQ9_RL_BOARD            1.0
 // коефициент чистого воздуха из графика
 #define MQ9_RO_IN_CLEAR_AIR     9.8
 

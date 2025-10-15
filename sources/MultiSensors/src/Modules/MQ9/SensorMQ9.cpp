@@ -30,6 +30,16 @@ bool SensMQ9::GetMeasure(Measure * measure)
 {
     float monoxide = (float)mq9.readCarbonMonoxide();
 
+    if (monoxide < 0.0f)
+    {
+        monoxide = 0.0f;
+    }
+
+    if (monoxide > 2000.0f)
+    {
+        monoxide = 2000.0f;
+    }
+
     measure->Set(Measure::CarbonMonoxide, monoxide);
 
     return is_init;
