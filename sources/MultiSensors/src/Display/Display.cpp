@@ -51,7 +51,7 @@ namespace Display
         DMeasure(Measure::RotateAngleFull),
         DMeasure(Measure::RotateAngleSpeed),
         DMeasure(Measure::ConcentrationCH4),
-        DMeasure(Measure::Dioxide)
+        DMeasure(Measure::CarbonMonoxide)
     };
 
     namespace Buffer
@@ -466,7 +466,7 @@ void Display::DrawMeasures(uint)
         Measure::RotateAngleFull,
         Measure::RotateAngleSpeed,
         Measure::ConcentrationCH4,
-        Measure::Dioxide
+        Measure::CarbonMonoxide
     };
 
     int y = y0;

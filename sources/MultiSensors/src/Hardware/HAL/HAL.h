@@ -41,9 +41,10 @@ namespace HAL_ADC
 {
     void Init();
 
-    float GetVoltageBattery();      // Напряжение батареи
+    float GetVoltageBattery();          // Напряжение батареи
 
-    float GetVoltageDioxide();      // Концентрация углекислого газа
+    float GetCarbonMonoxideVoltage();   // Концентрация углекислого газа
+    uint GetCarbonMonoxideRaw();
 
     extern void *handle1;           // ADC_HandleTypeDef для батарей, влажности
     extern void *handle3;           // ADC_HandleTypeDef для углекислого газа

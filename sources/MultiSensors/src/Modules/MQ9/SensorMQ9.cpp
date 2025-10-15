@@ -2,9 +2,10 @@
 #include "defines.h"
 #include "Modules/MQ9/SensorMQ9.h"
 #include "Hardware/HAL/HAL.h"
+#include "Modules/MQ9/TroykaMQ/MQ9.h"
 
 
-namespace MQ9
+namespace SensMQ9
 {
     static bool is_init = false;
 
@@ -12,10 +13,12 @@ namespace MQ9
     {
         return is_init;
     }
+
+    static MQ9 mq9(0);
 }
 
 
-void MQ9::Init()
+void SensMQ9::Init()
 {
     HAL_ADC::Init();
 
@@ -23,8 +26,15 @@ void MQ9::Init()
 }
 
 
-bool MQ9::GetMeasure(Measure * measure)
+bool SensMQ9::GetMeasure(Measure * measure)
 {
+    float monoxide = (float)mq9.readCarbonMonoxide();
+
+    measure->Set(Measure::CarbonMonoxide, monoxide);
+
+    return is_init;
+
+    /*
     float voltage = HAL_ADC::GetVoltageDioxide();
 
     float RL = 1;
@@ -34,4 +44,5 @@ bool MQ9::GetMeasure(Measure * measure)
     measure->Set(Measure::Dioxide, RS_gas);
 
     return is_init;
+    */
 }

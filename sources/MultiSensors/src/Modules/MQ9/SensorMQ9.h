@@ -3,7 +3,7 @@
 #include "Storage/Measures.h"
 
 
-namespace MQ9
+namespace SensMQ9
 {
     void Init();
 

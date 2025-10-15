@@ -154,7 +154,7 @@
           <Type>0</Type>
           <LineNumber>231</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134251260</Address>
+          <Address>134251308</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -186,7 +186,7 @@
           <Type>0</Type>
           <LineNumber>229</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134226614</Address>
+          <Address>134226622</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -200,18 +200,34 @@
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>126</LineNumber>
+          <LineNumber>31</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134261716</Address>
+          <Address>134262422</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_ADC.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Modules\MQ9\SensorMQ9.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Hardware/HAL/HAL_ADC.cpp\126</Expression>
+          <Expression>\\MS_1\src/Modules/MQ9/SensorMQ9.cpp\31</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>70</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134266046</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Modules\MQ9\TroykaMQ\BaseMQ.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\MS_1\src/Modules/MQ9/TroykaMQ/BaseMQ.cpp\70</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -1767,7 +1783,7 @@
 
   <Group>
     <GroupName>Modules/MQ9</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1799,7 +1815,7 @@
 
   <Group>
     <GroupName>Modules/MQ9/TroykaMQ</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

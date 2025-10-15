@@ -10,6 +10,8 @@
 
 #include "defines.h"
 #include "BaseMQ.h"
+#include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include <cmath>
 
 BaseMQ::BaseMQ(uint8 pin) {
@@ -130,12 +132,6 @@ void digitalWrite(uint8, int)
 }
 
 
-void analogRead(uint8, int)
-{
-
-}
-
-
 void analogWrite(uint8, int)
 {
 }
@@ -143,17 +139,17 @@ void analogWrite(uint8, int)
 
 int analogRead(uint8)
 {
-    return 0;
+    return (int)HAL_ADC::GetCarbonMonoxideRaw();
 }
 
 
-void delay(uint)
+void delay(uint ms)
 {
-
+    Timer::Delay(ms);
 }
 
 
 unsigned long millis()
 {
-    return 0U;
+    return TIME_MS;
 }

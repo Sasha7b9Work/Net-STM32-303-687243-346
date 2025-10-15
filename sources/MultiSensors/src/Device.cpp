@@ -66,7 +66,7 @@ void Device::Init()
         }
 #endif
 #ifdef MODULE_MQ9
-        MQ9::Init();
+        SensMQ9::Init();
 #endif
     }
 
@@ -95,7 +95,7 @@ void Device::Update()
 
     uint time = TIME_MS;
 
-    if (MQ9::GetMeasure(&dioxide))
+    if (SensMQ9::GetMeasure(&dioxide))
     {
         ProcessMeasure(dioxide, time);
     }

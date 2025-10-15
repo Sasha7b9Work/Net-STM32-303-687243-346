@@ -31,10 +31,8 @@ unsigned long millis();
 #define MQ_HEATING_TIME     6000
 // время охлаждение датчика
 #define MQ_COOLANCE_TIME    9000
-// разрядность АЦП
-#define ADC_BIT             10
 // масимальное значение АЦП
-#define ADC_VALUE_MAX       std::powf(2, ADC_BIT)
+#define ADC_VALUE_MAX       (1 << 11)
 
 #if defined(ARDUINO_ARCH_ESP32)
 #define analogWrite ledcWrite

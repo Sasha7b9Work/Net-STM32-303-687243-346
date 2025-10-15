@@ -158,7 +158,7 @@ float HAL_ADC::GetVoltageBattery()
 }
 
 
-float HAL_ADC::GetVoltageDioxide()
+float HAL_ADC::GetCarbonMonoxideVoltage()
 {
     // PB1 ADC3 IN1
 
@@ -174,6 +174,12 @@ float HAL_ADC::GetVoltageDioxide()
     }
 
     return voltage;
+}
+
+
+uint HAL_ADC::GetCarbonMonoxideRaw()
+{
+    return ReadChannelADC3(ADC_CHANNEL_1);
 }
 
 
