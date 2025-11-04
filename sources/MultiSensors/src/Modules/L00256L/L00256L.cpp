@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "Modules/L00256L/L00256L.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL_PINS.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -157,5 +158,5 @@ float L00256L::GetVelocity()
 
 bool L00256L::IsConnected()
 {
-    return false;
+    return pinB6.IsLow() && pinB7.IsHi();
 }
