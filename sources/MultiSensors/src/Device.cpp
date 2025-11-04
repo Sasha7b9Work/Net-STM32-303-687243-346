@@ -53,6 +53,14 @@ void Device::Init()
     {
         __HAL_RCC_I2C1_CLK_DISABLE();
 
+        pinB6.Init();
+        pinB7.Init();
+
+        if (pinB6.IsLow() && pinB7.IsLow())
+        {
+            SensMQ9::Init();
+        }
+
 #ifdef MODULE_HI50
         if (!HI50::Init())              // Если нет - то датчик дальности
         {
@@ -64,9 +72,6 @@ void Device::Init()
         {
             L00256L::Init();
         }
-#endif
-#ifdef MODULE_MQ9
-        SensMQ9::Init();
 #endif
     }
 

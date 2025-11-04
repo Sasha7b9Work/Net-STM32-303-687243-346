@@ -72,6 +72,9 @@ extern PinOutputPP pinCS_ST;        // ST7735
 extern Pin         pinSCL;          // I2C
 extern Pin         pinSDA;          // I2C
 
+extern PinInput    pinB6;           // Дублируют пины I2C.
+extern PinInput    pinB7;           // Когда на I2C нет датчика, по ним определяется присоединённый модуль
+
 extern Pin         pinTX_HC12;
 extern Pin         pinRX_HC12;
 extern PinOutputPP pinCS_HC12;

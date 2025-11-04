@@ -7,6 +7,5 @@
 
 
 // Одновременно может быть только одно из этих устройств
-//#define MODULE_HI50
+#define MODULE_HI50
 //#define MODULE_MIPEX02
-#define MODULE_MQ9

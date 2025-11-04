@@ -56,8 +56,12 @@ void HAL_USART1::Init(bool to_HC12)
 {
     if (to_HC12)
     {
-//        if (HI50::IsExist())                        // Деинициализируем данные выводы только если существует лазерный дальномер.
+#ifdef MODULE_HI50
+        if (HI50::IsExist())                        // Деинициализируем данные выводы только если существует лазерный дальномер.
+#endif
+#ifdef MODULE_MIPEX02
         if(Mipex02::IsExist())
+#endif
         {                                           // В остальных случаях на этих выводах I2C - их отключать нельзя
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);

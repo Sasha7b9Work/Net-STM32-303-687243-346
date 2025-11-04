@@ -152,82 +152,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>231</LineNumber>
+          <LineNumber>65</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134251308</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_USART1.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Device.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Hardware/HAL/HAL_USART1.cpp\231</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>114</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134224422</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_IT.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Hardware/HAL/HAL_IT.cpp\114</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>229</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134226622</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_ADC.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Hardware/HAL/HAL_ADC.cpp\229</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>31</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134262422</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Modules\MQ9\SensorMQ9.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Modules/MQ9/SensorMQ9.cpp\31</Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
-          <LineNumber>70</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134266046</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Modules\MQ9\TroykaMQ\BaseMQ.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Modules/MQ9/TroykaMQ/BaseMQ.cpp\70</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -1687,7 +1623,7 @@
 
   <Group>
     <GroupName>Modules/HI50</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

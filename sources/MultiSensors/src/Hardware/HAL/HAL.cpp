@@ -41,8 +41,13 @@ void HAL::Init()
 
     HAL_SPI1::Init();
 
-//    HAL_USART1::Init(HI50::CallbackOnReceive);
+#ifdef MODULE_HI50
+    HAL_USART1::Init(HI50::CallbackOnReceive);
+#endif
+
+#ifdef MODULE_MIPEX02
     HAL_USART1::Init(Mipex02::CallbackOnReceive);
+#endif
 }
 
 
