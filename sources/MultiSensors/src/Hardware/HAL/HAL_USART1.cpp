@@ -98,14 +98,13 @@ void HAL_USART1::Init(bool to_HC12)
     }
     else
     {
-        if (HI50::IsExist())
-        {
-            handleUART.Init.BaudRate = 19200;
-        }
-        else
-        {
-            handleUART.Init.BaudRate = 9600;
-        }
+#ifdef MODULE_HI50
+        handleUART.Init.BaudRate = 19200;
+#endif
+
+#ifdef MODULE_MIPEX02
+        handleUART.Init.BaudRate = 9600;
+#endif
     }
 
     if (HAL_UART_Init(&handleUART) != HAL_OK)
@@ -187,7 +186,7 @@ void HAL_USART1::Update()
     {
         volatile uint8 byte = recv_buffer.Pop();
 
-        if (HI50::IsExist())
+#ifdef MODULE_HI50
         {
             if (byte == 0x0d)
             {
@@ -199,20 +198,22 @@ void HAL_USART1::Update()
                 byte = 0x00;
             }
         }
-        else if (Mipex02::IsExist())
+#endif
+
+#ifdef MODULE_MIPEX02
         {
             if (byte == 0x0d)
             {
                 byte = 0x00;
             }
         }
-
+#endif
         static char buffer[256] = { '\0' };
         static int pointer = 0;
 
         buffer[pointer++] = (char)byte;
 
-        if (Mipex02::IsWaitMeasure())
+#ifdef MODULE_MIPEX02
         {
             if (buffer[0] == '@')
             {
@@ -227,6 +228,7 @@ void HAL_USART1::Update()
                 pointer = 0;
             }
         }
+#endif
 
         if (byte == 0x00)
         {
