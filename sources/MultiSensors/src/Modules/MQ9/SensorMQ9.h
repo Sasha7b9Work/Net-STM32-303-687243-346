@@ -10,4 +10,7 @@ namespace SensMQ9
     bool IsInited();
 
     bool GetMeasure(Measure *);
+
+    // Подключён данный датчик
+    bool IsConnected();
 }

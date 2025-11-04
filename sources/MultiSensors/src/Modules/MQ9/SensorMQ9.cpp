@@ -56,3 +56,9 @@ bool SensMQ9::GetMeasure(Measure * measure)
     return is_init;
     */
 }
+
+
+bool SensMQ9::IsConnected()
+{
+    return pinB6.IsLow() && pinB7.IsLow();
+}

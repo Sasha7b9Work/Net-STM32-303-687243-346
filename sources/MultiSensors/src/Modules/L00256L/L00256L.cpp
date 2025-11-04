@@ -153,3 +153,9 @@ float L00256L::GetVelocity()
 {
     return Velocity::speed;
 }
+
+
+bool L00256L::IsConnected()
+{
+    return false;
+}

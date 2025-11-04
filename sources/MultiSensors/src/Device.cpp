@@ -56,23 +56,22 @@ void Device::Init()
         pinB6.Init();
         pinB7.Init();
 
-        if (pinB6.IsLow() && pinB7.IsLow())
+        if (SensMQ9::IsConnected())
         {
             SensMQ9::Init();
         }
-
-#ifdef MODULE_HI50
-        if (!HI50::Init())              // Если нет - то датчик дальности
+        else if (HI50::IsConnected())
+        {
+            HI50::Init();
+        }
+        else if (Mipex02::IsConnected())
+        {
+            Mipex02::Init();
+        }
+        else if(L00256L::IsConnected())
         {
             L00256L::Init();
         }
-#endif
-#ifdef MODULE_MIPEX02
-        if (!Mipex02::Init())
-        {
-            L00256L::Init();
-        }
-#endif
     }
 
     if (!HI50::IsExist())               // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,

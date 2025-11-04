@@ -56,13 +56,8 @@ void HAL_USART1::Init(bool to_HC12)
 {
     if (to_HC12)
     {
-#ifdef MODULE_HI50
-        if (HI50::IsExist())                        // Деинициализируем данные выводы только если существует лазерный дальномер.
-#endif
-#ifdef MODULE_MIPEX02
-        if(Mipex02::IsExist())
-#endif
-        {                                           // В остальных случаях на этих выводах I2C - их отключать нельзя
+        if(HI50::IsConnected() || Mipex02::IsConnected())   // Деинициализируем данные выводы только если существует лазерный дальномер или Mipex02
+        {                                                   // В остальных случаях на этих выводах I2C - их отключать нельзя
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
         }
@@ -98,13 +93,15 @@ void HAL_USART1::Init(bool to_HC12)
     }
     else
     {
-#ifdef MODULE_HI50
-        handleUART.Init.BaudRate = 19200;
-#endif
+        if (HI50::IsConnected())
+        {
+            handleUART.Init.BaudRate = 19200;
+        }
 
-#ifdef MODULE_MIPEX02
-        handleUART.Init.BaudRate = 9600;
-#endif
+        if (Mipex02::IsConnected())
+        {
+            handleUART.Init.BaudRate = 9600;
+        }
     }
 
     if (HAL_UART_Init(&handleUART) != HAL_OK)
@@ -186,7 +183,7 @@ void HAL_USART1::Update()
     {
         volatile uint8 byte = recv_buffer.Pop();
 
-#ifdef MODULE_HI50
+        if(HI50::IsConnected())
         {
             if (byte == 0x0d)
             {
@@ -198,22 +195,20 @@ void HAL_USART1::Update()
                 byte = 0x00;
             }
         }
-#endif
 
-#ifdef MODULE_MIPEX02
+        if(Mipex02::IsConnected())
         {
             if (byte == 0x0d)
             {
                 byte = 0x00;
             }
         }
-#endif
         static char buffer[256] = { '\0' };
         static int pointer = 0;
 
         buffer[pointer++] = (char)byte;
 
-#ifdef MODULE_MIPEX02
+        if(Mipex02::IsConnected())
         {
             if (buffer[0] == '@')
             {
@@ -228,7 +223,6 @@ void HAL_USART1::Update()
                 pointer = 0;
             }
         }
-#endif
 
         if (byte == 0x00)
         {

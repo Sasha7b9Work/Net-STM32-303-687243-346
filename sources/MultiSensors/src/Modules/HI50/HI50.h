@@ -14,4 +14,7 @@ namespace HI50
     bool GetMeasure(Measure *);
 
     void CallbackOnReceive(pchar);
+
+    // true, если подсоединён этот датчик
+    bool IsConnected();
 }

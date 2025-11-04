@@ -17,4 +17,6 @@ namespace L00256L
     float GetAngleRelative();
 
     float GetVelocity();
+
+    bool IsConnected();
 }

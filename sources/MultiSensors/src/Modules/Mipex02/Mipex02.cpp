@@ -136,3 +136,9 @@ void Mipex02::CallbackOnReceive(pchar message)
         break;
     }
 }
+
+
+bool Mipex02::IsConnected()
+{
+    return false;
+}

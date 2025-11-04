@@ -183,3 +183,9 @@ bool HI50::GetMeasure(Measure *measure)
 
     return false;
 }
+
+
+bool HI50::IsConnected()
+{
+    return pinB6.IsHi() && pinB7.IsHi();
+}
