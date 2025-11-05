@@ -28,6 +28,8 @@ namespace HAL_USART1
 
 void HAL_USART1::Init(void (*_callback_on_receive_HI50)(pchar))
 {
+    recv_buffer.Clear();
+
     __HAL_RCC_USART1_CLK_ENABLE();
 
     callback_on_sensor = _callback_on_receive_HI50;
@@ -55,6 +57,8 @@ void HAL_USART1::Init(bool to_HC12)
     *
     *   PA9, PA10           // На HC-12
     */
+
+    recv_buffer.Clear();
 
     if (to_HC12)
     {
