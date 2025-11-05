@@ -65,6 +65,8 @@ bool HI50::Init()
     {
         HAL_USART1::Update();
 
+        HI50::Update();
+
         if (state == State::WAIT_MEASURE)
         {
             break;
@@ -106,6 +108,11 @@ void HI50::Update()
 
 void HI50::CallbackOnReceive(pchar message)
 {
+    if (message[0] == '\0')
+    {
+        return;
+    }
+
     switch (state)
     {
     case State::IDLE:

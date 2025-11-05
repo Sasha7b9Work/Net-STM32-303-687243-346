@@ -53,9 +53,9 @@ void Device::Init()
     {
         __HAL_RCC_I2C1_CLK_DISABLE();
 
-        if (!HI50::Init())
+        if (!Mipex02::Init())
         {
-            if (!Mipex02::Init())
+            if (!HI50::Init())
             {
                 pinB6.Init();       // По этим пинам
                 pinB7.Init();       // будем определять наличие не-I2C и не-USART модулей

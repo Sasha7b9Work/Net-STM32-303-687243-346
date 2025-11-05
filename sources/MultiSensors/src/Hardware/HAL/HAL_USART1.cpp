@@ -206,7 +206,7 @@ void HAL_USART1::Update()
 
         buffer[pointer++] = (char)byte;
 
-        if(Mipex02::IsExist())
+        if(Mipex02::IsWaitMeasure())
         {
             if (buffer[0] == '@')
             {
