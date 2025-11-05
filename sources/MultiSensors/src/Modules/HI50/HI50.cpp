@@ -49,6 +49,10 @@ bool HI50::IsExist()
 
 bool HI50::Init()
 {
+    is_exist = true;                        // Устанавливаем этот признак, чтобы правильно USART отработал
+
+    HAL_USART1::Init(CallbackOnReceive);
+
     HAL_USART1::SetModeSensor();
 
     state = State::WAIT_TURN_ON;
@@ -63,11 +67,11 @@ bool HI50::Init()
 
         if (state == State::WAIT_MEASURE)
         {
-            is_exist = true;
-
             break;
         }
     }
+
+    is_exist = (state == State::WAIT_MEASURE);
 
     return IsExist();
 }
@@ -182,10 +186,4 @@ bool HI50::GetMeasure(Measure *measure)
     }
 
     return false;
-}
-
-
-bool HI50::IsConnected()
-{
-    return pinB6.IsHi() && pinB7.IsHi();
 }

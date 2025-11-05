@@ -56,26 +56,24 @@ void Device::Init()
         pinB6.Init();
         pinB7.Init();
 
-        if (SensMQ9::IsConnected())
+        if (!HI50::Init())
         {
-            SensMQ9::Init();
-        }
-        else if (HI50::IsConnected())
-        {
-            HI50::Init();
-        }
-        else if (Mipex02::IsConnected())
-        {
-            Mipex02::Init();
-        }
-        else if(L00256L::IsConnected())
-        {
-            L00256L::Init();
+            if (!Mipex02::Init())
+            {
+                if (SensMQ9::IsConnected())
+                {
+                    SensMQ9::Init();
+                }
+                else if (L00256L::IsConnected())
+                {
+                    L00256L::Init();
+                }
+            }
         }
     }
 
-    if (!HI50::IsConnected() && !Mipex02::IsConnected())        // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
-    {                                                           // когда понадобится
+    if (!HI50::IsExist() && !Mipex02::IsExist())        // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
+    {                                                   // когда понадобится
         HAL_USART1::SetModeHC12();
     }
 

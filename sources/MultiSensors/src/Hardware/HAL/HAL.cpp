@@ -40,16 +40,6 @@ void HAL::Init()
     HAL_ADC::Init();
 
     HAL_SPI1::Init();
-
-    if (HI50::IsConnected())
-    {
-        HAL_USART1::Init(HI50::CallbackOnReceive);
-    }
-
-    if (Mipex02::IsConnected())
-    {
-        HAL_USART1::Init(Mipex02::CallbackOnReceive);
-    }
 }
 
 

@@ -36,8 +36,10 @@ bool Mipex02::IsWaitMeasure()
 
 bool Mipex02::Init()
 {
-    is_exist = true;
-    
+    is_exist = true;                        // Устанавливаем этот признак, чтобы правильно USART отработал
+
+    HAL_USART1::Init(CallbackOnReceive);
+
     HAL_USART1::SetModeSensor();
 
     state = State::WAIT_UART;
@@ -55,7 +57,7 @@ bool Mipex02::Init()
             break;
         }
     }
-    
+
     is_exist = (state == State::WAIT_MEASURE);
 
     return IsExist();
@@ -135,10 +137,4 @@ void Mipex02::CallbackOnReceive(pchar message)
 
         break;
     }
-}
-
-
-bool Mipex02::IsConnected()
-{
-    return false;
 }

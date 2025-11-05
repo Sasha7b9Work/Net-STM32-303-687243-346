@@ -11,11 +11,6 @@
 
 namespace HAL_USART1
 {
-    /*
-    *   USART1 RX - PB7
-    *   USART1 TX - PB6
-    */
-
     RingBuffer<256> recv_buffer;
 
     static UART_HandleTypeDef handleUART;
@@ -54,10 +49,17 @@ void HAL_USART1::Init(void (*_callback_on_receive_HI50)(pchar))
 
 void HAL_USART1::Init(bool to_HC12)
 {
+    /*
+    *   USART1 RX - PB7     // На датчики -
+    *   USART1 TX - PB6     // идут там же, где I2C
+    *
+    *   PA9, PA10           // На HC-12
+    */
+
     if (to_HC12)
     {
-        if(HI50::IsConnected() || Mipex02::IsConnected())   // Деинициализируем данные выводы только если существует лазерный дальномер или Mipex02
-        {                                                   // В остальных случаях на этих выводах I2C - их отключать нельзя
+        if(HI50::IsExist() || Mipex02::IsExist())       // Деинициализируем данные выводы только если существует лазерный дальномер или Mipex02
+        {                                               // В остальных случаях на этих выводах I2C - их отключать нельзя
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
             HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
         }
@@ -68,22 +70,15 @@ void HAL_USART1::Init(bool to_HC12)
         HAL_GPIO_DeInit(GPIOA, GPIO_PIN_10);
     }
 
-    GPIO_InitTypeDef is;
-
-    if (to_HC12)
+    GPIO_InitTypeDef is =
     {
-        is.Pin = GPIO_PIN_9 | GPIO_PIN_10;
-    }
-    else
-    {
-        //           TX           RX
-        is.Pin = GPIO_PIN_6 | GPIO_PIN_7;
-    }
-
-    is.Mode = GPIO_MODE_AF_PP;
-    is.Alternate = GPIO_AF7_USART1;
-    is.Speed = GPIO_SPEED_FREQ_HIGH;
-    is.Pull = GPIO_NOPULL;
+        //                                                      TX           RX
+        to_HC12 ? (uint)(GPIO_PIN_9 | GPIO_PIN_10) : (uint)(GPIO_PIN_6 | GPIO_PIN_7),
+        GPIO_MODE_AF_PP,
+        GPIO_NOPULL,
+        GPIO_SPEED_FREQ_HIGH,
+        GPIO_AF7_USART1
+    };
 
     HAL_GPIO_Init(to_HC12 ? GPIOA : GPIOB, &is);
 
@@ -93,12 +88,11 @@ void HAL_USART1::Init(bool to_HC12)
     }
     else
     {
-        if (HI50::IsConnected())
+        if (HI50::IsExist())
         {
             handleUART.Init.BaudRate = 19200;
         }
-
-        if (Mipex02::IsConnected())
+        else if (Mipex02::IsExist())
         {
             handleUART.Init.BaudRate = 9600;
         }
@@ -183,7 +177,7 @@ void HAL_USART1::Update()
     {
         volatile uint8 byte = recv_buffer.Pop();
 
-        if(HI50::IsConnected())
+        if(HI50::IsExist())
         {
             if (byte == 0x0d)
             {
@@ -196,7 +190,7 @@ void HAL_USART1::Update()
             }
         }
 
-        if(Mipex02::IsConnected())
+        if(Mipex02::IsExist())
         {
             if (byte == 0x0d)
             {
@@ -208,7 +202,7 @@ void HAL_USART1::Update()
 
         buffer[pointer++] = (char)byte;
 
-        if(Mipex02::IsConnected())
+        if(Mipex02::IsExist())
         {
             if (buffer[0] == '@')
             {

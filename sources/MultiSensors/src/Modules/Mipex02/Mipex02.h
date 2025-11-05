@@ -20,6 +20,4 @@ namespace Mipex02
 
     // Если true - ждём результат измерения. Нужно приёмнику, чтобы правильно обрабатывать принятые байты
     bool IsWaitMeasure();
-
-    bool IsConnected();
 }
