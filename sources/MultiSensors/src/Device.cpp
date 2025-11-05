@@ -45,21 +45,21 @@ void Device::Init()
 
     EnergySwitch::Init();
 
-    BME280::Init();                    // Пытаемся инициализировать датчик давления
+    BME280::Init();
 
     BH1750::Init();
 
-    if (!BME280::IsInitialized() && !BH1750::IsInitialized())                // Если нет - то освещённость
+    if (!BME280::IsInitialized() && !BH1750::IsInitialized())
     {
         __HAL_RCC_I2C1_CLK_DISABLE();
-
-        pinB6.Init();
-        pinB7.Init();
 
         if (!HI50::Init())
         {
             if (!Mipex02::Init())
             {
+                pinB6.Init();       // По этим пинам
+                pinB7.Init();       // будем определять наличие не-I2C и не-USART модулей
+
                 if (SensMQ9::IsConnected())
                 {
                     SensMQ9::Init();
