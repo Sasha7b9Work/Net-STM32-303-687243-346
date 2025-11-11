@@ -26,7 +26,7 @@ namespace Device
 void Device::Init()
 {
     HAL::Init();
-    
+
     GPIO_InitTypeDef is =
     {
         GPIO_PIN_2,
@@ -36,6 +36,7 @@ void Device::Init()
         0
     };
 
+    Timer::Delay(2000);
 
     HAL_GPIO_Init(GPIOA, &is);
 
@@ -115,7 +116,7 @@ void Device::Update()
         ProcessMeasure(illuminate, time);
     }
 
-    if(Mipex02::GetMeasure(&concentrationCH4))
+    if (Mipex02::GetMeasure(&concentrationCH4))
     {
         InterCom::SetDirection(Direction::Display);
         ProcessMeasure(concentrationCH4, time);

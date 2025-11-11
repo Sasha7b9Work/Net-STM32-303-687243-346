@@ -48,7 +48,7 @@ bool Mipex02::Init()
 
     TimeMeterMS meter;
 
-    while (meter.ElapsedTime() < 10000)
+    while (meter.ElapsedTime() < 5000)
     {
         HAL_USART1::Update();
 
