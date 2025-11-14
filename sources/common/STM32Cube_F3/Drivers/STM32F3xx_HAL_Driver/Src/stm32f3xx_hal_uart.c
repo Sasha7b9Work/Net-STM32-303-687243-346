@@ -340,7 +340,7 @@ HAL_StatusTypeDef HAL_UART_Init(UART_HandleTypeDef *huart)
 
   /* Perform advanced settings configuration */
   /* For some items, configuration requires to be done prior TE and RE bits are set */
-  if (huart->AdvancedInit.AdvFeatureInit != UART_ADVFEATURE_NO_INIT)
+  if (huart->Advanc edInit.AdvFeatureInit != UART_ADVFEATURE_NO_INIT)
   {
     UART_AdvFeatureConfig(huart);
   }
