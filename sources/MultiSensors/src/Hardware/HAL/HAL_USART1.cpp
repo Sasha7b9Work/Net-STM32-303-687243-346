@@ -11,6 +11,27 @@
 
 namespace HAL_USART1
 {
+    // Для чего используется USART1
+    struct ModeUSART1
+    {
+        enum E
+        {
+            HC12,       // Для работы с HC12
+            Sensor      // Для работы с датчиком
+        };
+
+        ModeUSART1(E v) : value(v) { }
+
+        bool IsHC12() const
+        {
+            return value == HC12;
+        }
+
+    private:
+
+        E value;
+    };
+
     RingBuffer<256> recv_buffer;
 
     static UART_HandleTypeDef handleUART;
@@ -22,7 +43,7 @@ namespace HAL_USART1
     static void (*callback_on_receive)(pchar) = nullptr;
     static void (*callback_on_sensor)(pchar) = nullptr;
 
-    static void Init(bool to_HC12);
+    static void Init(const ModeUSART1 &);
 }
 
 
@@ -49,7 +70,7 @@ void HAL_USART1::Init(void (*_callback_on_receive_HI50)(pchar))
 }
 
 
-void HAL_USART1::Init(bool to_HC12)
+void HAL_USART1::Init(const ModeUSART1 &mode)
 {
     /*
     *   USART1 RX - PB7     // На датчики -
@@ -60,7 +81,7 @@ void HAL_USART1::Init(bool to_HC12)
 
     recv_buffer.Clear();
 
-    if (to_HC12)
+    if (mode.IsHC12())
     {
         if(HI50::IsExist() || Mipex02::IsExist())       // Деинициализируем данные выводы только если существует лазерный дальномер или Mipex02
         {                                               // В остальных случаях на этих выводах I2C - их отключать нельзя
@@ -76,17 +97,17 @@ void HAL_USART1::Init(bool to_HC12)
 
     GPIO_InitTypeDef is =
     {
-        //                                                      TX           RX
-        to_HC12 ? (uint)(GPIO_PIN_9 | GPIO_PIN_10) : (uint)(GPIO_PIN_6 | GPIO_PIN_7),
+        //                                                           TX           RX
+        mode.IsHC12() ? (uint)(GPIO_PIN_9 | GPIO_PIN_10) : (uint)(GPIO_PIN_6 | GPIO_PIN_7),
         GPIO_MODE_AF_PP,
         GPIO_NOPULL,
         GPIO_SPEED_FREQ_HIGH,
         GPIO_AF7_USART1
     };
 
-    HAL_GPIO_Init(to_HC12 ? GPIOA : GPIOB, &is);
+    HAL_GPIO_Init(mode.IsHC12() ? GPIOA : GPIOB, &is);
 
-    if (to_HC12)
+    if (mode.IsHC12())
     {
         handleUART.Init.BaudRate = 9600;
     }
@@ -107,7 +128,7 @@ void HAL_USART1::Init(bool to_HC12)
         HAL::ErrorHandler();
     }
 
-    if (to_HC12)
+    if (mode.IsHC12())
     {
         HAL_NVIC_DisableIRQ(USART1_IRQn);
     }
@@ -120,13 +141,13 @@ void HAL_USART1::Init(bool to_HC12)
         HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1);
     }
 
-    callback_on_receive = to_HC12 ? nullptr : callback_on_sensor;
+    callback_on_receive = mode.IsHC12() ? nullptr : callback_on_sensor;
 }
 
 
 void HAL_USART1::SetModeHC12()
 {
-    Init(true);
+    Init(ModeUSART1::HC12);
 
     HC12::Init();
 }
@@ -134,7 +155,7 @@ void HAL_USART1::SetModeHC12()
 
 void HAL_USART1::SetModeSensor()
 {
-    Init(false);
+    Init(ModeUSART1::Sensor);
 }
 
 
