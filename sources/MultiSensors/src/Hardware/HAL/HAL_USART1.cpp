@@ -34,7 +34,23 @@ namespace HAL_USART1
 
     RingBuffer<256> recv_buffer;
 
-    static UART_HandleTypeDef handleUART;
+    static UART_HandleTypeDef handleUART =
+    {
+        USART1,
+        {
+            19200,
+            UART_WORDLENGTH_8B,
+            UART_STOPBITS_1,
+            UART_PARITY_NONE,
+            UART_MODE_TX_RX,
+            UART_HWCONTROL_NONE,
+            UART_OVERSAMPLING_16,
+            UART_ONE_BIT_SAMPLE_DISABLE
+        },
+        {
+            UART_ADVFEATURE_NO_INIT
+        }
+    };
 
     void *handle = &handleUART;
 
@@ -51,20 +67,9 @@ void HAL_USART1::Init(void (*_callback_on_receive_HI50)(pchar))
 {
     recv_buffer.Clear();
 
-    __HAL_RCC_USART1_CLK_ENABLE();
-
     callback_on_sensor = _callback_on_receive_HI50;
 
-    handleUART.Instance = USART1;
     handleUART.Init.BaudRate = 19200;
-    handleUART.Init.WordLength = UART_WORDLENGTH_8B;
-    handleUART.Init.StopBits = UART_STOPBITS_1;
-    handleUART.Init.Parity = UART_PARITY_NONE;
-    handleUART.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-    handleUART.Init.Mode = UART_MODE_TX_RX;
-    handleUART.Init.OverSampling = UART_OVERSAMPLING_16;
-    handleUART.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-    handleUART.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
 
     HAL_UART_Init(&handleUART);
 }

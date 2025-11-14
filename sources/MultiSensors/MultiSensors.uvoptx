@@ -75,7 +75,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>0</IsCurrentTarget>
+        <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>18</CpuCode>
       <DebugOpt>
@@ -320,7 +320,7 @@
       <OPTFL>
         <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
-        <IsCurrentTarget>1</IsCurrentTarget>
+        <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
       <CpuCode>18</CpuCode>
       <DebugOpt>
@@ -397,34 +397,50 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>111</LineNumber>
+          <LineNumber>52</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134257930</Address>
+          <Address>134236546</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Modules\HI50\HI50.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_USART1.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Modules/HI50/HI50.cpp\111</Expression>
+          <Expression>\\MS_1\src/Hardware/HAL/HAL_USART1.cpp\52</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>27</LineNumber>
+          <LineNumber>82</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134247284</Address>
+          <Address>134237026</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_IT.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_USART1.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Hardware/HAL/HAL_IT.cpp\27</Expression>
+          <Expression>\\MS_1\src/Hardware/HAL/HAL_USART1.cpp\82</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>201</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134236732</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_USART1.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\MS_1\src/Hardware/HAL/HAL_USART1.cpp\201</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
