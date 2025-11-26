@@ -51,7 +51,8 @@ namespace Display
         DMeasure(Measure::RotateAngleFull),
         DMeasure(Measure::RotateAngleSpeed),
         DMeasure(Measure::ConcentrationCH4),
-        DMeasure(Measure::CarbonMonoxide)
+        DMeasure(Measure::CarbonMonoxide),
+        DMeasure(Measure::CarbonDioxide)
     };
 
     namespace Buffer
