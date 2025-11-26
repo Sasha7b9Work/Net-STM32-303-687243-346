@@ -44,21 +44,21 @@ DEF_CHOICE_2(chTemperature,
     *PageMeasures::Temperature::self,
     nullptr,
     nullptr,
-    gset.display.show_measure[Measure::_Count],
+    gset.display.show_measure[Measure::Count],
     "Нет", "Да"
 )
 
 
-DEF_GOVERNOR_MIN(gTemperatureLimitMin, PageMeasures::Temperature::self, -30, 60, Measure::_Count);
+DEF_GOVERNOR_MIN(gTemperatureLimitMin, PageMeasures::Temperature::self, -30, 60, Measure::Count);
 
-DEF_GOVERNOR_MAX(gTemperatureLimitMax, PageMeasures::Temperature::self, -30, 60, Measure::_Count);
+DEF_GOVERNOR_MAX(gTemperatureLimitMax, PageMeasures::Temperature::self, -30, 60, Measure::Count);
 
-DEF_STATE_MIN_MAX(sTemperature, PageMeasures::Temperature::self, Measure::_Count);
+DEF_STATE_MIN_MAX(sTemperature, PageMeasures::Temperature::self, Measure::Count);
 
 
 static void OnPress_ResetTemperature(bool)
 {
-    gset.ResetMeasure(Measure::_Count);
+    gset.ResetMeasure(Measure::Count);
 }
 
 

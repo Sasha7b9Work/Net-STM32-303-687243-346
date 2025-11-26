@@ -71,7 +71,7 @@ void InterCom::Send(const Measure &measure, uint timeMS)
 
     if (direction & Direction::CDC)
     {
-        static const StructText names[Measure::_Count] =
+        static const StructText names[Measure::Count] =
         {
             "Temperature",
             "Pressure",
@@ -92,7 +92,7 @@ void InterCom::Send(const Measure &measure, uint timeMS)
             "Dioxide Carbon"
         };
 
-        static const StructText units[Measure::_Count] =
+        static const StructText units[Measure::Count] =
         {
             "degress Celsius",
             "hPa",

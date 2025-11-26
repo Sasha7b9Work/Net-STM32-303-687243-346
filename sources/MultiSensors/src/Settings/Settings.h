@@ -31,7 +31,7 @@ struct TypeDisplayedInformation
 
 struct SettingsDisplay
 {
-    uint8                       show_measure[Measure::_Count];
+    uint8                       show_measure[Measure::Count];
     TypeDisplayedInformation    typeDisplaydInfo;
 };
 

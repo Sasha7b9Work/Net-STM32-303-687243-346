@@ -34,7 +34,7 @@ namespace Display
 
         String<> Units();
     }
-    measures[Measure::_Count] =
+    measures[Measure::Count] =
     {
         DMeasure(Measure::Temperature),
         DMeasure(Measure::Pressure),
@@ -456,7 +456,7 @@ void Display::DrawMeasures(uint)
         Measure::E m;
     };
 
-    static const StructMeas names[Measure::_Count] =
+    static const StructMeas names[Measure::Count] =
     {
         Measure::Temperature,
         Measure::Pressure,
@@ -479,7 +479,7 @@ void Display::DrawMeasures(uint)
 
     int y = y0;
 
-    for (int i = 0; i < Measure::_Count; i++)
+    for (int i = 0; i < Measure::Count; i++)
     {
         DMeasure &measure = measures[names[i].m];
 
@@ -560,7 +560,7 @@ void Display::DrawStar()
 
 String<> Display::DMeasure::Name()
 {
-    static const StructText names[Measure::_Count] =
+    static const StructText names[Measure::Count] =
     {
         "ÒÅÌÏÅĞÀÒÓĞÀ",
         "ÄÀÂËÅÍÈÅ",
@@ -588,7 +588,7 @@ String<> Display::DMeasure::Name()
 
 String<> Display::DMeasure::Units()
 {
-    static const StructText units[Measure::_Count] =
+    static const StructText units[Measure::Count] =
     {
         "¨Ñ",
         "ãÏà",
