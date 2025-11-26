@@ -3,6 +3,9 @@
 #include "Storage/Measures.h"
 
 
+// Измеряет концентрацию углекислого газа
+
+
 namespace SensMQ9
 {
     void Init();
