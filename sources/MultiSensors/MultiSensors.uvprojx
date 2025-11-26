@@ -970,6 +970,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Modules\MQ135\SensorMQ135.h</FilePath>
             </File>
+            <File>
+              <FileName>MQ135.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ135\MQ135.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MQ135.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ135\MQ135.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2173,6 +2183,16 @@
               <FileName>SensorMQ135.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\MQ135\SensorMQ135.h</FilePath>
+            </File>
+            <File>
+              <FileName>MQ135.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ135\MQ135.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MQ135.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ135\MQ135.h</FilePath>
             </File>
           </Files>
         </Group>
