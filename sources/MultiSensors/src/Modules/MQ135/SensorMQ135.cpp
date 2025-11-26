@@ -29,7 +29,7 @@ void SensorMQ135::Init()
 
 bool SensorMQ135::GetMeasure(Measure *measure)
 {
-    float dioxide = mq135.getPPM();
+    float dioxide = mq135.getPPM() / 90.0f;
 
     if (dioxide < 0.0f)
     {
