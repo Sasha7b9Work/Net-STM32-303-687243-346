@@ -24,7 +24,7 @@ struct Measure
         ConcentrationCH4,   // Концентрация метана
         CarbonMonoxide,     // С0  угарный газ
         CarbonDioxide,      // C02 углекислый газ
-        Count
+        _Count
     };
 
     double value;
@@ -34,7 +34,7 @@ struct Measure
 
     void Clear()
     {
-        name = E::Count;
+        name = E::_Count;
         correct = false;
         value = (double)ERROR_VALUE_FLOAT;
     }

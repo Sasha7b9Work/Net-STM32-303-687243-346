@@ -34,7 +34,7 @@ namespace Display
 
         String<> Units();
     }
-    measures[Measure::Count] =
+    measures[Measure::_Count] =
     {
         DMeasure(Measure::Temperature),
         DMeasure(Measure::Pressure),
@@ -450,7 +450,13 @@ void Display::DrawMeasures(uint)
     const int y0 = d_lines;
     const int dY = d_lines + Font::Height();
 
-    static const Measure::E names[Measure::Count] =
+    struct StructMeas
+    {
+        StructMeas(Measure::E _m) : m(_m) { }
+        Measure::E m;
+    };
+
+    static const StructMeas names[Measure::_Count] =
     {
         Measure::Temperature,
         Measure::Pressure,
@@ -467,14 +473,15 @@ void Display::DrawMeasures(uint)
         Measure::RotateAngleFull,
         Measure::RotateAngleSpeed,
         Measure::ConcentrationCH4,
-        Measure::CarbonMonoxide
+        Measure::CarbonMonoxide,
+        Measure::CarbonDioxide
     };
 
     int y = y0;
 
-    for (int i = 0; i < Measure::Count; i++)
+    for (int i = 0; i < Measure::_Count; i++)
     {
-        DMeasure &measure = measures[names[i]];
+        DMeasure &measure = measures[names[i].m];
 
         if (measure.str_value.Size())
         {
@@ -553,7 +560,7 @@ void Display::DrawStar()
 
 String<> Display::DMeasure::Name()
 {
-    static const pchar names[Measure::Count] =
+    static const StructText names[Measure::_Count] =
     {
         "ÒÅÌÏÅĞÀÒÓĞÀ",
         "ÄÀÂËÅÍÈÅ",
@@ -570,17 +577,18 @@ String<> Display::DMeasure::Name()
         "ÓÃÎË ÏÎËÍÛ",
         "ÑÊÎĞÎÑÒÜ ÏÎÂÎĞÎÒÀ",
         "ÌÅÒÀÍ",
+        "ÓÃÀĞÍ. ÃÀÇ",
         "ÓÃËÅÊ. ÃÀÇ"
     };
 
-    String<> result(names[name]);
+    String<> result(names[name].text);
 
     return result;
 }
 
 String<> Display::DMeasure::Units()
 {
-    static const pchar units[Measure::Count] =
+    static const StructText units[Measure::_Count] =
     {
         "¨Ñ",
         "ãÏà",
@@ -597,10 +605,11 @@ String<> Display::DMeasure::Units()
         "¨",
         "¨",
         "%%",
+        "ppm",
         "ppm"
     };
 
-    return String<>(units[name]);
+    return String<>(units[name].text);
 }
 
 

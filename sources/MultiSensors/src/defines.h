@@ -60,6 +60,13 @@ union BitSet32
 };
 
 
+struct StructText
+{
+    StructText(pchar t) : text(t) { }
+    pchar text;
+};
+
+
 inline void EmptyVV(void) { }
 typedef void(*pFuncVV)(void);
 
