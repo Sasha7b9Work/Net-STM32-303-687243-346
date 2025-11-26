@@ -3,6 +3,7 @@
 #include "Modules/MQ135/SensorMQ135.h"
 #include "Hardware/HAL/HAL_PINS.h"
 #include "Hardware/HAL/HAL.h"
+#include "Modules/MQ135/MQ135.h"
 
 
 namespace SensorMQ135
@@ -13,6 +14,8 @@ namespace SensorMQ135
     {
         return is_init;
     }
+
+    static MQ135 mq135;
 }
 
 
@@ -24,9 +27,18 @@ void SensorMQ135::Init()
 }
 
 
-bool SensorMQ135::GetMeasure(Measure *)
+bool SensorMQ135::GetMeasure(Measure *measure)
 {
-    return false;
+    float dioxide = mq135.getPPM();
+
+    if (dioxide < 0.0f)
+    {
+        dioxide = 0.0f;
+    }
+
+    measure->Set(Measure::CarbonDioxide, dioxide);
+
+    return is_init;
 }
 
 

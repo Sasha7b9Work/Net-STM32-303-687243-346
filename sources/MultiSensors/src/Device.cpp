@@ -5,6 +5,7 @@
 #include "Modules/BH1750/BH1750.h"
 #include "Modules/ST7735/ST7735.h"
 #include "Modules/HI50/HI50.h"
+#include "Modules/MQ135/SensorMQ135.h"
 #include "Modules/MQ9/SensorMQ9.h"
 #include "Modules/Mipex02/Mipex02.h"
 #include "Hardware/Timer.h"
@@ -61,6 +62,10 @@ void Device::Init()
                 pinB6.Init();       // По этим пинам
                 pinB7.Init();       // будем определять наличие не-I2C и не-USART модулей
 
+                if (SensorMQ135::IsConnected())
+                {
+                    SensorMQ135::Init();
+                }
                 if (SensorMQ9::IsConnected())
                 {
                     SensorMQ9::Init();
@@ -95,8 +100,14 @@ void Device::Update()
     Measure illuminate;
     Measure concentrationCH4;
     Measure monoxide;
+    Measure dioxide;
 
     uint time = TIME_MS;
+
+    if (SensorMQ135::GetMeasure(&dioxide))
+    {
+        ProcessMeasure(dioxide, time);
+    }
 
     if (SensorMQ9::GetMeasure(&monoxide))
     {
