@@ -39,17 +39,14 @@ v1.0 - First release
 #define ATMOCO2 397.13f
 
 class MQ135 {
- private:
-  uint8 _pin;
-
- public:
-  MQ135(uint8_t pin);
-  float getCorrectionFactor(float t, float h);
-  float getResistance();
-  float getCorrectedResistance(float t, float h);
-  float getPPM();
-  float getCorrectedPPM(float t, float h);
-  float getRZero();
-  float getCorrectedRZero(float t, float h);
+public:
+    MQ135() = default;
+    float getCorrectionFactor(float t, float h);
+    float getResistance();
+    float getCorrectedResistance(float t, float h);
+    float getPPM();
+    float getCorrectedPPM(float t, float h);
+    float getRZero();
+    float getCorrectedRZero(float t, float h);
 };
 #endif

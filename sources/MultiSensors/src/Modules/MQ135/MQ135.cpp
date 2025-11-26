@@ -27,15 +27,10 @@ v1.0 - First release
 */
 /**************************************************************************/
 
-static int analogRead(uint8)
+static int analogRead()
 {
     return (int)HAL_ADC::GetCarbonRaw();
 }
-
-MQ135::MQ135(uint8 pin) {
-  _pin = pin;
-}
-
 
 /**************************************************************************/
 /*!
@@ -59,7 +54,7 @@ float MQ135::getCorrectionFactor(float t, float h) {
 */
 /**************************************************************************/
 float MQ135::getResistance() {
-  int val = analogRead(_pin);
+  int val = analogRead();
   return ((1023.0f/(float)val) * 5.0f - 1.0f)*RLOAD;
 }
 
