@@ -139,7 +139,7 @@ void analogWrite(uint8, int)
 
 int analogRead(uint8)
 {
-    return (int)HAL_ADC::GetCarbonMonoxideRaw();
+    return (int)HAL_ADC::GetCarbonRaw();
 }
 
 

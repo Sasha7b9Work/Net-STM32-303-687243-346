@@ -158,26 +158,7 @@ float HAL_ADC::GetVoltageBattery()
 }
 
 
-float HAL_ADC::GetCarbonMonoxideVoltage()
-{
-    // PB1 ADC3 IN1
-
-    static TimeMeterMS meter;
-
-    static float voltage = 0.0f;
-
-    if (meter.IsFinished())
-    {
-        voltage = (float)ReadChannelADC3(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12);
-      
-        meter.FinishAfter(1000);
-    }
-
-    return voltage;
-}
-
-
-uint HAL_ADC::GetCarbonMonoxideRaw()
+uint HAL_ADC::GetCarbonRaw()
 {
     return ReadChannelADC3(ADC_CHANNEL_1);
 }

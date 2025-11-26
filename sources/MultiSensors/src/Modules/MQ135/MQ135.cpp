@@ -16,6 +16,7 @@ v1.0 - First release
 
 #include "defines.h"
 #include "Modules/MQ135/MQ135.h"
+#include "Hardware/HAL/HAL.h"
 #include <cmath>
 
 /**************************************************************************/
@@ -28,7 +29,7 @@ v1.0 - First release
 
 static int analogRead(uint8)
 {
-    return 0;
+    return (int)HAL_ADC::GetCarbonRaw();
 }
 
 MQ135::MQ135(uint8 pin) {
