@@ -2,17 +2,25 @@
 #include "defines.h"
 #include "Modules/MQ135/SensorMQ135.h"
 #include "Hardware/HAL/HAL_PINS.h"
+#include "Hardware/HAL/HAL.h"
+
+
+namespace SensorMQ135
+{
+    static bool is_init = false;
+
+    bool IsInited()
+    {
+        return is_init;
+    }
+}
 
 
 void SensorMQ135::Init()
 {
+    HAL_ADC::Init();
 
-}
-
-
-bool SensorMQ135::IsInited()
-{
-    return false;
+    is_init = true;
 }
 
 
