@@ -55,6 +55,7 @@ file(GLOB MODULES_HC12          src/Modules/HC12/*.*)
 file(GLOB MODULES_HI50          src/Modules/HI50/*.*)
 file(GLOB MODULES_L00256L       src/Modules/L00256L/*.*)
 file(GLOB MODULES_MIPEX02       src/Modules/Mipex02/*.*)
+file(GLOB MODULES_MQ135         src/Modules/MQ135/*.*)
 file(GLOB MODULES_MQ9           src/Modules/MQ9/*.*)
 file(GLOB MODULES_MQ9_TROYKAMQ  src/Modules/MQ9/TroykaMQ/*.*)
 file(GLOB MODULES_ST7735        src/Modules/ST7735/*.*)
@@ -80,6 +81,7 @@ source_group(Modules/HC12         FILES ${MODULES_HC12})
 source_group(Modules/HI50         FILES ${MODULES_HI50})
 source_group(Modules/L00256L      FILES ${MODULES_L00256L})
 source_group(Modules/Mipex02      FILES ${MODULES_MIPEX02})
+source_group(Modules/MQ135        FILES ${MODULES_MQ135})
 source_group(Modules/MQ9          FILES ${MODULES_MQ9})
 source_group(Modules/MQ9/TroykaMQ FILES ${MODULES_MQ9_TROYKAMQ})
 source_group(Modules/ST7735       FILES ${MODULES_ST7735})
@@ -117,6 +119,7 @@ add_library(
     ${MODULES_HI50}
     ${MODULES_L00256L}
     ${MODULES_MIPEX02}
+    ${MODULES_MQ135}
     ${MODULES_MQ9}
     ${MODULES_MQ9_TROYKAMQ}
     ${MODULES_ST7735}

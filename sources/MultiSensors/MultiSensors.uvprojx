@@ -958,6 +958,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/MQ135</GroupName>
+          <Files>
+            <File>
+              <FileName>SensorMQ135.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ135\SensorMQ135.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SensorMQ135.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ135\SensorMQ135.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/MQ9</GroupName>
           <Files>
             <File>
@@ -2143,6 +2158,21 @@
               <FileName>Mipex02.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\Mipex02\Mipex02.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/MQ135</GroupName>
+          <Files>
+            <File>
+              <FileName>SensorMQ135.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\MQ135\SensorMQ135.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SensorMQ135.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\MQ135\SensorMQ135.h</FilePath>
             </File>
           </Files>
         </Group>

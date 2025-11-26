@@ -5,7 +5,7 @@
 #include "Modules/MQ9/TroykaMQ/MQ9.h"
 
 
-namespace SensMQ9
+namespace SensorMQ9
 {
     static bool is_init = false;
 
@@ -18,7 +18,7 @@ namespace SensMQ9
 }
 
 
-void SensMQ9::Init()
+void SensorMQ9::Init()
 {
     HAL_ADC::Init();
 
@@ -26,7 +26,7 @@ void SensMQ9::Init()
 }
 
 
-bool SensMQ9::GetMeasure(Measure * measure)
+bool SensorMQ9::GetMeasure(Measure * measure)
 {
     float monoxide = (float)mq9.readCarbonMonoxide();
 
@@ -58,7 +58,7 @@ bool SensMQ9::GetMeasure(Measure * measure)
 }
 
 
-bool SensMQ9::IsConnected()
+bool SensorMQ9::IsConnected()
 {
     return pinB6.IsLow() && pinB7.IsLow();
 }

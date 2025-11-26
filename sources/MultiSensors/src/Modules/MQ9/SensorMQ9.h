@@ -3,10 +3,10 @@
 #include "Storage/Measures.h"
 
 
-// Измеряет концентрацию углекислого газа
+// Измеряет концентрацию угарного газа
 
 
-namespace SensMQ9
+namespace SensorMQ9
 {
     void Init();
 

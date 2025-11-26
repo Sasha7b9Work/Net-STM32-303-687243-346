@@ -61,9 +61,9 @@ void Device::Init()
                 pinB6.Init();       // По этим пинам
                 pinB7.Init();       // будем определять наличие не-I2C и не-USART модулей
 
-                if (SensMQ9::IsConnected())
+                if (SensorMQ9::IsConnected())
                 {
-                    SensMQ9::Init();
+                    SensorMQ9::Init();
                 }
                 else if (L00256L::IsConnected())
                 {
@@ -94,13 +94,13 @@ void Device::Update()
     Measure dew_point;
     Measure illuminate;
     Measure concentrationCH4;
-    Measure dioxide;
+    Measure monoxide;
 
     uint time = TIME_MS;
 
-    if (SensMQ9::GetMeasure(&dioxide))
+    if (SensorMQ9::GetMeasure(&monoxide))
     {
-        ProcessMeasure(dioxide, time);
+        ProcessMeasure(monoxide, time);
     }
 
     if (BME280::GetMeasures(&temp, &pressure, &humidity, &dew_point))
