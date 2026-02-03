@@ -101,12 +101,6 @@ static int8_t CDC_Itf_Init(void)
   */
 static int8_t CDC_Itf_DeInit(void)
 {
-  /* DeInitialize the UART peripheral */
-  if(HAL_UART_DeInit(&UartHandle) != HAL_OK)
-  {
-    /* Initialization Error */
-    HAL::ErrorHandler();
-  }
   return (USBD_OK);
 }
 
