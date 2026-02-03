@@ -30,6 +30,7 @@
 #include "defines.h"
 #include "usbd_cdc.h"
 #include "Hardware/HAL/HAL.h"
+#include "Hardware/HCDC/HCDC.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -50,10 +51,10 @@ USBD_CDC_LineCodingTypeDef LineCoding =
 
 uint8_t UserRxBuffer[APP_RX_DATA_SIZE];/* Received Data over USB are stored in this buffer */
 uint8_t UserTxBuffer[APP_TX_DATA_SIZE];/* Received Data over UART (CDC interface) are stored in this buffer */
-uint32_t BuffLength;
-uint32_t UserTxBufPtrIn = 0;/* Increment this pointer or roll it back to
+uint32_t BuffLength = 0;
+uint32_t UserRxBufferHead = 0;/* Increment this pointer or roll it back to
                                start address when data are received over USART */
-uint32_t UserTxBufPtrOut = 0; /* Increment this pointer or roll it back to
+uint32_t UserRxBufferTail = 0; /* Increment this pointer or roll it back to
                                  start address when data are sent over USB */
 
 /* UART handler declaration */
@@ -181,7 +182,72 @@ static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t* pbuf, uint16_t /*length*/)
   * @param  Len: Number of data received (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Itf_Receive(uint8_t* /*Buf*/, uint32_t * /*Len*/)
+static int8_t CDC_Itf_Receive(uint8_t *Buf, uint32_t *Len)
 {
-  return (USBD_OK);
+    // Проверяем, поместятся ли данные
+    uint32_t free_space = (UserRxBufferTail > UserRxBufferHead) ?
+        (UserRxBufferTail - UserRxBufferHead - 1) :
+        (APP_RX_DATA_SIZE - UserRxBufferHead + UserRxBufferTail - 1);
+
+    if (*Len > free_space)
+    {
+        // Буфер переполнен, можно обработать ошибку
+        *Len = 0; // Скажем драйверу, что ничего не скопировали
+        return USBD_FAIL;
+    }
+
+    // Копируем данные по байтам или блоками в кольцевой буфер
+    for (uint32_t i = 0; i < *Len; i++)
+    {
+        UserRxBuffer[UserRxBufferHead] = Buf[i];
+        UserRxBufferHead = (UserRxBufferHead + 1) % APP_RX_DATA_SIZE;
+    }
+
+    *Len = 0;
+
+    // Можно установить флаг, отправить событие в RTOS и т.д.
+    // Например, для FreeRTOS:
+    // xSemaphoreGiveFromISR(xRxSemaphore, NULL);
+
+    return USBD_OK;
+}
+
+
+uint HCDC::Update(uint8 *buf, uint max_len)
+{
+    uint32_t bytes_to_read = 0;
+
+    // Определяем сколько данных доступно для чтения
+    if (UserRxBufferHead >= UserRxBufferTail)
+    {
+        bytes_to_read = UserRxBufferHead - UserRxBufferTail;
+    }
+    else
+    {
+        bytes_to_read = APP_RX_DATA_SIZE - UserRxBufferTail + UserRxBufferHead;
+    }
+
+    // Ограничиваем запрашиваемым размером
+    if (bytes_to_read > max_len)
+    {
+        bytes_to_read = max_len;
+    }
+
+    // Копируем данные
+    for (uint32_t i = 0; i < bytes_to_read; i++)
+    {
+        buf[i] = UserRxBuffer[UserRxBufferTail];
+        UserRxBufferTail = (UserRxBufferTail + 1) % APP_RX_DATA_SIZE;
+    }
+
+    return bytes_to_read; // Возвращаем количество реально прочитанных байт
+}
+
+
+void HCDC::RawTransmit(uint8 *buf, uint len)
+{
+    USBD_CDC_SetTxBuffer(&hUSBDDevice, buf, (uint16)len);
+    USBD_CDC_TransmitPacket(&hUSBDDevice);
+
+    USBD_CDC_ReceivePacket(&hUSBDDevice);
 }

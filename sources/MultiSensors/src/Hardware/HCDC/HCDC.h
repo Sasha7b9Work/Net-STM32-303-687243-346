@@ -7,4 +7,9 @@ namespace HCDC
     void Init();
 
     void Transmit(const void *buffer, int size);
+
+    uint Update(uint8 *buf, uint max_len);
+
+    // Отправить в CDC
+    void RawTransmit(uint8 *buf, uint len);
 }

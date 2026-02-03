@@ -157,6 +157,15 @@ void Device::Update()
     SCPI::Update();
 
     L00256L::Update();
+
+    uint8 buffer[64];
+
+    uint len = HCDC::Update(buffer, sizeof(buffer));
+
+    if (len > 0)
+    {
+        HCDC::RawTransmit(buffer, len);
+    }
 }
 
 
