@@ -23,6 +23,7 @@
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
     #pragma clang diagnostic ignored "-Winvalid-utf8"
     #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
+    #pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
 
 #include "opt.h"

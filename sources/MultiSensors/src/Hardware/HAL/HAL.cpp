@@ -17,8 +17,8 @@ void HAL::Init()
     HAL_Init();
     SystemClock_Config();
 
-    __HAL_RCC_PWR_CLK_ENABLE();
     __HAL_RCC_SYSCFG_CLK_ENABLE();
+    __HAL_RCC_PWR_CLK_ENABLE();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();

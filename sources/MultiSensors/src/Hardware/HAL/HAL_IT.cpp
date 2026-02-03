@@ -5,6 +5,8 @@
 #include <stm32f3xx_hal.h>
 
 
+extern PCD_HandleTypeDef hpcd;
+
 #ifndef WIN32
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
 #endif
@@ -101,6 +103,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *handle)
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *)
 {
 }
+
+
+#if defined (USE_USB_INTERRUPT_DEFAULT)
+void USB_LP_CAN_RX0_IRQHandler(void)
+#elif defined (USE_USB_INTERRUPT_REMAPPED)
+void USB_LP_IRQHandler(void)
+#endif
+{
+    HAL_PCD_IRQHandler(&hpcd);
+}
+
 
 
 void ADC1_2_IRQHandler(void)
