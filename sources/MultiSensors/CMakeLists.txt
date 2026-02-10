@@ -60,6 +60,7 @@ file(GLOB MODULES_MQ135         src/Modules/MQ135/*.*)
 file(GLOB MODULES_MQ9           src/Modules/MQ9/*.*)
 file(GLOB MODULES_MQ9_TROYKAMQ  src/Modules/MQ9/TroykaMQ/*.*)
 file(GLOB MODULES_ST7735        src/Modules/ST7735/*.*)
+file(GLOB MODULES_W25Q80DV      src/Modules/W25Q80DV/*.*)
 file(GLOB SCPI                  src/SCPI/*.*)
 file(GLOB SETTINGS              src/Settings/*.*)
 file(GLOB STORAGE               src/Storage/*.*)
@@ -87,6 +88,7 @@ source_group(Modules/MQ135        FILES ${MODULES_MQ135})
 source_group(Modules/MQ9          FILES ${MODULES_MQ9})
 source_group(Modules/MQ9/TroykaMQ FILES ${MODULES_MQ9_TROYKAMQ})
 source_group(Modules/ST7735       FILES ${MODULES_ST7735})
+source_group(Modules/W25Q80DV     FILES ${MODULES_W25Q80DV})
 source_group(SCPI                 FILES ${SCPI})
 source_group(Settings             FILES ${SETTINGS})
 source_group(Storage              FILES ${STORAGE})
@@ -126,6 +128,7 @@ add_library(
     ${MODULES_MQ9}
     ${MODULES_MQ9_TROYKAMQ}
     ${MODULES_ST7735}
+    ${MODULES_W25Q80DV}
     ${SCPI}
     ${SETTINGS}
     ${STORAGE}

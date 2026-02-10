@@ -1164,6 +1164,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/W25Q80DV</GroupName>
+          <Files>
+            <File>
+              <FileName>W25Q80DV.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\W25Q80DV\W25Q80DV.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>W25Q80DV.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\W25Q80DV\W25Q80DV.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>SCPI</GroupName>
           <Files>
             <File>
@@ -2444,6 +2459,21 @@
               <FileName>ST7735.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\ST7735\ST7735.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/W25Q80DV</GroupName>
+          <Files>
+            <File>
+              <FileName>W25Q80DV.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\W25Q80DV\W25Q80DV.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>W25Q80DV.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\W25Q80DV\W25Q80DV.h</FilePath>
             </File>
           </Files>
         </Group>
