@@ -2,8 +2,8 @@
 
 #ifndef VERSION_BUILD
 
-#define VERSION_BUILD 3
+#define VERSION_BUILD 4
 
-#define DATE_BUILD "2026-02-10 09:06:02"
+#define DATE_BUILD "2026-02-10 09:08:29"
 
 #endif

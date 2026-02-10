@@ -39,11 +39,6 @@ template uint8 *MemBuffer<512>::Read(uint);
 template uint8 *MemBuffer<8192>::Read(uint);
 
 
-void W25Q80DV::Init()
-{
-}
-
-
 template<int count>
 void W25Q80DV::WriteBuffer(uint address, const void *_buffer)
 {

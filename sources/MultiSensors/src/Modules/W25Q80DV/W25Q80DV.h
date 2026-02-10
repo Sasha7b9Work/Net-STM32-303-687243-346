@@ -22,8 +22,6 @@ namespace W25Q80DV
     static const int SIZE_PAGE = 4 * 1024;
     static const int NUM_PAGES = (END - BEGIN) / SIZE_PAGE;
 
-    void Init();
-
     template<int count>
     void WriteBuffer(uint address, const void *buffer);
 
