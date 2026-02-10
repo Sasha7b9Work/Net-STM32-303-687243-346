@@ -14,7 +14,7 @@ include_directories(
     ../common/STM32Cube_F3/Drivers/STM32F3xx_HAL_Driver/Inc/
     ../common/STM32Cube_F3/Drivers/CMSIS/Device/ST/STM32F3xx/Include/
     src/Hardware/HAL/
-    src/Hardware/CDC/
+    src/Hardware/HCDC/
     src/
 )
 
@@ -47,6 +47,7 @@ file(GLOB HARDWARE              src/Hardware/*.*)
 file(GLOB HARDWARE_CMSIS        src/Hardware/CMSIS/*.*)
 file(GLOB HARDWARE_HAL          src/Hardware/HAL/*.*)
 file(GLOB HARDWARE_HAL_I2C      src/Hardware/HAL/I2C/*.*)
+file(GLOB HARDWARE_HAL_HCDC     src/Hardware/HAL/HCDC/*.*)
 file(GLOB MENU                  src/Menu/*.*)
 file(GLOB MENU_PAGES            src/Menu/Pages/*.*)
 file(GLOB MODULES_BH1750        src/Modules/BH1750/*.*)
@@ -73,6 +74,7 @@ source_group(Hardware             FILES ${HARDWARE})
 source_group(Hardware/CMSIS       FILES ${HARDWARE_CMSIS})
 source_group(Hardware/HAL         FILES ${HARDWARE_HAL})
 source_group(Hardware/HAL/I2C     FILES ${HARDWARE_HAL_I2C})
+source_group(Hardware/HCDC        FILES ${HARDWARE_HCDC})
 source_group(Menu                 FILES ${MENU})
 source_group(Menu/Pages           FILES ${MENU_PAGES})
 source_group(Modules/BH1750       FILES ${MODULES_BH1750})
@@ -111,6 +113,7 @@ add_library(
     ${HARDWARE_CMSIS}
     ${HARDWARE_HAL}
     ${HARDWARE_HAL_I2C}
+    ${HARDWARE_HCDC}
     ${MENU}
     ${MENU_PAGES}
     ${MODULES_BH1750}

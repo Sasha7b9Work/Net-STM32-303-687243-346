@@ -16,6 +16,7 @@
 #include "Menu/Menu.h"
 #include "SCPI/SCPI.h"
 #include "Modules/L00256L/L00256L.h"
+#include "Hardware/HCDC/HCDC.h"
 
 
 namespace Device
@@ -38,6 +39,8 @@ void Device::Init()
     };
 
     Timer::Delay(2000);
+
+    HCDC::Init();
 
     HAL_GPIO_Init(GPIOA, &is);
 
@@ -154,6 +157,15 @@ void Device::Update()
     SCPI::Update();
 
     L00256L::Update();
+
+    uint8 buffer[64];
+
+    uint len = HCDC::Update(buffer, sizeof(buffer));
+
+    if (len > 0)
+    {
+        HCDC::RawTransmit(buffer, len);
+    }
 }
 
 

@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER, STM32F303xC</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\src\Hardware\HAL;.\src\Hardware\CDC;..\common\STM32Cube_F3\Drivers\STM32F3xx_HAL_Driver\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F3\Drivers\CMSIS\Device\ST\STM32F3xx\Include;..\common\STM32Cube_F3\Drivers\CMSIS\Core\Include</IncludePath>
+              <IncludePath>.\src;.\src\Hardware\HAL;.\src\Hardware\HCDC;..\common\STM32Cube_F3\Drivers\STM32F3xx_HAL_Driver\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F3\Drivers\CMSIS\Device\ST\STM32F3xx\Include;..\common\STM32Cube_F3\Drivers\CMSIS\Core\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -509,6 +509,31 @@
               <FileName>stm32f3xx_hal_iwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\common\STM32Cube_F3\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_iwdg.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>USBD</GroupName>
+          <Files>
+            <File>
+              <FileName>usbd_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_ctlreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_ioreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_cdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -774,6 +799,51 @@
               <FileName>sw_i2c_port_stm32.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\I2C\sw_i2c_port_stm32.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/HCDC</GroupName>
+          <Files>
+            <File>
+              <FileName>HCDC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\HCDC.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HCDC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\HCDC.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_cdc_interface.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_cdc_interface.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_cdc_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_cdc_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_conf.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_conf.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_desc.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_desc.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_desc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_desc.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1555,7 +1625,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER, STM32F303xC</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\src\Hardware\HAL;.\src\Hardware\CDC;..\common\STM32Cube_F3\Drivers\STM32F3xx_HAL_Driver\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F3\Drivers\CMSIS\Device\ST\STM32F3xx\Include;..\common\STM32Cube_F3\Drivers\CMSIS\Core\Include</IncludePath>
+              <IncludePath>.\src;.\src\Hardware\HAL;.\src\Hardware\HCDC;..\common\STM32Cube_F3\Drivers\STM32F3xx_HAL_Driver\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F3\Drivers\CMSIS\Device\ST\STM32F3xx\Include;..\common\STM32Cube_F3\Drivers\CMSIS\Core\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1723,6 +1793,31 @@
               <FileName>stm32f3xx_hal_iwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\common\STM32Cube_F3\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_iwdg.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>USBD</GroupName>
+          <Files>
+            <File>
+              <FileName>usbd_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_ctlreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_ioreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_cdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F3\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1988,6 +2083,51 @@
               <FileName>sw_i2c_port_stm32.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\I2C\sw_i2c_port_stm32.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/HCDC</GroupName>
+          <Files>
+            <File>
+              <FileName>HCDC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\HCDC.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HCDC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\HCDC.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_cdc_interface.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_cdc_interface.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_cdc_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_cdc_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_conf.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_conf.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_desc.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_desc.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>usbd_desc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HCDC\usbd_desc.h</FilePath>
             </File>
           </Files>
         </Group>

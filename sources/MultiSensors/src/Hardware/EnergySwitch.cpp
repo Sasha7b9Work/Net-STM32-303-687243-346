@@ -7,6 +7,8 @@
 
 void EnergySwitch::Init()
 {
+    return;
+
     pinPowerIn.Init();
 
     pinPowerOut.Init();
@@ -19,6 +21,8 @@ void EnergySwitch::Init()
 
 void EnergySwitch::Update()
 {
+    return;
+
 #ifndef WIN32
 
     if (TIME_MS < 1000)

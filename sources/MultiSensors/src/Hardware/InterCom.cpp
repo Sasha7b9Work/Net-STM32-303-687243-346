@@ -10,6 +10,7 @@
 #include "Hardware/HAL/HAL.h"
 #include "Storage/Measures.h"
 #include "Modules/HC12/HC12.h"
+#include "Hardware/HCDC/HCDC.h"
 
 #ifdef GUI
     #include "Hardware/LAN/ClientTCP.h"
@@ -115,7 +116,7 @@ void InterCom::Send(const Measure &measure, uint timeMS)
 
         String<> message("%s : %f %s", names[measure.GetName()], measure.GetDouble(), units[measure.GetName()]);
 
-//        HCDC::Transmit(message.c_str(), message.Size() + 1);
+        HCDC::Transmit(message.c_str(), message.Size() + 1);
     }
 
 #ifdef GUI
