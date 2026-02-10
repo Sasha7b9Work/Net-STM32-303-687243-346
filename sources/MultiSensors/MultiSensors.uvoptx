@@ -939,8 +939,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\opt.h</PathWithFileName>
-      <FilenameWithoutPath>opt.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\option.h</PathWithFileName>
+      <FilenameWithoutPath>option.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

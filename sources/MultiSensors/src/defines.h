@@ -25,7 +25,7 @@
     #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #endif
 
-#include "opt.h"
+#include "option.h"
 
 #include <stm32f3xx_hal.h>
 

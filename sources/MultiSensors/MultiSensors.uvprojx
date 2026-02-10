@@ -566,9 +566,9 @@
               <FilePath>.\src\description.txt</FilePath>
             </File>
             <File>
-              <FileName>opt.h</FileName>
+              <FileName>option.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\opt.h</FilePath>
+              <FilePath>.\src\option.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1850,9 +1850,9 @@
               <FilePath>.\src\description.txt</FilePath>
             </File>
             <File>
-              <FileName>opt.h</FileName>
+              <FileName>option.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\opt.h</FilePath>
+              <FilePath>.\src\option.h</FilePath>
             </File>
           </Files>
         </Group>
