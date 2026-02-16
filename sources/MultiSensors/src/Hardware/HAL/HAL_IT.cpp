@@ -5,7 +5,7 @@
 #include <stm32f3xx_hal.h>
 
 
-extern PCD_HandleTypeDef hpcd;
+extern PCD_HandleTypeDef g_hpcd;
 
 
 #ifndef WIN32
@@ -112,7 +112,7 @@ void USB_LP_CAN_RX0_IRQHandler(void)
 void USB_LP_IRQHandler(void)
 #endif
 {
-    HAL_PCD_IRQHandler(&hpcd);
+    HAL_PCD_IRQHandler(&g_hpcd);
 }
 
 
