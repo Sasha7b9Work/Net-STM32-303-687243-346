@@ -56,13 +56,13 @@ bool BH1750::GetMeasure(Measure *illumination)
         return false;
     }
 
-#ifdef IN_MODE_TEST
+#ifdef EMULATOR_ENABLED
 
     static float value = 1.5f;
 
     value *= 1.98f;
 
-    *illumination = value / 100.0f;
+    illumination->Set(Measure::Illuminate, value / 100.0f);
 
     if (value > 1e4f)
     {

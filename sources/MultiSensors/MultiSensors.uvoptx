@@ -73,7 +73,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>1</tvExp>
+        <tvExp>0</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -397,50 +397,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>200</LineNumber>
+          <LineNumber>123</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134295986</Address>
+          <Address>134280826</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Modules\W25Q80DV\W25Q80DV.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Device.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Modules/W25Q80DV/W25Q80DV.cpp\200</Expression>
+          <Expression>\\MS_1\src/Device.cpp\123</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>179</LineNumber>
+          <LineNumber>121</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134295834</Address>
+          <Address>134280818</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Modules\W25Q80DV\W25Q80DV.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Device.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Modules/W25Q80DV/W25Q80DV.cpp\179</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>196</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134295944</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Modules\W25Q80DV\W25Q80DV.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\MS_1\src/Modules/W25Q80DV/W25Q80DV.cpp\196</Expression>
+          <Expression>\\MS_1\src/Device.cpp\121</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -868,7 +852,7 @@
 
   <Group>
     <GroupName>src</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

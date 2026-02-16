@@ -118,7 +118,7 @@ bool BME280::GetMeasures(Measure *temp, Measure *pressure, Measure *humidity, Me
         return false;
     }
 
-#ifdef IN_MODE_TEST
+#ifdef EMULATOR_ENABLED
 
     static float value = 1.1f;
 

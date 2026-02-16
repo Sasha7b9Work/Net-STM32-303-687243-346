@@ -42,7 +42,6 @@ typedef unsigned char      uchar;
     #define __attribute__(x)
     #define __attribute(x)
     #ifdef GUI
-        #define IN_MODE_TEST
     #else
         #define asm(x)
     #endif

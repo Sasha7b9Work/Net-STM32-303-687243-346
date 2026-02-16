@@ -17,9 +17,9 @@ public:
     unsigned long readCarbonMonoxide();
 private:
     // Резистор установленный на плату (кОм)
-    virtual float getRL() const { return MQ9_RL_BOARD; }
+    virtual float getRL() const override { return MQ9_RL_BOARD; }
     // коефициент чистого воздуха
-    virtual float getRoInCleanAir() const { return (float)MQ9_RO_IN_CLEAR_AIR; }
+    virtual float getRoInCleanAir() const override { return (float)MQ9_RO_IN_CLEAR_AIR; }
 };
 
 #endif  // MQ9_H_

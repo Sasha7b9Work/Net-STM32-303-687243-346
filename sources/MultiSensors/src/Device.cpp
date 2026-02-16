@@ -91,7 +91,7 @@ void Device::Init()
 
     Beeper::Init();
 
-    InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
+    InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display | Direction::CDC));
 }
 
 
