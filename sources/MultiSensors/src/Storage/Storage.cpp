@@ -3,6 +3,9 @@
 #include "Storage/Storage.h"
 
 
+Storage Storage::self;
+
+
 void Storage::Init()
 {
 
@@ -10,6 +13,12 @@ void Storage::Init()
 
 
 void Storage::Update()
+{
+
+}
+
+
+void Storage::AppendMeasure(const Measure &)
 {
 
 }

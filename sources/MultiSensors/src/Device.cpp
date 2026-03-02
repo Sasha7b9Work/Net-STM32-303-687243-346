@@ -90,7 +90,7 @@ void Device::Init()
 
     InterCom::self.SetDirection((Direction::E)(Direction::HC12 | Direction::Display | Direction::CDC));
 
-    Storage::Init();
+    Storage::self.Init();
 }
 
 
@@ -156,14 +156,21 @@ void Device::Update()
 
     L00256L::Update();
 
-    Storage::Update();
+    Storage::self.Update();
 }
 
 
 void Device::ProcessMeasure(const Measure &measure, uint time)
 {
-    if (measure.correct)
+    if (!measure.correct)
     {
-        InterCom::self.Send(measure, time);
+        return;
     }
+
+    if (!Measures::IsFixed())
+    {
+        Display::SetMeasure(measure, time);
+    }
+
+    Storage::self.AppendMeasure(measure);
 }

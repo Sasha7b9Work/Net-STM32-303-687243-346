@@ -13,8 +13,14 @@ struct Record
 };
 
 
-namespace Storage
+struct Storage
 {
+friend struct Device;
+
+    static Storage self;
+
+private:
+
     void Init();
 
     // После каждого нового измерения добавляем его в хранилище вызовом этой функии
@@ -22,4 +28,4 @@ namespace Storage
 
     // Все отправления сообщений производятся отсюда
     void Update();
-}
+};
