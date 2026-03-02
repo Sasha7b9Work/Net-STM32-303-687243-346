@@ -2,18 +2,22 @@
 #pragma once
 
 
-struct HC12
+class HC12
 {
+friend class InterCom;
+
+public:
+
     static HC12 self;
 
     void Init();
+
+private:
 
     void Transmit(const void *buffer, int size);
 
     // ”правл€юща€ команда
     void Command(pchar);
-
-private:
 
     struct RecvBuffer
     {

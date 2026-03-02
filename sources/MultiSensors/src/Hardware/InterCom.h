@@ -16,8 +16,10 @@ struct Direction
 };
 
 
-struct InterCom
+class InterCom
 {
+public:
+
     static InterCom self;
 
     void SetDirection(Direction::E);

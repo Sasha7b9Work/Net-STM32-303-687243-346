@@ -3,8 +3,10 @@
 
 
 // USB
-struct HCDC
+class HCDC
 {
+public:
+
     static HCDC self;
 
     void Init();
