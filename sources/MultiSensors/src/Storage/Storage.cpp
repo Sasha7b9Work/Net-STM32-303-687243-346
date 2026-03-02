@@ -15,6 +15,9 @@ namespace Storage
 
     // Возвращает номер последней записи
     static uint NumberLastRecord();
+
+    // Копирует в параметр последнюю запись. Если записей нет - возвращаемое значение false
+    static bool LastRecord(Record &);
 }
 
 
@@ -53,14 +56,6 @@ void Storage::EraseOldestRecord()
 }
 
 
-uint Storage::NumberLastRecord()
-{
-    #pragma message("Storage::NumberLastRecord() not implemented")
-
-    return 0;
-}
-
-
 void Storage::AppendRecord(const Record &)
 {
     #pragma message("Storage::AppendRecord() not implemented")
@@ -71,4 +66,24 @@ bool Storage::IsFull()
 {
     #pragma message("Storage::IsFull() not implemented")
     return true;
+}
+
+
+uint Storage::NumberLastRecord()
+{
+    Record record;
+
+    if (LastRecord(record))
+    {
+        return record.number;
+    }
+
+    return 0;
+}
+
+
+bool Storage::LastRecord(Record &)
+{
+    #pragma message("Storage::LastRecord() not implemented")
+    return false;
 }
