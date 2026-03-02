@@ -6,26 +6,38 @@
 struct Record
 {
     uint       crc;
+    uint       number;      // Порядковый номер записи. Нужно для нахождения последней и первой
     PackedTime time;
     Measure    measure;
     uint       tail;        // Сюда должен быть записан 0. При чтении мы читаем это значение. Если считан ноль,
                             // то запись была произведена полностью - значение правильное
+
+    uint CalculateCRC() const;
 };
 
 
 struct Storage
 {
-friend struct Device;
-
     static Storage self;
 
-private:
-
     void Init();
+
+    // Все отправления сообщений производятся отсюда
+    void Update();
 
     // После каждого нового измерения добавляем его в хранилище вызовом этой функии
     void AppendMeasure(const Measure &);
 
-    // Все отправления сообщений производятся отсюда
-    void Update();
+private:
+
+    // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
+    bool IsFull() const;
+
+    // Стереть самую старую запись
+    void EraseOldestRecord();
+
+    void AppendRecord(const Record &);
+
+    // Возвращает номер последней записи
+    uint NumberLastRecord() const;
 };
