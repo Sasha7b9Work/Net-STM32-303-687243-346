@@ -36,7 +36,7 @@ namespace InterCom
 
         float value = (float)measure.GetDouble();
 
-        std::memcpy(&message[8], &value, sizeof(float));
+        std::memcpy(&message[8], &value, sizeof(value));
 
         uint hash = Math::CalculateCRC(&message[0], 12);
 
@@ -63,60 +63,16 @@ void InterCom::Send(const Measure &measure, uint timeMS)
         }
     }
 
+    Buffer<16> data = CreateMessage(measure);
+
     if (direction & Direction::HC12)
     {
-        Buffer<16> data = CreateMessage(measure);
-
-        HC12::Transmit(data.Data(), 16);
+        HC12::Transmit(data.Data(), data.Size());
     }
 
     if (direction & Direction::CDC)
     {
-        static const StructText names[Measure::Count] =
-        {
-            "Temperature",
-            "Pressure",
-            "Humidity",
-            "DewPoint",
-            "Velocity",
-            "Latitude",
-            "Longitude",
-            "Altitude",
-            "Azimuth",
-            "Illuminate",
-            "Distance",
-            "RotateAngleRel",
-            "RotateAngleFull",
-            "RotateAngleSpeed",
-            "Concentrate CH4",
-            "Mono Carbon",
-            "Dioxide Carbon"
-        };
-
-        static const StructText units[Measure::Count] =
-        {
-            "degress Celsius",
-            "hPa",
-            "%%",
-            "degress Celsius",
-            "m/s",
-            "degress",
-            "degress",
-            "m",
-            "degress",
-            "lxs",
-            "m",
-            "degrees",
-            "degress",
-            "degress",
-            "%%",
-            "ppm",
-            "ppm"
-        };
-
-        String<> message("%s : %f %s", names[measure.GetName()], measure.GetDouble(), units[measure.GetName()]);
-
-        HCDC::RawTransmit(message.c_str(), message.Size() + 1);
+        HCDC::Transmit(data.Data(), data.Size());
     }
 
 #ifdef GUI

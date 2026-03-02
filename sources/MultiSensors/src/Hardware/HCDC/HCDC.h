@@ -11,5 +11,5 @@ namespace HCDC
     int GetReceivedData(uint8 *buf, uint max_len);
 
     // Отправить в CDC
-    void RawTransmit(const void *buf, int len);
+    void Transmit(const void *buf, int len);
 }

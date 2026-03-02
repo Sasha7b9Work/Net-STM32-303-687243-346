@@ -244,7 +244,7 @@ int HCDC::GetReceivedData(uint8 *buf, uint max_len)
 }
 
 
-void HCDC::RawTransmit(const void *buf, int len)
+void HCDC::Transmit(const void *buf, int len)
 {
     USBD_CDC_SetTxBuffer(&hUSBDDevice, (uint8 *)buf, (uint16)len);
     USBD_CDC_TransmitPacket(&hUSBDDevice);
