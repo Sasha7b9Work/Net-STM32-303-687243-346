@@ -7,33 +7,13 @@
 #include <cstring>
 
 
-namespace HC12
+HC12 HC12::self;
+
+
+namespace _HC12
 {
 #define PORT_SET GPIOA
 #define PIN_SET  GPIO_PIN_6
-
-    struct RecvBuffer
-    {
-        static const int SIZE = 128;
-
-        RecvBuffer() : pointer(0) { }
-
-        void Push(char symbol)
-        {
-            if (pointer < SIZE)
-            {
-                data[pointer++] = symbol;
-            }
-        }
-
-        char *Data()        { return &data[0]; }
-        int NumSymbols()    { return pointer;  }
-        void Clear()        { pointer = 0;     }
-
-    private:
-        char data[SIZE];
-        int pointer;
-    } recv_buffer;
 }
 
 

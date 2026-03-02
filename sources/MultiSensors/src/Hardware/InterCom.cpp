@@ -67,7 +67,7 @@ void InterCom::Send(const Measure &measure, uint timeMS)
 
     if (direction & Direction::HC12)
     {
-        HC12::Transmit(data.Data(), data.Size());
+        HC12::self.Transmit(data.Data(), data.Size());
     }
 
     if (direction & Direction::CDC)

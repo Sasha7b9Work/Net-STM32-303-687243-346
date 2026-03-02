@@ -154,7 +154,7 @@ void HAL_USART1::SetModeHC12()
 {
     Init(ModeUSART1::HC12);
 
-    HC12::Init();
+    HC12::self.Init();
 }
 
 
