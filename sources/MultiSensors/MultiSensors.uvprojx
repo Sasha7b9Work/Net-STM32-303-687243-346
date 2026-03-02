@@ -1179,21 +1179,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>SCPI</GroupName>
-          <Files>
-            <File>
-              <FileName>SCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\SCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\SCPI.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Settings</GroupName>
           <Files>
             <File>
@@ -2729,21 +2714,6 @@
               <FileName>W25Q80DV.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\W25Q80DV\W25Q80DV.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SCPI</GroupName>
-          <Files>
-            <File>
-              <FileName>SCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\SCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\SCPI.h</FilePath>
             </File>
           </Files>
         </Group>

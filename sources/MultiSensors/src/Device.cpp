@@ -14,7 +14,6 @@
 #include "Hardware/Beeper.h"
 #include "Hardware/EnergySwitch.h"
 #include "Menu/Menu.h"
-#include "SCPI/SCPI.h"
 #include "Modules/L00256L/L00256L.h"
 #include "Hardware/HCDC/HCDC.h"
 #include "Modules/W25Q80DV/W25Q80DV.h"
@@ -154,8 +153,6 @@ void Device::Update()
     HAL_USART1::Update();
 
     Mipex02::Update();
-
-    SCPI::Update();
 
     L00256L::Update();
 }
