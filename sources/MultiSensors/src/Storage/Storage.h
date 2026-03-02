@@ -13,6 +13,9 @@ struct Record
                             // то запись была произведена полностью - значение правильное
 
     uint CalculateCRC() const;
+    bool IsValid() const;
+    int Size() const;
+    uint8 *Begin();
 };
 
 

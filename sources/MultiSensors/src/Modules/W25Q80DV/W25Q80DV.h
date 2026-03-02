@@ -16,14 +16,16 @@ private:
 
 namespace W25Q80DV
 {
-    static const uint BEGIN = 0;
+    static const uint BEGIN = 0;                // Адрес первого байта
     static const uint END = 1024 * 1024;
-    static const uint SIZE = END - BEGIN;
-    static const int SIZE_PAGE = 4 * 1024;
-    static const int NUM_PAGES = (END - BEGIN) / SIZE_PAGE;
+    static const uint SIZE = END - BEGIN;       // Количество байта
+    static const int SIZE_SECTOR = 4 * 1024;
+    static const int NUM_SECTORS = (END - BEGIN) / SIZE_SECTOR;
 
     template<int count>
     void WriteBuffer(uint address, const void *buffer);
+
+    void ReadBuffer(uint address, int size, void *buffer);
 
     void ReadID(uint8 id[2]);
 

@@ -1,6 +1,7 @@
 // 2026/03/02 10:42:11 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "Storage/Storage.h"
+#include "Modules/W25Q80DV/W25Q80DV.h"
 
 
 namespace Storage
@@ -18,12 +19,48 @@ namespace Storage
 
     // Копирует в параметр последнюю запись. Если записей нет - возвращаемое значение false
     static bool LastRecord(Record &);
+
+    static int index_in = 0;        // Под этим индексом будет сохранён следующий элемент
+    static int index_out = 0;       // Индекс следующего считываемого элемента
+    static int num_elements = 0;    // Количество сохранённых элементов
 }
 
 
 void Storage::Init()
 {
+    index_in = 0;
+    index_out = 0;
+    num_elements = 0;
 
+    uint first_number = 0xFFFFFFFF;     // Наименьший номер хранящейся в памяти записи
+    uint address_first_number = -1;
+    uint last_number = 0;               // Наибольший номер хранящейся в памяти записи
+    uint address_last_number = -1;
+
+    {
+        // Находим 
+
+        for (uint address = 0; address += sizeof(Record); address++)
+        {
+            Record record;
+
+            W25Q80DV::ReadBuffer(address, record.Size(), record.Begin());
+
+            if (record.IsValid())
+            {
+                if (record.number < first_number)
+                {
+                    first_number = record.number;
+                    address_first_number = address;
+                }
+                if (record.number > last_number)
+                {
+                    last_number = record.number;
+                    address_last_number = address;
+                }
+            }
+        }
+    }
 }
 
 

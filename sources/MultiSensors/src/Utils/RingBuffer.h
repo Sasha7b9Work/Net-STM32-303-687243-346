@@ -127,7 +127,7 @@ public:
 
 private:
     uint8 buffer[capacity];
-    int index_in;
-    int index_out;
+    int index_in;               // Сюда будет положен очередной элемент
+    int index_out;              // Индекс первого элемента, который нужно забрать
     int num_elements;
 };
