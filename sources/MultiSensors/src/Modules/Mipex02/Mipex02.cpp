@@ -129,7 +129,7 @@ void Mipex02::CallbackOnReceive(pchar message)
 
             for (int counter = 0; counter < 3; counter++)
             {
-                InterCom::Send(concentrate, TIME_MS);
+                InterCom::self.Send(concentrate, TIME_MS);
             }
 
             HAL_USART1::SetModeSensor();

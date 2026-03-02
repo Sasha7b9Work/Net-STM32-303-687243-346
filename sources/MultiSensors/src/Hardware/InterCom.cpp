@@ -4,7 +4,6 @@
 #include "Modules/ST7735/ST7735.h"
 #include "Display/Display.h"
 #include "Utils/Text/String.h"
-#include "Utils/Buffer.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
 #include "Hardware/HAL/HAL.h"
@@ -17,33 +16,31 @@
 #endif
 
 
-namespace InterCom
+InterCom InterCom::self;
+
+
+Buffer<16> InterCom::CreateMessage(const Measure &measure)
 {
-    static Direction::E direction = Direction::_None;
+    Buffer<16> message;
 
-    static Buffer<16> CreateMessage(const Measure &measure)
-    {
-        Buffer<16> message;
+    message[0] = 'A';
+    message[1] = 'B';
+    message[2] = 'C';
+    message[3] = (uint8)measure.GetName();
 
-        message[0] = 'A';
-        message[1] = 'B';
-        message[2] = 'C';
-        message[3] = (uint8)measure.GetName();
+    uint id = HAL::GetUID();
 
-        uint id = HAL::GetUID();
+    std::memcpy(&message[4], &id, sizeof(id));
 
-        std::memcpy(&message[4], &id, sizeof(id));
+    float value = (float)measure.GetDouble();
 
-        float value = (float)measure.GetDouble();
+    std::memcpy(&message[8], &value, sizeof(value));
 
-        std::memcpy(&message[8], &value, sizeof(value));
+    uint hash = Math::CalculateCRC(&message[0], 12);
 
-        uint hash = Math::CalculateCRC(&message[0], 12);
+    std::memcpy(&message[12], &hash, sizeof(hash));
 
-        std::memcpy(&message[12], &hash, sizeof(hash));
-
-        return message;
-    }
+    return message;
 }
 
 

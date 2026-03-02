@@ -88,7 +88,7 @@ void Device::Init()
 
     Beeper::Init();
 
-    InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display | Direction::CDC));
+    InterCom::self.SetDirection((Direction::E)(Direction::HC12 | Direction::Display | Direction::CDC));
 
     Storage::Init();
 }
@@ -132,9 +132,9 @@ void Device::Update()
 
     if (Mipex02::GetMeasure(&concentrationCH4))
     {
-        InterCom::SetDirection(Direction::Display);
+        InterCom::self.SetDirection(Direction::Display);
         ProcessMeasure(concentrationCH4, time);
-        InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
+        InterCom::self.SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
     }
 
     if (!Menu::IsOpened())
@@ -164,6 +164,6 @@ void Device::ProcessMeasure(const Measure &measure, uint time)
 {
     if (measure.correct)
     {
-        InterCom::Send(measure, time);
+        InterCom::self.Send(measure, time);
     }
 }

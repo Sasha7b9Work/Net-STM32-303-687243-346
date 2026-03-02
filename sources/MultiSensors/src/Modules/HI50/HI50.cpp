@@ -163,7 +163,7 @@ void HI50::CallbackOnReceive(pchar message)
 
                                 for (int counter = 0; counter < 5; counter++)
                                 {
-                                    InterCom::Send(measure, TIME_MS);
+                                    InterCom::self.Send(measure, TIME_MS);
                                 }
 
                                 HAL_USART1::SetModeSensor();

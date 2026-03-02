@@ -1,6 +1,7 @@
 // Sasha7b9@tut.by (c)
 #pragma once
 #include "Display/Display.h"
+#include "Utils/Buffer.h"
 
 
 struct Direction
@@ -15,9 +16,17 @@ struct Direction
 };
 
 
-namespace InterCom
+struct InterCom
 {
+    static InterCom self;
+
     void SetDirection(Direction::E);
 
     void Send(const Measure &, uint timeMS);
-}
+
+private:
+
+    Buffer<16> CreateMessage(const Measure &);
+
+    Direction::E direction = Direction::_None;
+};

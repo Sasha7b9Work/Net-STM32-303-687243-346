@@ -531,19 +531,19 @@ void Display::DrawMeasures(uint)
 
             rotate.Set(Measure::RotateAngleRel, L00256L::GetAngleRelative());
 
-            InterCom::SetDirection(Direction::HC12);
+            InterCom::self.SetDirection(Direction::HC12);
 
-            InterCom::Send(rotate, TIME_MS);
+            InterCom::self.Send(rotate, TIME_MS);
 
             rotate.Set(Measure::RotateAngleFull, L00256L::GetAngleFull());
 
-            InterCom::Send(rotate, TIME_MS);
+            InterCom::self.Send(rotate, TIME_MS);
 
             rotate.Set(Measure::RotateAngleSpeed, L00256L::GetVelocity());
 
-            InterCom::Send(rotate, TIME_MS);
+            InterCom::self.Send(rotate, TIME_MS);
 
-            InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
+            InterCom::self.SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
         }
     }
 }
