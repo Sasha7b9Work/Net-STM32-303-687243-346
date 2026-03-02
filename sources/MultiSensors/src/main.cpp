@@ -16,10 +16,10 @@
 
 int main(void)
 {
-    Device::Init();
+    Device::self.Init();
 
     while (true)
     {
-        Device::Update();
+        Device::self.Update();
     }
 }

@@ -20,10 +20,7 @@
 #include "Storage/Storage.h"
 
 
-namespace Device
-{
-    static void ProcessMeasure(const Measure &, uint time);
-}
+Device Device::self;
 
 
 void Device::Init()
