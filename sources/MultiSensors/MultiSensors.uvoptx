@@ -153,7 +153,7 @@
           <Number>0</Number>
           <Type>0</Type>
           <LineNumber>63</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>134242104</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -169,7 +169,7 @@
           <Number>1</Number>
           <Type>0</Type>
           <LineNumber>58</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>134242074</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -185,7 +185,7 @@
           <Number>2</Number>
           <Type>0</Type>
           <LineNumber>75</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>134242140</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -201,7 +201,7 @@
           <Number>3</Number>
           <Type>0</Type>
           <LineNumber>111</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>134237770</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -852,7 +852,7 @@
 
   <Group>
     <GroupName>src</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1208,7 +1208,7 @@
 
   <Group>
     <GroupName>Hardware/CMSIS</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

@@ -25,8 +25,6 @@ namespace W25Q80DV
     template<int count>
     void WriteBuffer(uint address, const void *buffer);
 
-    void ReadBuffer(uint address, int size, void *buffer);
-
     void ReadID(uint8 id[2]);
 
     // Стереть страницу, которой принадлежит address

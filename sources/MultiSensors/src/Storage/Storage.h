@@ -3,22 +3,6 @@
 #include "Hardware/HAL/HAL.h"
 
 
-struct Record
-{
-    uint       crc;
-    uint       number;      // Порядковый номер записи. Нужно для нахождения последней и первой
-    PackedTime time;
-    Measure    measure;
-    uint       tail;        // Сюда должен быть записан 0. При чтении мы читаем это значение. Если считан ноль,
-                            // то запись была произведена полностью - значение правильное
-
-    uint CalculateCRC() const;
-    bool IsValid() const;
-    int Size() const;
-    uint8 *Begin();
-};
-
-
 namespace Storage
 {
     void Init();
