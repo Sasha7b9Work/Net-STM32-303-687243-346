@@ -116,7 +116,7 @@ void InterCom::Send(const Measure &measure, uint timeMS)
 
         String<> message("%s : %f %s", names[measure.GetName()], measure.GetDouble(), units[measure.GetName()]);
 
-        HCDC::Transmit(message.c_str(), message.Size() + 1);
+        HCDC::RawTransmit(message.c_str(), message.Size() + 1);
     }
 
 #ifdef GUI

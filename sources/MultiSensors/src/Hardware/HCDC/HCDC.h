@@ -2,14 +2,14 @@
 #pragma once
 
 
+// USB
 namespace HCDC
 {
     void Init();
 
-    void Transmit(const void *buffer, int size);
-
-    uint Update(uint8 *buf, uint max_len);
+    // Копирует принятые данные в buf. Возвращает количество принятых байт
+    int GetReceivedData(uint8 *buf, uint max_len);
 
     // Отправить в CDC
-    void RawTransmit(uint8 *buf, uint len);
+    void RawTransmit(const void *buf, int len);
 }

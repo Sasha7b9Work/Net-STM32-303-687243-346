@@ -38,9 +38,3 @@ void HCDC::Init()
     /* Start Device Process */
     USBD_Start(&hUSBDDevice);
 }
-
-
-void HCDC::Transmit(const void * /*buffer*/, int /*size*/)
-{
-
-}

@@ -161,7 +161,7 @@ void Device::Update()
 
     uint8 buffer[64];
 
-    uint len = HCDC::Update(buffer, sizeof(buffer));
+    int len = HCDC::GetReceivedData(buffer, sizeof(buffer));
 
     if (len > 0)
     {

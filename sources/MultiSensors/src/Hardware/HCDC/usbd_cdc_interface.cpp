@@ -213,7 +213,7 @@ static int8_t CDC_Itf_Receive(uint8_t *Buf, uint32_t *Len)
 }
 
 
-uint HCDC::Update(uint8 *buf, uint max_len)
+int HCDC::GetReceivedData(uint8 *buf, uint max_len)
 {
     uint32_t bytes_to_read = 0;
 
@@ -240,13 +240,13 @@ uint HCDC::Update(uint8 *buf, uint max_len)
         UserRxBufferTail = (UserRxBufferTail + 1) % APP_RX_DATA_SIZE;
     }
 
-    return bytes_to_read; // Возвращаем количество реально прочитанных байт
+    return (int)bytes_to_read; // Возвращаем количество реально прочитанных байт
 }
 
 
-void HCDC::RawTransmit(uint8 *buf, uint len)
+void HCDC::RawTransmit(const void *buf, int len)
 {
-    USBD_CDC_SetTxBuffer(&hUSBDDevice, buf, (uint16)len);
+    USBD_CDC_SetTxBuffer(&hUSBDDevice, (uint8 *)buf, (uint16)len);
     USBD_CDC_TransmitPacket(&hUSBDDevice);
 
     USBD_CDC_ReceivePacket(&hUSBDDevice);
