@@ -3,11 +3,14 @@
 
 
 // USB
-class HCDC
+struct HCDC
 {
-public:
+friend struct InterCom;
+friend struct Device;
 
     static HCDC self;
+
+private:
 
     void Init();
 

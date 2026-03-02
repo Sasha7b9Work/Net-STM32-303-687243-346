@@ -2,11 +2,9 @@
 #pragma once
 
 
-class HC12
+struct HC12
 {
-friend class InterCom;
-
-public:
+friend struct InterCom;
 
     static HC12 self;
 
