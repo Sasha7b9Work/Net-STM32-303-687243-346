@@ -16,10 +16,8 @@ struct Record
 };
 
 
-struct Storage
+namespace Storage
 {
-    static Storage self;
-
     void Init();
 
     // Все отправления сообщений производятся отсюда
@@ -27,17 +25,4 @@ struct Storage
 
     // После каждого нового измерения добавляем его в хранилище вызовом этой функии
     void AppendMeasure(const Measure &);
-
-private:
-
-    // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
-    bool IsFull() const;
-
-    // Стереть самую старую запись
-    void EraseOldestRecord();
-
-    void AppendRecord(const Record &);
-
-    // Возвращает номер последней записи
-    uint NumberLastRecord() const;
-};
+}

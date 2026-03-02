@@ -3,7 +3,19 @@
 #include "Storage/Storage.h"
 
 
-Storage Storage::self;
+namespace Storage
+{
+    // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
+    static bool IsFull();
+
+    // Стереть самую старую запись
+    static void EraseOldestRecord();
+
+    static void AppendRecord(const Record &);
+
+    // Возвращает номер последней записи
+    static uint NumberLastRecord();
+}
 
 
 void Storage::Init()
@@ -41,7 +53,7 @@ void Storage::EraseOldestRecord()
 }
 
 
-uint Storage::NumberLastRecord() const
+uint Storage::NumberLastRecord()
 {
     #pragma message("Storage::NumberLastRecord() not implemented")
 
@@ -55,7 +67,7 @@ void Storage::AppendRecord(const Record &)
 }
 
 
-bool Storage::IsFull() const
+bool Storage::IsFull()
 {
     #pragma message("Storage::IsFull() not implemented")
     return true;
