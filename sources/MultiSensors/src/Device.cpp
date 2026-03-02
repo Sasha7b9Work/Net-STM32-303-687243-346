@@ -17,6 +17,7 @@
 #include "Modules/L00256L/L00256L.h"
 #include "Hardware/HCDC/HCDC.h"
 #include "Modules/W25Q80DV/W25Q80DV.h"
+#include "Storage/Storage.h"
 
 
 namespace Device
@@ -91,6 +92,8 @@ void Device::Init()
     Beeper::Init();
 
     InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display | Direction::CDC));
+
+    Storage::Init();
 }
 
 
@@ -155,6 +158,8 @@ void Device::Update()
     Mipex02::Update();
 
     L00256L::Update();
+
+    Storage::Update();
 }
 
 

@@ -1206,6 +1206,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Storage\Measures.h</FilePath>
             </File>
+            <File>
+              <FileName>Storage.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Storage.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Storage.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Storage.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2744,6 +2754,16 @@
               <FileName>Measures.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Storage\Measures.h</FilePath>
+            </File>
+            <File>
+              <FileName>Storage.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Storage.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Storage.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Storage.h</FilePath>
             </File>
           </Files>
         </Group>
