@@ -10,6 +10,8 @@
 
 extern USBD_HandleTypeDef hUSBDDevice;
 
+HCDC HCDC::self;
+
 
 void HCDC::Init()
 {

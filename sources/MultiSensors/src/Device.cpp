@@ -41,7 +41,7 @@ void Device::Init()
 
     Timer::Delay(2000);
 
-    HCDC::Init();
+    HCDC::self.Init();
 
     HAL_GPIO_Init(GPIOA, &is);
 

@@ -72,7 +72,7 @@ void InterCom::Send(const Measure &measure, uint timeMS)
 
     if (direction & Direction::CDC)
     {
-        HCDC::Transmit(data.Data(), data.Size());
+        HCDC::self.Transmit(data.Data(), data.Size());
     }
 
 #ifdef GUI

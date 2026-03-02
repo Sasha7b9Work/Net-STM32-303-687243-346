@@ -3,8 +3,10 @@
 
 
 // USB
-namespace HCDC
+struct HCDC
 {
+    static HCDC self;
+
     void Init();
 
     // Копирует принятые данные в buf. Возвращает количество принятых байт
@@ -12,4 +14,4 @@ namespace HCDC
 
     // Отправить в CDC
     void Transmit(const void *buf, int len);
-}
+};
