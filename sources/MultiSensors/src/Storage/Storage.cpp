@@ -31,36 +31,6 @@ void Storage::Init()
     index_in = 0;
     index_out = 0;
     num_elements = 0;
-
-    uint first_number = 0xFFFFFFFF;     // Наименьший номер хранящейся в памяти записи
-    uint address_first_number = -1;
-    uint last_number = 0;               // Наибольший номер хранящейся в памяти записи
-    uint address_last_number = -1;
-
-    {
-        // Находим 
-
-        for (uint address = 0; address += sizeof(Record); address++)
-        {
-            Record record;
-
-            W25Q80DV::ReadBuffer(address, record.Size(), record.Begin());
-
-            if (record.IsValid())
-            {
-                if (record.number < first_number)
-                {
-                    first_number = record.number;
-                    address_first_number = address;
-                }
-                if (record.number > last_number)
-                {
-                    last_number = record.number;
-                    address_last_number = address;
-                }
-            }
-        }
-    }
 }
 
 

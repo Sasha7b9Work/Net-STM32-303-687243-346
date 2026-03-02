@@ -102,9 +102,9 @@ void W25Q80DV::EraseSectorForAddress(uint address)
 {
     pinWP.ToHi();
 
-    address /= SIZE_PAGE;     // / 
+    address /= SIZE_SECTOR;     // / 
     // | Рассчитываем адрес первого байта стираемого сектора
-    address *= SIZE_PAGE;     // / 
+    address *= SIZE_SECTOR;     // / 
 
     WaitRelease();
 
@@ -120,16 +120,16 @@ void W25Q80DV::EraseSectorForAddress(uint address)
 
 void W25Q80DV::Clear()
 {
-    for (int i = 0; i < NUM_PAGES; i++)
+    for (int i = 0; i < NUM_SECTORS; i++)
     {
-        ErasePage(i);
+        EraseSector(i);
     }
 }
 
 
-void W25Q80DV::ErasePage(int num_page)
+void W25Q80DV::EraseSector(int num_page)
 {
-    EraseSectorForAddress((uint)num_page * SIZE_PAGE);
+    EraseSectorForAddress((uint)num_page * SIZE_SECTOR);
 }
 
 

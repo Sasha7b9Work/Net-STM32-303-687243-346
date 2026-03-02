@@ -32,7 +32,7 @@ namespace W25Q80DV
     // Стереть страницу, которой принадлежит address
     void EraseSectorForAddress(uint address);
 
-    void ErasePage(int num_page);
+    void EraseSector(int num_page);
 
     void WriteUInt(uint address, uint value);
 
