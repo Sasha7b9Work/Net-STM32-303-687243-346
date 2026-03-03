@@ -45,16 +45,12 @@ namespace Storage
 
     struct Sector
     {
-        uint start_address;         // Начальный адрес сектора
-
         static const int NUM_RECORDS = W25Q80DV::SIZE_SECTOR / sizeof(Record);
     };
 
     struct Memory
     {
         Sector sectors[W25Q80DV::NUM_SECTORS];
-
-        Memory();
 
         void Init();
 
@@ -91,15 +87,6 @@ namespace Storage
     };
 
     static Memory memory;
-}
-
-
-Storage::Memory::Memory()
-{
-    for (int i = 0; i < W25Q80DV::NUM_SECTORS; i++)
-    {
-        sectors[i].start_address = (uint)(i * W25Q80DV::SIZE_SECTOR);
-    }
 }
 
 
@@ -153,7 +140,7 @@ void Storage::Memory::MemorySector::Prepare(int _number)
     {
         number = _number;
 
-        buffer.Read(memory.sectors[number].start_address);
+        buffer.Read((uint)number * W25Q80DV::SIZE_SECTOR);
     }
 }
 
