@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "Storage/Storage.h"
 #include "Modules/W25Q80DV/W25Q80DV.h"
+#include "Utils/Math.h"
 #include <climits>
 
 
@@ -13,13 +14,24 @@ namespace Storage
         uint       number;      // Порядковый номер записи. Нужно для нахождения последней и первой
         PackedTime time;
         Measure    measure;
-        uint       tail;        // Сюда должен быть записан 0. При чтении мы читаем это значение. Если считан ноль,
-                                // то запись была произведена полностью - значение правильное
 
         uint CalculateCRC() const;
         bool IsValid() const;
         int Size() const;
-        uint8 *Begin();
+        uint8 *Begin() const
+        {
+            return (uint8 *)this;
+        }
+        // Начало (за исключением crc)
+        uint8 *BeginData() const
+        {
+            return Begin() + sizeof(crc);
+        }
+        // Размер данных (за исключением crc)
+        int SizeData() const
+        {
+            return sizeof(*this) - sizeof(crc);
+        }
     };
 
     // Стереть самую старую запись
@@ -35,12 +47,8 @@ namespace Storage
 
     static const int NUM_RECORDS_IN_SECTOR = W25Q80DV::SIZE_SECTOR / sizeof(Record);
 
-    struct Sector
-    {
-
-        // Возвращает номер записи по её сквозному индексу
-        static int NumberRecordForIndexRecord(int num_sector, int num_record);
-    };
+    // Возвращает номер записи по её сквозному индексу
+    static int NumberRecordForIndexRecord(int num_sector, int num_record);
 
     struct Memory
     {
@@ -85,6 +93,24 @@ namespace Storage
     };
 
     static Memory memory;
+}
+
+
+uint Storage::Record::CalculateCRC() const
+{
+    return Math::CalculateCRC(BeginData(), SizeData());
+}
+
+
+int Storage::Memory::NumberSectorForIndexRecord(int index_record) const
+{
+    return index_record / NUM_RECORDS_IN_SECTOR;
+}
+
+
+bool Storage::Record::IsValid() const
+{
+    return  crc == CalculateCRC();
 }
 
 
@@ -138,6 +164,12 @@ void Storage::Memory::Init()
 }
 
 
+int Storage::NumberRecordForIndexRecord(int num_sector, int num_record)
+{
+    return num_record % (num_sector * NUM_RECORDS_IN_SECTOR);
+}
+
+
 bool Storage::Memory::IsFull()
 {
     if (index_oldest == INT_MAX)        // Значит, нет ни одной записи
@@ -147,7 +179,7 @@ bool Storage::Memory::IsFull()
 
     int number_sector_oldest = NumberSectorForIndexRecord(index_oldest);        // В этом секторе находится самая старая запись
 
-    int number_record = Sector::NumberRecordForIndexRecord(number_sector_oldest, index_oldest);
+    int number_record = NumberRecordForIndexRecord(number_sector_oldest, index_oldest);
 
     if (number_record == NUM_RECORDS_IN_SECTOR - 1)       // Если данная запись последняя в секторе, нужно стереть
     {
@@ -240,7 +272,6 @@ void Storage::AppendMeasure(const Measure &measure)
     record.number = NumberLastRecord() + 1;
     record.time = HAL_RTC::GetTime();
     record.measure = measure;
-    record.tail = 0;
 
     AppendRecord(record);
 }
@@ -248,13 +279,11 @@ void Storage::AppendMeasure(const Measure &measure)
 
 void Storage::EraseOldestSector()
 {
-    #pragma message("Storage::EraseOldestRecord() not implemented")
 }
 
 
 void Storage::AppendRecord(const Record &)
 {
-    #pragma message("Storage::AppendRecord() not implemented")
 }
 
 
@@ -273,6 +302,5 @@ uint Storage::NumberLastRecord()
 
 bool Storage::LastRecord(Record &)
 {
-    #pragma message("Storage::LastRecord() not implemented")
     return false;
 }
