@@ -50,8 +50,6 @@ namespace Storage
 
     struct Memory
     {
-        Sector sectors[W25Q80DV::NUM_SECTORS];
-
         void Init();
 
     private:
@@ -77,7 +75,7 @@ namespace Storage
             void WriteData(uint start, int size);
 
             // Возвращает true, если нет ни одной валидной записи
-            bool IsEmpty() const;
+            bool IsEmpty();
 
             // Читает запись Record. Нумерация с начала сектора
             void ReadRecord(int number, Record *);
@@ -87,6 +85,12 @@ namespace Storage
     };
 
     static Memory memory;
+}
+
+
+int Storage::Record::Size() const
+{
+    return sizeof(*this);
 }
 
 
@@ -145,10 +149,8 @@ void Storage::Memory::MemorySector::Prepare(int _number)
 }
 
 
-bool Storage::Memory::MemorySector::IsEmpty() const
+bool Storage::Memory::MemorySector::IsEmpty()
 {
-    memory.data_sector.Prepare(number);
-
     {
         // Сначала проверим значения. Если все байты равны 0xFF, то в сектор после стирания ничего не записывалось
 
@@ -172,10 +174,21 @@ bool Storage::Memory::MemorySector::IsEmpty() const
     {
         // Теперь будем считывать записи и смотреть, есть ли хоть одна валидная
 
+        for (int num_record = 0; num_record < Sector::NUM_RECORDS; num_record++)
+        {
+            Record record;
 
+            ReadRecord(num_record, &record);
+        }
     }
 
     return true;
+}
+
+
+void Storage::Memory::MemorySector::ReadRecord(int number_record, Record *record)
+{
+    std::memcpy(record, buffer.Data() + number_record * record->Size(), (uint)record->Size());
 }
 
 
