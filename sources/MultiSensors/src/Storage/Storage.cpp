@@ -5,7 +5,8 @@
 #include "Utils/Math.h"
 #include "Storage/Memory.h"
 #include "Storage/Record.h"
-#include <climits>
+#include "Storage/MemorySector.h"
+#include "Storage/Sector.h"
 
 
 namespace Storage
@@ -21,178 +22,13 @@ namespace Storage
     // Копирует в параметр последнюю запись. Если записей нет - возвращаемое значение false
     static bool LastRecord(Record *);
 
-    // Возвращает номер записи по её сквозному индексу
-    static int NumberRecordForIndexRecord(int num_sector, int num_record);
-
-    // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
-    static bool IsFull();
-
-    // Возвращает номер сектора, в котором хранится запись с данным индексом
-    static int NumberSectorForIndexRecord(int);
-
-    // В этой структуре хранится последний считанный из памятии сектор
-    struct MemorySector
-    {
-        int number = -1;                            // Номер сектора
-        MemBuffer<W25Q80DV::SIZE_SECTOR> buffer;    // Данные сектора
-
-        // Считывает данные из микросхемы
-        void Prepare(int number);
-
-        // Записывает данные в микросхему. start - от начала сектора, size - сколько байт записать
-        void WriteData(uint start, int size);
-
-        // Возвращает true, если нет ни одной валидной записи
-        bool IsEmpty();
-
-        // Читает запись Record. Нумерация с начала сектора
-        void ReadRecord(int number, Record *);
-    };
-
-    static MemorySector data_sector;
-
-    static const int NUM_RECORDS_IN_SECTOR = W25Q80DV::SIZE_SECTOR / sizeof(Record);
-
-    static int index_oldest_record = INT_MAX;         // Сквозной индекс самой старой записи Record
-    static uint number_oldest_record = UINT_MAX;      // И номер данной записи
-
-    static int index_newest_record = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
-    static uint number_newest_record = 0;             // И номер данной записи
-}
-
-
-int Storage::NumberSectorForIndexRecord(int index_record)
-{
-    return index_record / NUM_RECORDS_IN_SECTOR;
-}
-
-
-int Storage::NumberRecordForIndexRecord(int num_sector, int num_record)
-{
-    return num_record % (num_sector * NUM_RECORDS_IN_SECTOR);
-}
-
-
-bool Storage::IsFull()
-{
-    if (index_oldest_record == INT_MAX)        // Значит, нет ни одной записи
-    {
-        return false;
-    }
-
-    int number_sector_oldest = NumberSectorForIndexRecord(index_oldest_record);        // В этом секторе находится самая старая запись
-
-    int number_record = NumberRecordForIndexRecord(number_sector_oldest, index_oldest_record);
-
-    if (number_record == NUM_RECORDS_IN_SECTOR - 1)       // Если данная запись последняя в секторе, нужно стереть
-    {
-
-    }
-
-    return false;
-}
-
-
-void Storage::MemorySector::Prepare(int _number)
-{
-    if (number != _number)
-    {
-        number = _number;
-
-        buffer.Read((uint)number * W25Q80DV::SIZE_SECTOR);
-    }
-}
-
-
-bool Storage::MemorySector::IsEmpty()
-{
-    {
-        // Сначала проверим значения. Если все байты равны 0xFF, то в сектор после стирания ничего не записывалось
-
-        int num_not_FF = 0;                 // Количество байт, не равных 0xFF
-
-        for (int i = 0; i < buffer.Size(); i++)
-        {
-            if (data_sector.buffer.Data()[i] != 0xFF)
-            {
-                num_not_FF++;
-                break;
-            }
-        }
-
-        if (num_not_FF == 0)
-        {
-            return true;
-        }
-    }
-
-    {
-        // Теперь будем считывать записи и смотреть, есть ли хоть одна валидная
-
-        for (int num_record = 0; num_record < NUM_RECORDS_IN_SECTOR; num_record++)
-        {
-            Record record;
-
-            ReadRecord(num_record, &record);
-
-            if (record.IsValid())
-            {
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
-
-void Storage::MemorySector::ReadRecord(int number_record, Record *record)
-{
-    std::memcpy(record, buffer.Data() + number_record * record->Size(), (uint)record->Size());
+    static Memory memory;
 }
 
 
 void Storage::Init()
 {
-    number_oldest_record = UINT_MAX;
-    index_oldest_record = INT_MAX;
-
-    index_newest_record = INT_MIN;
-    number_newest_record = 0;
-
-    {
-        for (int num_sector = 0; num_sector < W25Q80DV::NUM_SECTORS; num_sector++)
-        {
-            data_sector.Prepare(num_sector);
-
-            if (!data_sector.IsEmpty())
-            {
-                for (int num_record = 0; num_record < NUM_RECORDS_IN_SECTOR; num_record++)
-                {
-                    Record record;
-
-                    data_sector.ReadRecord(num_record, &record);
-
-                    if (record.IsValid())
-                    {
-                        int index = NUM_RECORDS_IN_SECTOR * num_sector + num_record;          // Сквозной индекс Record
-
-                        if (record.number < number_oldest_record)
-                        {
-                            number_oldest_record = record.number;
-                            index_oldest_record = index;
-                        }
-
-                        if (record.number > number_newest_record)
-                        {
-                            number_newest_record = record.number;
-                            index_newest_record = index;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    memory.Init();
 }
 
 
@@ -204,7 +40,7 @@ void Storage::Update()
 
 void Storage::AppendMeasure(const Measure &measure)
 {
-    if (IsFull())
+    if (memory.IsFull())
     {
         EraseOldestSector();
     }
