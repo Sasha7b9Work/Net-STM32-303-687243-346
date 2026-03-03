@@ -43,21 +43,13 @@ namespace Storage
     static uint NumberLastRecord();
 
     // Копирует в параметр последнюю запись. Если записей нет - возвращаемое значение false
-    static bool LastRecord(Record &);
-
-    static const int NUM_RECORDS_IN_SECTOR = W25Q80DV::SIZE_SECTOR / sizeof(Record);
+    static bool LastRecord(Record *);
 
     // Возвращает номер записи по её сквозному индексу
     static int NumberRecordForIndexRecord(int num_sector, int num_record);
 
     // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
-    bool IsFull();
-
-    int index_oldest_record = INT_MAX;         // Сквозной индекс самой старой записи Record
-    uint number_oldest_record = UINT_MAX;      // И номер данной записи
-
-    int index_newest_record = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
-    uint number_newest_record = 0;             // И номер данной записи
+    static bool IsFull();
 
     // Возвращает номер сектора, в котором хранится запись с данным индексом
     static int NumberSectorForIndexRecord(int);
@@ -81,7 +73,15 @@ namespace Storage
         void ReadRecord(int number, Record *);
     };
 
-    MemorySector data_sector;
+    static MemorySector data_sector;
+
+    static const int NUM_RECORDS_IN_SECTOR = W25Q80DV::SIZE_SECTOR / sizeof(Record);
+
+    static int index_oldest_record = INT_MAX;         // Сквозной индекс самой старой записи Record
+    static uint number_oldest_record = UINT_MAX;      // И номер данной записи
+
+    static int index_newest_record = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
+    static uint number_newest_record = 0;             // И номер данной записи
 }
 
 
@@ -272,18 +272,5 @@ void Storage::AppendRecord(const Record &)
 
 uint Storage::NumberLastRecord()
 {
-    Record record;
-
-    if (LastRecord(record))
-    {
-        return record.number;
-    }
-
-    return 0;
-}
-
-
-bool Storage::LastRecord(Record &)
-{
-    return false;
+    return number_newest_record;
 }
