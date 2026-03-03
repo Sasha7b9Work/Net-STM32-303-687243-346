@@ -53,11 +53,11 @@ namespace Storage
     // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
     bool IsFull();
 
-    int index_oldest = INT_MAX;         // Сквозной индекс самой старой записи Record
-    uint number_oldest = UINT_MAX;      // И номер данной записи
+    int index_oldest_record = INT_MAX;         // Сквозной индекс самой старой записи Record
+    uint number_oldest_record = UINT_MAX;      // И номер данной записи
 
-    int index_newest = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
-    uint number_newest = 0;             // И номер данной записи
+    int index_newest_record = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
+    uint number_newest_record = 0;             // И номер данной записи
 
     // Возвращает номер сектора, в котором хранится запись с данным индексом
     static int NumberSectorForIndexRecord(int);
@@ -117,14 +117,14 @@ int Storage::NumberRecordForIndexRecord(int num_sector, int num_record)
 
 bool Storage::IsFull()
 {
-    if (index_oldest == INT_MAX)        // Значит, нет ни одной записи
+    if (index_oldest_record == INT_MAX)        // Значит, нет ни одной записи
     {
         return false;
     }
 
-    int number_sector_oldest = NumberSectorForIndexRecord(index_oldest);        // В этом секторе находится самая старая запись
+    int number_sector_oldest = NumberSectorForIndexRecord(index_oldest_record);        // В этом секторе находится самая старая запись
 
-    int number_record = NumberRecordForIndexRecord(number_sector_oldest, index_oldest);
+    int number_record = NumberRecordForIndexRecord(number_sector_oldest, index_oldest_record);
 
     if (number_record == NUM_RECORDS_IN_SECTOR - 1)       // Если данная запись последняя в секторе, нужно стереть
     {
@@ -196,11 +196,11 @@ void Storage::MemorySector::ReadRecord(int number_record, Record *record)
 
 void Storage::Init()
 {
-    number_oldest = UINT_MAX;
-    index_oldest = INT_MAX;
+    number_oldest_record = UINT_MAX;
+    index_oldest_record = INT_MAX;
 
-    index_newest = INT_MIN;
-    number_newest = 0;
+    index_newest_record = INT_MIN;
+    number_newest_record = 0;
 
     {
         for (int num_sector = 0; num_sector < W25Q80DV::NUM_SECTORS; num_sector++)
@@ -219,16 +219,16 @@ void Storage::Init()
                     {
                         int index = NUM_RECORDS_IN_SECTOR * num_sector + num_record;          // Сквозной индекс Record
 
-                        if (record.number < number_oldest)
+                        if (record.number < number_oldest_record)
                         {
-                            number_oldest = record.number;
-                            index_oldest = index;
+                            number_oldest_record = record.number;
+                            index_oldest_record = index;
                         }
 
-                        if (record.number > number_newest)
+                        if (record.number > number_newest_record)
                         {
-                            number_newest = record.number;
-                            index_newest = index;
+                            number_newest_record = record.number;
+                            index_newest_record = index;
                         }
                     }
                 }
