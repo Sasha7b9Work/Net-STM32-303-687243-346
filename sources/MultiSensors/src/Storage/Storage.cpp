@@ -46,7 +46,6 @@ namespace Storage
     struct Sector
     {
         uint start_address;         // Начальный адрес сектора
-        int number;                 // Порядковый номер сектора
 
         static const int NUM_RECORDS = W25Q80DV::SIZE_SECTOR / sizeof(Record);
     };
@@ -100,7 +99,6 @@ Storage::Memory::Memory()
     for (int i = 0; i < W25Q80DV::NUM_SECTORS; i++)
     {
         sectors[i].start_address = (uint)(i * W25Q80DV::SIZE_SECTOR);
-        sectors[i].number = i;
     }
 }
 
