@@ -179,6 +179,11 @@ bool Storage::Memory::MemorySector::IsEmpty()
             Record record;
 
             ReadRecord(num_record, &record);
+
+            if (record.IsValid())
+            {
+                return false;
+            }
         }
     }
 

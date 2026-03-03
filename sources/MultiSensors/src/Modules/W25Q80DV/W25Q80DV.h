@@ -1,10 +1,15 @@
-﻿// 2023/08/07 09:56:54 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+// 2023/08/07 09:56:54 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include <cstring>
 
 
 template<int size>
 struct MemBuffer
 {
+    MemBuffer()
+    {
+        std::memset(data, 0x00, sizeof(data));
+    }
     uint8 *Read(uint address);
     uint8 *Data() { return data + 4; }
     int Size() const
