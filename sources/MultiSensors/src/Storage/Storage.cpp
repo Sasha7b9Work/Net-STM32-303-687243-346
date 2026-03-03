@@ -36,12 +36,8 @@ namespace Storage
     // Копирует в параметр последнюю запись. Если записей нет - возвращаемое значение false
     static bool LastRecord(Record &);
 
-    static int index_in = 0;        // Под этим индексом будет сохранён следующий элемент
-    static int index_out = 0;       // Индекс следующего считываемого элемента
-                                    // В индексах сплошная нумерация по всем секторам. 0 соответствует элементу, расположенному по нулевому адресу нулевого сектора
-                                    // Последний возможный индекс - у последнего элемента последнего сектора
-
-    static int num_elements = 0;    // Количество сохранённых элементов
+    // Возвращает номер сектора, в котором хранится запись с данным индексом
+    static int NumberSectorForIndexRecord(int);
 
     struct Sector
     {
@@ -56,8 +52,8 @@ namespace Storage
 
     friend struct Sector;
 
-        uint number_oldest = UINT_MAX;
         int index_oldest = INT_MAX;         // Сквозной индекс самой старой записи Record
+        uint number_oldest = UINT_MAX;      // И номер данной записи
 
         int index_newest = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
         uint number_newest = 0;             // И номер данной записи
@@ -91,6 +87,14 @@ namespace Storage
 int Storage::Record::Size() const
 {
     return sizeof(*this);
+}
+
+
+bool Storage::IsFull()
+{
+
+
+    return true;
 }
 
 
@@ -199,10 +203,6 @@ void Storage::Memory::MemorySector::ReadRecord(int number_record, Record *record
 
 void Storage::Init()
 {
-    index_in = 0;
-    index_out = 0;
-    num_elements = 0;
-
     memory.Init();
 }
 
@@ -239,13 +239,6 @@ void Storage::EraseOldestRecord()
 void Storage::AppendRecord(const Record &)
 {
     #pragma message("Storage::AppendRecord() not implemented")
-}
-
-
-bool Storage::IsFull()
-{
-    #pragma message("Storage::IsFull() not implemented")
-    return true;
 }
 
 
