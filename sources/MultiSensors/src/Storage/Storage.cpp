@@ -45,25 +45,151 @@ namespace Storage
 
     struct Sector
     {
-        uint start_address;
+        uint start_address;         // Начальный адрес сектора
+        int number;                 // Порядковый номер сектора
 
-        int NumRecords() const
-        {
-            return W25Q80DV::SIZE_SECTOR / sizeof(Record);
-        }
-
-        // Возвращает true, если нет ни одной валидной записи
-        bool IsEmpty() const;
-
-        void ReadRecord(int num_record, Record *);
+        static const int NUM_RECORDS = W25Q80DV::SIZE_SECTOR / sizeof(Record);
     };
 
-    static Sector sectors[W25Q80DV::NUM_SECTORS];
+    struct Memory
+    {
+        Sector sectors[W25Q80DV::NUM_SECTORS];
+
+        Memory();
+
+        void Init();
+
+    private:
+
+    friend struct Sector;
+
+        uint number_oldest = UINT_MAX;
+        int index_oldest = INT_MAX;         // Сквозной индекс самой старой записи Record
+
+        int index_newest = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
+        uint number_newest = 0;             // И номер данной записи
+
+        // В этой структуре хранится последний считанный из памятии сектор
+        struct MemorySector
+        {
+            int number = -1;                            // Номер сектора
+            MemBuffer<W25Q80DV::SIZE_SECTOR> buffer;    // Данные сектора
+
+            // Считывает данные из микросхемы
+            void Prepare(int number);
+
+            // Записывает данные в микросхему. start - от начала сектора, size - сколько байт записать
+            void WriteData(uint start, int size);
+
+            // Возвращает true, если нет ни одной валидной записи
+            bool IsEmpty() const;
+
+            // Читает запись Record. Нумерация с начала сектора
+            void ReadRecord(int number, Record *);
+        };
+
+        MemorySector data_sector;
+    };
+
+    static Memory memory;
 }
 
 
-bool Storage::Sector::IsEmpty() const
+Storage::Memory::Memory()
 {
+    for (int i = 0; i < W25Q80DV::NUM_SECTORS; i++)
+    {
+        sectors[i].start_address = (uint)(i * W25Q80DV::SIZE_SECTOR);
+        sectors[i].number = i;
+    }
+}
+
+
+void Storage::Memory::Init()
+{
+    number_oldest = UINT_MAX;
+    index_oldest = INT_MAX;
+
+    index_newest = INT_MIN;
+    number_newest = 0;
+
+    {
+        for (int num_sector = 0; num_sector < W25Q80DV::NUM_SECTORS; num_sector++)
+        {
+            data_sector.Prepare(num_sector);
+
+            if (!data_sector.IsEmpty())
+            {
+                for (int num_record = 0; num_record < Sector::NUM_RECORDS; num_record++)
+                {
+                    Record record;
+
+                    data_sector.ReadRecord(num_record, &record);
+
+                    if (record.IsValid())
+                    {
+                        int index = Sector::NUM_RECORDS * num_sector + num_record;          // Сквозной индекс Record
+
+                        if (record.number < number_oldest)
+                        {
+                            number_oldest = record.number;
+                            index_oldest = index;
+                        }
+
+                        if (record.number > number_newest)
+                        {
+                            number_newest = record.number;
+                            index_newest = index;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+void Storage::Memory::MemorySector::Prepare(int _number)
+{
+    if (number != _number)
+    {
+        number = _number;
+
+        buffer.Read(memory.sectors[number].start_address);
+    }
+}
+
+
+bool Storage::Memory::MemorySector::IsEmpty() const
+{
+    memory.data_sector.Prepare(number);
+
+    {
+        // Сначала проверим значения. Если все байты равны 0xFF, то в сектор после стирания ничего не записывалось
+
+        int num_not_FF = 0;                 // Количество байт, не равных 0xFF
+
+        for (int i = 0; i < buffer.Size(); i++)
+        {
+            if (memory.data_sector.buffer.Data()[i] != 0xFF)
+            {
+                num_not_FF++;
+                break;
+            }
+        }
+
+        if (num_not_FF == 0)
+        {
+            return true;
+        }
+    }
+
+    {
+        // Теперь будем считывать записи и смотреть, есть ли хоть одна валидная
+
+
+    }
+
     return true;
 }
 
@@ -74,42 +200,7 @@ void Storage::Init()
     index_out = 0;
     num_elements = 0;
 
-    for (uint i = 0; i < W25Q80DV::NUM_SECTORS; i++)
-    {
-        sectors[i].start_address = i * W25Q80DV::SIZE_SECTOR;
-    }
-
-    uint number_first = UINT_MAX;
-    int index_first = INT_MAX;           // Сквозной индекс записи Recrod с наименьшим номером
-
-    int index_last = INT_MIN;           // Сквозной индекс записи Record с наибольшим номером
-    uint number_last = 0;               // И номер данной записи
-
-    for (int num_sector = 0; num_sector < W25Q80DV::NUM_SECTORS; num_sector++)
-    {
-        Sector &sector = sectors[num_sector];
-
-        if (!sector.IsEmpty())
-        {
-            for (int num_record = 0; num_record < sector.NumRecords(); num_record++)
-            {
-                Record record;
-
-                sector.ReadRecord(num_record, &record);
-
-                if (record.IsValid())
-                {
-                    int index = sector.NumRecords() * num_sector + num_record;          // Сквозной индекс Record
-
-                    if (index < index_first)
-                    {
-                        index_first = index;
-                        number_first = record.number;
-                    }
-                }
-            }
-        }
-    }
+    memory.Init();
 }
 
 
