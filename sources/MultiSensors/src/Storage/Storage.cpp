@@ -22,11 +22,8 @@ namespace Storage
         uint8 *Begin();
     };
 
-    // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
-    static bool IsFull();
-
     // Стереть самую старую запись
-    static void EraseOldestRecord();
+    static void EraseOldestSector();
 
     static void AppendRecord(const Record &);
 
@@ -36,17 +33,21 @@ namespace Storage
     // Копирует в параметр последнюю запись. Если записей нет - возвращаемое значение false
     static bool LastRecord(Record &);
 
-    // Возвращает номер сектора, в котором хранится запись с данным индексом
-    static int NumberSectorForIndexRecord(int);
+    static const int NUM_RECORDS_IN_SECTOR = W25Q80DV::SIZE_SECTOR / sizeof(Record);
 
     struct Sector
     {
-        static const int NUM_RECORDS = W25Q80DV::SIZE_SECTOR / sizeof(Record);
+
+        // Возвращает номер записи по её сквозному индексу
+        static int NumberRecordForIndexRecord(int num_sector, int num_record);
     };
 
     struct Memory
     {
         void Init();
+
+        // Возвращает true, если хранилище полностью заполнено - ни одной записи больше не влезет
+        bool IsFull();
 
     private:
 
@@ -57,6 +58,9 @@ namespace Storage
 
         int index_newest = INT_MIN;         // Сквозной индекс записи Record с наибольшим номером
         uint number_newest = 0;             // И номер данной записи
+
+        // Возвращает номер сектора, в котором хранится запись с данным индексом
+        int NumberSectorForIndexRecord(int) const;
 
         // В этой структуре хранится последний считанный из памятии сектор
         struct MemorySector
@@ -90,14 +94,6 @@ int Storage::Record::Size() const
 }
 
 
-bool Storage::IsFull()
-{
-
-
-    return true;
-}
-
-
 void Storage::Memory::Init()
 {
     number_oldest = UINT_MAX;
@@ -113,7 +109,7 @@ void Storage::Memory::Init()
 
             if (!data_sector.IsEmpty())
             {
-                for (int num_record = 0; num_record < Sector::NUM_RECORDS; num_record++)
+                for (int num_record = 0; num_record < NUM_RECORDS_IN_SECTOR; num_record++)
                 {
                     Record record;
 
@@ -121,7 +117,7 @@ void Storage::Memory::Init()
 
                     if (record.IsValid())
                     {
-                        int index = Sector::NUM_RECORDS * num_sector + num_record;          // Сквозной индекс Record
+                        int index = NUM_RECORDS_IN_SECTOR * num_sector + num_record;          // Сквозной индекс Record
 
                         if (record.number < number_oldest)
                         {
@@ -139,6 +135,26 @@ void Storage::Memory::Init()
             }
         }
     }
+}
+
+
+bool Storage::Memory::IsFull()
+{
+    if (index_oldest == INT_MAX)        // Значит, нет ни одной записи
+    {
+        return false;
+    }
+
+    int number_sector_oldest = NumberSectorForIndexRecord(index_oldest);        // В этом секторе находится самая старая запись
+
+    int number_record = Sector::NumberRecordForIndexRecord(number_sector_oldest, index_oldest);
+
+    if (number_record == NUM_RECORDS_IN_SECTOR - 1)       // Если данная запись последняя в секторе, нужно стереть
+    {
+
+    }
+
+    return false;
 }
 
 
@@ -178,7 +194,7 @@ bool Storage::Memory::MemorySector::IsEmpty()
     {
         // Теперь будем считывать записи и смотреть, есть ли хоть одна валидная
 
-        for (int num_record = 0; num_record < Sector::NUM_RECORDS; num_record++)
+        for (int num_record = 0; num_record < NUM_RECORDS_IN_SECTOR; num_record++)
         {
             Record record;
 
@@ -215,9 +231,9 @@ void Storage::Update()
 
 void Storage::AppendMeasure(const Measure &measure)
 {
-    if (IsFull())
+    if (memory.IsFull())
     {
-        EraseOldestRecord();
+        EraseOldestSector();
     }
 
     Record record;
@@ -230,7 +246,7 @@ void Storage::AppendMeasure(const Measure &measure)
 }
 
 
-void Storage::EraseOldestRecord()
+void Storage::EraseOldestSector()
 {
     #pragma message("Storage::EraseOldestRecord() not implemented")
 }
