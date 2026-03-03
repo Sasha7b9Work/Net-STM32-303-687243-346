@@ -1216,6 +1216,36 @@
               <FileType>5</FileType>
               <FilePath>.\src\Storage\Storage.h</FilePath>
             </File>
+            <File>
+              <FileName>Memory.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Memory.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Memory.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Memory.h</FilePath>
+            </File>
+            <File>
+              <FileName>Record.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Record.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Record.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Record.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sector.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Sector.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Sector.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Sector.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2764,6 +2794,36 @@
               <FileName>Storage.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Storage\Storage.h</FilePath>
+            </File>
+            <File>
+              <FileName>Memory.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Memory.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Memory.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Memory.h</FilePath>
+            </File>
+            <File>
+              <FileName>Record.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Record.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Record.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Record.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sector.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Storage\Sector.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Sector.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Storage\Sector.h</FilePath>
             </File>
           </Files>
         </Group>

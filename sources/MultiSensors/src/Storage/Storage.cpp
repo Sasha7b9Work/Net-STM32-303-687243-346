@@ -3,37 +3,13 @@
 #include "Storage/Storage.h"
 #include "Modules/W25Q80DV/W25Q80DV.h"
 #include "Utils/Math.h"
+#include "Storage/Memory.h"
+#include "Storage/Record.h"
 #include <climits>
 
 
 namespace Storage
 {
-    struct Record
-    {
-        uint       crc;
-        uint       number;      // Порядковый номер записи. Нужно для нахождения последней и первой
-        PackedTime time;
-        Measure    measure;
-
-        uint CalculateCRC() const;
-        bool IsValid() const;
-        int Size() const;
-        uint8 *Begin() const
-        {
-            return (uint8 *)this;
-        }
-        // Начало (за исключением crc)
-        uint8 *BeginData() const
-        {
-            return Begin() + sizeof(crc);
-        }
-        // Размер данных (за исключением crc)
-        int SizeData() const
-        {
-            return sizeof(*this) - sizeof(crc);
-        }
-    };
-
     // Стереть самую старую запись
     static void EraseOldestSector();
 
@@ -85,27 +61,9 @@ namespace Storage
 }
 
 
-uint Storage::Record::CalculateCRC() const
-{
-    return Math::CalculateCRC(BeginData(), SizeData());
-}
-
-
 int Storage::NumberSectorForIndexRecord(int index_record)
 {
     return index_record / NUM_RECORDS_IN_SECTOR;
-}
-
-
-bool Storage::Record::IsValid() const
-{
-    return  crc == CalculateCRC();
-}
-
-
-int Storage::Record::Size() const
-{
-    return sizeof(*this);
 }
 
 
